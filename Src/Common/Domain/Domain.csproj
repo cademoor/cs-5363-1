@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\Etc\Lib\NLog-1.0\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -37,7 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="exception\PersistenceException.cs" />
+    <Compile Include="implementation\Entity.cs" />
+    <Compile Include="interface\IEntity.cs" />
+    <Compile Include="log\AbstractLogger.cs" />
+    <Compile Include="log\ApplicationLogger.cs" />
+    <Compile Include="log\ApplicationLoggerRepository.cs" />
+    <Compile Include="log\IApplicationLogger.cs" />
+    <Compile Include="map\IThreadSafeMapValueFactory.cs" />
+    <Compile Include="map\ThreadSafeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\IUnitOfWork.cs" />
+    <Compile Include="service\IUnitOfWorkRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

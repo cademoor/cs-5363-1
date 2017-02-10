@@ -43,7 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="persistence\UnitOfWork.cs" />
+    <Compile Include="persistence\UnitOfWorkRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="session\SessionDecorator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Domain\Domain.csproj">
+      <Project>{d9e9bb70-4fdb-46b9-8d8d-4d22a7d98aaf}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="persistence\hbm\entity.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
