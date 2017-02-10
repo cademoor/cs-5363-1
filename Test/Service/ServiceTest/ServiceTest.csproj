@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\Etc\Lib\NHibernate-3.3.2\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\Etc\Lib\NUnit-2.6.4\nunit.framework.dll</HintPath>
     </Reference>
@@ -40,7 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractServiceTest.cs" />
+    <Compile Include="persistence\UnitOfWorkRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\Common\Domain\Domain.csproj">
+      <Project>{d9e9bb70-4fdb-46b9-8d8d-4d22a7d98aaf}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Service\Service\Service.csproj">
+      <Project>{68eeba4d-a4c2-4080-92f5-b019711827fe}</Project>
+      <Name>Service %28Src\Service\Service%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
