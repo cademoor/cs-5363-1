@@ -24,6 +24,11 @@ namespace Ttu.Presentation
 
         # region Public Methods
 
+        public void MapPresenterFactory(string sessionId, IPresenterFactory presenterFactory)
+        {
+            Map[sessionId] = presenterFactory;
+        }
+
         public IPresenterFactory ValidatePresenterFactory(string sessionId)
         {
             // guard clause - session does not exist

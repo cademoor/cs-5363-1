@@ -7,8 +7,9 @@ namespace Ttu.Presentation
 
         # region Constructors
 
-        public PresenterFactory(IUser user, IUnitOfWork unitOfWork)
+        public PresenterFactory(IUser user, IUnitOfWork unitOfWork, string sessionId)
         {
+            SessionId = sessionId;
             UnitOfWork = unitOfWork;
             User = user;
         }
@@ -17,6 +18,7 @@ namespace Ttu.Presentation
 
         # region Properties
 
+        public string SessionId { get; private set; }
         public IUnitOfWork UnitOfWork { get; private set; }
         public IUser User { get; private set; }
 
