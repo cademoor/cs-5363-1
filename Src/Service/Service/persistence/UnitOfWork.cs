@@ -95,7 +95,7 @@ namespace Ttu.Service
 
         # region Properties
 
-        public IUnitOfWorkRepository<IEntity> Entities { get { return CreateUowRepository<IEntity>(); } }
+        public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
 
         private SessionDecorator Session { get; set; }
 

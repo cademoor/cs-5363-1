@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="exception\BusinessException.cs" />
     <Compile Include="exception\PersistenceException.cs" />
-    <Compile Include="implementation\Entity.cs" />
-    <Compile Include="interface\IEntity.cs" />
+    <Compile Include="implementation\User.cs" />
+    <Compile Include="interface\IUser.cs" />
     <Compile Include="log\AbstractLogger.cs" />
     <Compile Include="log\ApplicationLogger.cs" />
     <Compile Include="log\ApplicationLoggerRepository.cs" />
@@ -52,6 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\IUnitOfWork.cs" />
     <Compile Include="service\IUnitOfWorkRepository.cs" />
+    <Compile Include="service\NullUnitOfWork.cs" />
+    <Compile Include="service\NullUnitOfWorkRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

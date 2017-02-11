@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConnectionOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Port>0</Port>
+    <Pooling>true</Pooling>
+    <NetworkLibrary />
+    <MaxPoolSize>0</MaxPoolSize>
+    <Encrypt>false</Encrypt>
+    <ConnectTimeout>10</ConnectTimeout>
+    <ServerName>localhost</ServerName>
+    <DatabaseName>Library</DatabaseName>
+    <UserId>cAS5TAqA1pXzagzWM57OOQ==</UserId>
+    <Password>cAS5TAqA1pXzagzWM57OOQ==</Password>
+    <Integrated>false</Integrated>
+    <ShowSql>false</ShowSql>
+</ConnectionOptions>
+

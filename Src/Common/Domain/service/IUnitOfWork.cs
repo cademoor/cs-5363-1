@@ -3,7 +3,7 @@
     public interface IUnitOfWork
     {
 
-        IUnitOfWorkRepository<IEntity> Entities { get; }
+        IUnitOfWorkRepository<IUser> Users { get; }
 
     }
 }

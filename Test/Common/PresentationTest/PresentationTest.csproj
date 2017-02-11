@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{068AE1CF-87E8-4F1E-BDE7-7D9EA1735261}</ProjectGuid>
+    <ProjectGuid>{DC1B5CF0-D9BA-4E88-BABE-5604FAC83EF4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ttu.DomainTest</RootNamespace>
-    <AssemblyName>Ttu.DomainTest</AssemblyName>
+    <RootNamespace>Ttu.PresentationTest</RootNamespace>
+    <AssemblyName>Ttu.PresentationTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="implementation\UserTest.cs" />
-    <Compile Include="map\ThreadSafeMapTest.cs" />
+    <Compile Include="Null\NullUserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Src\Common\Domain\Domain.csproj">
       <Project>{d9e9bb70-4fdb-46b9-8d8d-4d22a7d98aaf}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Src\Common\Presentation\Presentation.csproj">
+      <Project>{05e4ec87-b996-4179-a906-ebc47b6a9230}</Project>
+      <Name>Presentation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
