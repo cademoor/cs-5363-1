@@ -1,4 +1,4 @@
-﻿using NLog;
+using NLog;
 
 namespace Ttu.Domain
 {
@@ -19,6 +19,7 @@ namespace Ttu.Domain
         # region Properties
 
         protected string LoggerId { get; set; }
+
         private Logger Logger { get; set; }
 
         # endregion

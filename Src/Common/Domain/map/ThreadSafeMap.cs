@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Ttu.Domain
@@ -17,13 +17,13 @@ namespace Ttu.Domain
 
         # region Properties
 
+        public int Count { get { return Map.Count; } }
+
         public TValue this[TKey key]
         {
             get { return GetValue(key); }
             set { SetValue(key, value); }
         }
-
-        public int Count { get { return Map.Count; } }
 
         private Dictionary<TKey, TValue> Map { get; set; }
 
