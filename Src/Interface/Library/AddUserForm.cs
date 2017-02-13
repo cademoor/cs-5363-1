@@ -5,12 +5,12 @@ using Ttu.Presentation;
 
 namespace Ttu.Library
 {
-    public partial class MainForm : Form
+    public partial class AddUserForm : Form
     {
 
         # region Constructors
 
-        public MainForm()
+        public AddUserForm()
         {
             InitializeComponent();
         }
@@ -19,35 +19,32 @@ namespace Ttu.Library
 
         # region Event Handlers
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (ShouldOpenAddUserForm())
-            {
-                AddUserForm addUserForm = new AddUserForm();
-                addUserForm.ShowDialog(this);
-            }
-            else
-            {
-                LogOnForm logOnForm = new LogOnForm();
-                logOnForm.ShowDialog(this);
-            }
+            AddUser();
+            Close();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         # endregion
 
         # region Helper Methods
 
-        private bool ShouldOpenAddUserForm()
+        private void AddUser()
         {
-            // launch user creation form if no users
+            // temporarily just add a user
             // test code
 
             IUnitOfWork adHocUnitOfWork = NullUnitOfWork.Singleton;
             try
             {
                 adHocUnitOfWork = PresentationEnvironment.Singleton.ServiceFactory.CreateAuthenticationService().CreateAdHocUnitOfWork();
-                IUser[] users = PresentationEnvironment.Singleton.ServiceFactory.CreateUserService(adHocUnitOfWork).GetUsers();
-                return users.Length == 0;
+                PresentationEnvironment.Singleton.ServiceFactory.CreateUserService(adHocUnitOfWork).AddUser(CreateUser());
+                adHocUnitOfWork.Commit();
             }
             catch (Exception ex)
             {
@@ -57,8 +54,16 @@ namespace Ttu.Library
             {
                 adHocUnitOfWork.Release();
             }
+        }
 
-            return false;
+        private IUser CreateUser()
+        {
+            IUser user = new User();
+            user.FirstName = txtFirstName.Text;
+            user.LastName = txtLastName.Text;
+            user.Password = txtPassword.Text;
+            user.UserId = txtUserId.Text.ToUpper();
+            return user;
         }
 
         # endregion

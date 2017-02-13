@@ -74,7 +74,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(189, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "SamplePassword";
+            this.txtPassword.Text = "1";
             // 
             // label1
             // 
@@ -94,7 +94,7 @@
             this.txtUserId.Name = "txtUserId";
             this.txtUserId.Size = new System.Drawing.Size(189, 20);
             this.txtUserId.TabIndex = 0;
-            this.txtUserId.Text = "SampleUser";
+            this.txtUserId.Text = "ADMIN";
             // 
             // btnLogOn
             // 

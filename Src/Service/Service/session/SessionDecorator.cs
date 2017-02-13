@@ -11,8 +11,9 @@ namespace Ttu.Service
 
         # region Constructors
 
-        public SessionDecorator(ISession session)
+        public SessionDecorator(ISession session, string sessionId)
         {
+            SessionId = sessionId;
             StatefulComponent = session;
         }
 
@@ -20,6 +21,7 @@ namespace Ttu.Service
 
         # region Properties
 
+        public string SessionId { get; private set; }
         public ISession StatefulComponent { get; private set; }
 
         # endregion

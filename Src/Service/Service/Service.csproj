@@ -43,10 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ini\ServiceEnvironment.cs" />
+    <Compile Include="ini\ServiceInitializer.cs" />
     <Compile Include="persistence\UnitOfWork.cs" />
     <Compile Include="persistence\UnitOfWorkRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="service\common\AbstractService.cs" />
+    <Compile Include="service\AuthenticationService.cs" />
+    <Compile Include="service\common\ServiceFactory.cs" />
+    <Compile Include="service\UserService.cs" />
     <Compile Include="session\SessionDecorator.cs" />
+    <Compile Include="utility\DatabaseCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Domain\Domain.csproj">

@@ -1,4 +1,6 @@
-﻿using Ttu.Service;
+﻿using NHibernate;
+using System;
+using Ttu.Service;
 
 namespace Ttu.ServiceTest
 {
@@ -9,14 +11,20 @@ namespace Ttu.ServiceTest
 
         public AbstractServiceTest()
         {
-            Session = new SessionDecorator(null); // TODO:ACM - initialize/provide nhibernate session
+            if (Session == null)
+            {
+                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true);
+
+                ISession openSession = sessionFactory.OpenSession();
+                Session = new SessionDecorator(openSession, Guid.NewGuid().ToString());
+            }
         }
 
         # endregion
 
         # region Properties
 
-        protected SessionDecorator Session { get; private set; }
+        protected static SessionDecorator Session { get; private set; }
 
         # endregion
 

@@ -20,6 +20,7 @@ namespace Ttu.Presentation
         protected PresentationEnvironment PresentationEnvironment { get { return PresentationEnvironment.Singleton; } }
         protected IUnitOfWork UnitOfWork { get; private set; }
         protected IUser User { get; private set; }
+        protected IServiceFactory ServiceFactory { get { return PresentationEnvironment.ServiceFactory; } }
 
         # endregion
 

@@ -4,7 +4,6 @@ using Ttu.Service;
 
 namespace Ttu.ServiceTest
 {
-    [Ignore]
     [TestFixture]
     public class UnitOfWorkRepositoryTest : AbstractServiceTest
     {

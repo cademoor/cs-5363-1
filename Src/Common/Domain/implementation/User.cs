@@ -16,6 +16,7 @@ namespace Ttu.Domain
         {
             FirstName = string.Empty;
             LastName = string.Empty;
+            Password = string.Empty;
             RecordId = 0;
             UserId = userId;
         }
@@ -26,6 +27,7 @@ namespace Ttu.Domain
 
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
+        public virtual string Password { get; set; }
         public virtual int RecordId { get; set; }
         public virtual string UserId { get; set; }
 
@@ -53,6 +55,11 @@ namespace Ttu.Domain
         public virtual bool IsValid()
         {
             return true;
+        }
+
+        public virtual bool MatchesPassword(string password)
+        {
+            return Password == password;
         }
 
         # endregion

@@ -1,5 +1,4 @@
-﻿using System;
-using Ttu.Domain;
+﻿using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
@@ -21,32 +20,29 @@ namespace Ttu.Presentation
         {
             ValidateUserId(userId);
             ValidatePassword(password);
-            ValidateCredentials(userId, password);
-            return ConfigureAuthenticatedSession(userId, password);
+            IUnitOfWork uow = ValidateCredentials(userId, password);
+            return ConfigureAuthenticatedSession(uow);
         }
 
         # endregion
 
         # region Helper Methods
 
-        private string ConfigureAuthenticatedSession(string userId, string password)
+        private string ConfigureAuthenticatedSession(IUnitOfWork uow)
         {
-            string sessionId = Guid.NewGuid().ToString();
-            IUnitOfWork unitOfWork = NullUnitOfWork.Singleton;
-            IUser user = NullUser.Singleton;
+            string sessionId = uow.SessionId;
+            IUnitOfWork unitOfWork = uow;
+            IUser user = uow.User;
 
             IPresenterFactory presenterFactory = new PresenterFactory(user, unitOfWork, sessionId);
             PresentationEnvironment.MapPresenterFactory(sessionId, presenterFactory);
             return sessionId;
         }
 
-        private void ValidateCredentials(string userId, string password)
+        private IUnitOfWork ValidateCredentials(string userId, string password)
         {
-            // TODO:ACM - this is just a sample for now...need to hook up once we have real users
-            if (userId != "SampleUser" || password != "SamplePassword")
-            {
-                throw new BusinessException("User Id and Password combination did not match.");
-            }
+            IAuthenticationService authenticationService = ServiceFactory.CreateAuthenticationService();
+            return authenticationService.Authenticate(userId, password);
         }
 
         private void ValidatePassword(string password)

@@ -86,14 +86,18 @@ namespace Ttu.Service
 
         # region Constructors
 
-        public UnitOfWork(SessionDecorator session)
+        public UnitOfWork(SessionDecorator session, IUser user)
         {
             Session = session;
+            User = user;
         }
 
         # endregion
 
         # region Properties
+
+        public string SessionId { get { return Session.SessionId; } }
+        public IUser User { get; private set; }
 
         public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
 
@@ -103,6 +107,35 @@ namespace Ttu.Service
 
         # region Public Methods
 
+        public void Abort()
+        {
+            try
+            {
+                Session.Clear();
+            }
+            catch (Exception ex)
+            {
+                throw LogAndWrapException("Problem abandoning(clearing) changes", ex);
+            }
+        }
+
+        public void Commit()
+        {
+            try
+            {
+                Session.Flush();
+            }
+            catch (Exception ex)
+            {
+                throw LogAndWrapException("Problem saving(committing/flushing) changes", ex);
+            }
+        }
+
+        public void Release()
+        {
+            Session.ClearAndReleaseSafely();
+        }
+
         # endregion
 
         # region Helper Methods
@@ -110,35 +143,6 @@ namespace Ttu.Service
         private IUnitOfWorkRepository<T> CreateUowRepository<T>() where T : class
         {
             return new UnitOfWorkRepository<T>(Session);
-        }
-
-        private void ExecuteOrWrap(Action action)
-        {
-            try
-            {
-                action.Invoke();
-            }
-            catch (Exception ex)
-            {
-                throw LogAndWrapException(ex);
-            }
-        }
-
-        private TResult ExecuteOrWrap<TResult>(Func<TResult> function)
-        {
-            try
-            {
-                return function.Invoke();
-            }
-            catch (Exception ex)
-            {
-                throw LogAndWrapException(ex);
-            }
-        }
-
-        private PersistenceException LogAndWrapException(Exception ex)
-        {
-            return Ttu.Service.UnitOfWork.LogAndWrapException("Generic service problem", ex);
         }
 
         # endregion

@@ -15,7 +15,29 @@
 
         # region Properties
 
+        public string SessionId { get { return string.Empty; } }
+        public IUser User { get { return null; } }
+
         public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
+
+        # endregion
+
+        # region Public Methods
+
+        public virtual void Abort()
+        {
+            // do nothing
+        }
+
+        public virtual void Commit()
+        {
+            // do nothing
+        }
+
+        public virtual void Release()
+        {
+            // do nothing
+        }
 
         # endregion
 

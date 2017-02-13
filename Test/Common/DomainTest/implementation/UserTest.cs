@@ -21,15 +21,24 @@ namespace Ttu.DomainTest
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
+            Assert.IsEmpty(User.FirstName);
+            Assert.IsEmpty(User.LastName);
+            Assert.IsEmpty(User.Password);
             Assert.AreEqual(0, User.RecordId);
             Assert.IsEmpty(User.UserId);
             Assert.IsTrue(User.IsValid());
 
             // exercise
+            User.FirstName = "Harper";
+            User.LastName = "Moorman";
+            User.Password = "TestPassword";
             User.RecordId = 1;
             User.UserId = "A";
 
             // post-conditions
+            Assert.AreEqual("Harper", User.FirstName);
+            Assert.AreEqual("Moorman", User.LastName);
+            Assert.AreEqual("TestPassword", User.Password);
             Assert.AreEqual(1, User.RecordId);
             Assert.AreEqual("A", User.UserId);
             Assert.IsTrue(User.IsValid());

@@ -12,11 +12,14 @@ namespace Ttu.Presentation
         private PresentationEnvironment()
         {
             Map = new ThreadSafeMap<string, IPresenterFactory>();
+            ServiceFactory = NullServiceFactory.Singleton;
         }
 
         # endregion
 
         # region Properties
+
+        public IServiceFactory ServiceFactory { get; private set; }
 
         private ThreadSafeMap<string, IPresenterFactory> Map { get; set; }
 
@@ -39,6 +42,11 @@ namespace Ttu.Presentation
             }
 
             return presenterFactory;
+        }
+
+        public void SetServiceFactory(IServiceFactory serviceFactory)
+        {
+            ServiceFactory = serviceFactory ?? NullServiceFactory.Singleton;
         }
 
         # endregion
