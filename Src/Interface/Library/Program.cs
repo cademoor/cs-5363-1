@@ -19,7 +19,7 @@ namespace Ttu.Library
             new ServiceInitializer().Initialize(false);
             PresentationEnvironment.Singleton.SetServiceFactory(new ServiceFactory());
 
-
+            // Do it!
             Application.Run(new MainForm());
         }
     }
