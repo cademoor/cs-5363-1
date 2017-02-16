@@ -22,4 +22,11 @@
         AlphaNumericWithSymbols = 6,
     }
 
+    public enum ContactType : int
+    {
+        None = 0,
+        HomePhone = 1,
+        MobilePhone = 2,
+    }
+
 }

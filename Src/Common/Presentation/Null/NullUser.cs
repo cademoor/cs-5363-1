@@ -11,6 +11,7 @@ namespace Ttu.Presentation
 
         private NullUser()
         {
+            _EmailAddress = string.Empty;
             _FirstName = string.Empty;
             _LastName = string.Empty;
             _Password = string.Empty;
@@ -22,16 +23,23 @@ namespace Ttu.Presentation
 
         # region Properties
 
+        public string EmailAddress { get { return _EmailAddress; } set { } }
+
         public string FirstName { get { return _FirstName; } set { } }
+
         public string LastName { get { return _LastName; } set { } }
+
         public string Password { get { return _Password; } set { } }
+
         public int RecordId { get { return _RecordId; } set { } }
+
         public string UserId { get { return _UserId; } set { } }
 
         # endregion
 
         # region Variables
 
+        public string _EmailAddress;
         public string _FirstName;
         public string _LastName;
         public string _Password;
@@ -42,14 +50,39 @@ namespace Ttu.Presentation
 
         # region Public Methods
 
-        public bool IsValid()
+        public virtual void AddContact(IContact contact)
+        {
+            // do nothing
+        }
+
+        public virtual IContact GetContact(int recordId)
+        {
+            return null;
+        }
+
+        public virtual IContact GetContact(ContactType contactType)
+        {
+            return null;
+        }
+
+        public virtual IContact[] GetContacts()
+        {
+            return new IContact[0];
+        }
+
+        public virtual bool IsValid()
         {
             return false;
         }
 
-        public bool MatchesPassword(string password)
+        public virtual bool MatchesPassword(string password)
         {
             return false;
+        }
+
+        public virtual void RemoveContact(IContact contact)
+        {
+            // do nothing
         }
 
         # endregion

@@ -18,6 +18,7 @@
         public string SessionId { get { return string.Empty; } }
         public IUser User { get { return null; } }
 
+        public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
 
         # endregion
