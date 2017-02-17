@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 
 namespace Ttu.Domain
 {
@@ -14,21 +17,29 @@ namespace Ttu.Domain
 
         public User(string userId)
         {
+            UserId = userId;
+
+            EmailAddress = string.Empty;
             FirstName = string.Empty;
             LastName = string.Empty;
             Password = string.Empty;
             RecordId = 0;
-            UserId = userId;
         }
 
         # endregion
 
         # region Properties
 
+        public virtual string EmailAddress { get; set; }
+
         public virtual string FirstName { get; set; }
+
         public virtual string LastName { get; set; }
+
         public virtual string Password { get; set; }
+
         public virtual int RecordId { get; set; }
+
         public virtual string UserId { get; set; }
 
         # endregion

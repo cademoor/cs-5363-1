@@ -99,6 +99,7 @@ namespace Ttu.Service
         public string SessionId { get { return Session.SessionId; } }
         public IUser User { get; private set; }
 
+        public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
 
         private SessionDecorator Session { get; set; }

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Ttu.Domain" assembly="Ttu.Domain">
-    <class name="User" table="[dbo].[User]" lazy="true" dynamic-update="true">
+    <class name="User" table="[dbo].[User]" lazy="true">
         <id name="RecordId">
-            <generator class="hilo" />
+            <generator class="identity" />
         </id>
 
+        <property name="EmailAddress" length="100" />
         <property name="FirstName" length="50" />
         <property name="LastName" length="50" />
         <property name="Password" length="200" />

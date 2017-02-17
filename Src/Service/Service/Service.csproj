@@ -51,6 +51,7 @@
     <Compile Include="service\common\AbstractService.cs" />
     <Compile Include="service\AuthenticationService.cs" />
     <Compile Include="service\common\ServiceFactory.cs" />
+    <Compile Include="service\ContactService.cs" />
     <Compile Include="service\UserService.cs" />
     <Compile Include="session\SessionDecorator.cs" />
     <Compile Include="utility\DatabaseCreator.cs" />
@@ -63,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="persistence\hbm\user.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="persistence\hbm\contact.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

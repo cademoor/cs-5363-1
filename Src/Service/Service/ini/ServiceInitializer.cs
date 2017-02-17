@@ -21,7 +21,6 @@ namespace Ttu.Service
         {
             ISessionFactory sessionFactory = InitializeDatabase(forceDropBeforeCreate);
             TestStatefulSession(sessionFactory);
-            SeedNHibernateTableIfApplicable(sessionFactory);
             ServiceEnvironment.Singleton.SetSessionFactory(sessionFactory);
             return sessionFactory;
         }
@@ -95,36 +94,6 @@ namespace Ttu.Service
                 DropDatabase(cfg);
             }
             CreateDatabase(cfg);
-        }
-
-        private void SeedNHibernateTableIfApplicable(ISessionFactory sessionFactory)
-        {
-            IStatelessSession openSession = null;
-            try
-            {
-                openSession = sessionFactory.OpenStatelessSession();
-
-                // guard clause - already seeded
-                int rowCount = openSession.CreateSQLQuery(string.Format("SELECT COUNT(*) FROM {0}", DEFAULT_NHIBERNATE_TABLENAME)).UniqueResult<int>();
-                if (rowCount > 0)
-                {
-                    return;
-                }
-
-                openSession.CreateSQLQuery(string.Format("INSERT INTO {0}(next_hi) VALUES (0)", DEFAULT_NHIBERNATE_TABLENAME)).UniqueResult();
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-                throw new PersistenceException("The hilo table could not be seeded.");
-            }
-            finally
-            {
-                if (openSession != null)
-                {
-                    openSession.Close();
-                }
-            }
         }
 
         private void TestStatefulSession(ISessionFactory sessionFactory)

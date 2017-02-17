@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="implementation\ContactTest.cs" />
     <Compile Include="implementation\UserTest.cs" />
     <Compile Include="map\ThreadSafeMapTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -69,5 +69,16 @@ namespace Ttu.DomainTest
         {
         }
 
+        # region Helper Methods
+
+        private IContact CreateContact(ContactType contactType, string value, int recordId)
+        {
+            Contact contact = new Contact(User, contactType, value);
+            contact.RecordId = recordId;
+            return contact;
+        }
+
+        # endregion
+
     }
 }
