@@ -67,6 +67,8 @@
     <Compile Include="service\null\NullUnitOfWork.cs" />
     <Compile Include="service\null\NullUnitOfWorkRepository.cs" />
     <Compile Include="service\null\NullUserService.cs" />
+    <Compile Include="utility\AssemblyFileReader.cs" />
+    <Compile Include="utility\ExtensionMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

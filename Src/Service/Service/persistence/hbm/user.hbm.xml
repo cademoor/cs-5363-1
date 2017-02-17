@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Ttu.Domain" assembly="Ttu.Domain">
-    <class name="User" table="[dbo].[User]" lazy="true">
+    <class name="User" table="User" lazy="true">
         <id name="RecordId">
             <generator class="identity" />
         </id>
