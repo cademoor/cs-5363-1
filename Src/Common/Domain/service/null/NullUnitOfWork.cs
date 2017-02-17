@@ -15,8 +15,8 @@
 
         # region Properties
 
-        public virtual string SessionId { get { return string.Empty; } }
-        public virtual IUser User { get { return null; } }
+        public virtual string SessionId { get; set; }
+        public virtual IUser User { get; set; }
 
         public virtual IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public virtual IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }

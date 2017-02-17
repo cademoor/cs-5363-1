@@ -49,7 +49,7 @@ namespace Ttu.Library
                 IUser[] users = PresentationEnvironment.Singleton.ServiceFactory.CreateUserService(adHocUnitOfWork).GetUsers();
                 return users.Length == 0;
             }
-            catch (Exception ex)
+            catch
             {
                 // do nothing
             }

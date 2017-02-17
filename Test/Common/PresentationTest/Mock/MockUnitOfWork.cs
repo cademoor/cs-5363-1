@@ -17,17 +17,14 @@ namespace Ttu.PresentationTest
 
         # region Properties
 
-        public override string SessionId { get { return _SessionId; } }
-        public override IUser User { get { return _User; } }
+        public override string SessionId { get; set; }
+        public override IUser User { get; set; }
         public override IUnitOfWorkRepository<IContact> Contacts { get { return Contacts; } }
         public override IUnitOfWorkRepository<IUser> Users { get { return _Users; } }
 
         # endregion
 
         # region Variables
-
-        private string _SessionId;
-        private IUser _User;
 
         private IUnitOfWorkRepository<IContact> _Contacts;
         private IUnitOfWorkRepository<IUser> _Users;
@@ -36,23 +33,17 @@ namespace Ttu.PresentationTest
 
         # region Public Methods
 
-        public void Abort()
+        public override void Abort()
         {
         }
 
-        public void Commit()
+        public override void Commit()
         {
         }
 
-        public void Release()
+        public override void Release()
         {
         }
-
-        # endregion
-
-        # region Helper Methods
-
-
 
         # endregion
 

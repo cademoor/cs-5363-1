@@ -46,7 +46,7 @@ namespace Ttu.Library
                 PresentationEnvironment.Singleton.ServiceFactory.CreateUserService(adHocUnitOfWork).AddUser(CreateUser());
                 adHocUnitOfWork.Commit();
             }
-            catch (Exception ex)
+            catch
             {
                 // do nothing
             }

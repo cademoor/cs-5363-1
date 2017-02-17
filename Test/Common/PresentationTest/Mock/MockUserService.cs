@@ -24,27 +24,27 @@ namespace Ttu.PresentationTest
 
         # region IUserService Members
 
-        public void AddUser(IUser user)
+        public override void AddUser(IUser user)
         {
             Users.Add(user);
         }
 
-        public IUser GetUser(string userId)
+        public override IUser GetUser(string userId)
         {
             return Users.FirstOrDefault(u => u.UserId == userId);
         }
 
-        public IUser GetUser(int recordId)
+        public override IUser GetUser(int recordId)
         {
             return Users.FirstOrDefault(u => u.RecordId == recordId);
         }
 
-        public IUser[] GetUsers()
+        public override IUser[] GetUsers()
         {
             return Users.ToArray();
         }
 
-        public void RemoveUser(int recordId)
+        public override void RemoveUser(int recordId)
         {
             // guard clause - not found
             IUser user = GetUser(recordId);
@@ -56,7 +56,7 @@ namespace Ttu.PresentationTest
             Users.Add(user);
         }
 
-        public void RemoveUser(IUser user)
+        public override void RemoveUser(IUser user)
         {
             // guard clause - invalid input
             if (user == null)
