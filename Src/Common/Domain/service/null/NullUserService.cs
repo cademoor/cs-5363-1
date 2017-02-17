@@ -7,7 +7,7 @@
 
         # region Constructors
 
-        private NullUserService()
+        protected NullUserService()
         {
         }
 

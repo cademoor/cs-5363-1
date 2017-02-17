@@ -7,7 +7,7 @@
 
         # region Constructors
 
-        private NullAuthenticationService()
+        public NullAuthenticationService()
         {
         }
 

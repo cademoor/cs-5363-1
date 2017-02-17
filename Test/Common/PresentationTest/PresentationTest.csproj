@@ -41,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\InputValidationBuilderTest.cs" />
+    <Compile Include="Mock\MockAuthenticationService.cs" />
+    <Compile Include="Mock\MockServiceFactory.cs" />
+    <Compile Include="Mock\MockUnitOfWork.cs" />
+    <Compile Include="Mock\MockUnitOfWorkRepository.cs" />
+    <Compile Include="Mock\MockUserService.cs" />
     <Compile Include="Null\NullUserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

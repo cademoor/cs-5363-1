@@ -7,7 +7,7 @@
 
         # region Constructors
 
-        private NullUnitOfWork()
+        protected NullUnitOfWork()
         {
         }
 
@@ -15,11 +15,11 @@
 
         # region Properties
 
-        public string SessionId { get { return string.Empty; } }
-        public IUser User { get { return null; } }
+        public virtual string SessionId { get { return string.Empty; } }
+        public virtual IUser User { get { return null; } }
 
-        public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
-        public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
+        public virtual IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
+        public virtual IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
 
         # endregion
 
