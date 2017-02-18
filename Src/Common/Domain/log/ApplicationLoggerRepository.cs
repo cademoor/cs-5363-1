@@ -7,28 +7,28 @@ namespace Ttu.Domain
 
         public static ApplicationLoggerRepository Singleton = new ApplicationLoggerRepository();
 
-        # region Constants
+        #region Constants
 
         private const string DEFAULT_LOGGER_ID = "Ttu.Domain.Default";
 
-        # endregion
+        #endregion
 
-        # region Constructors
+        #region Constructors
 
         public ApplicationLoggerRepository()
         {
             LoggerMap = new ThreadSafeMap<string, IApplicationLogger>();
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private static ThreadSafeMap<string, IApplicationLogger> LoggerMap { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods - ApplicationLoggerRepository
+        #region Public Methods - ApplicationLoggerRepository
 
         public IApplicationLogger FindOrCreateApplicationLogger(string loggerId)
         {
@@ -45,9 +45,9 @@ namespace Ttu.Domain
             LoggerMap[type.FullName] = logger;
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods - IThreadSafeMapValueFactory
+        #region Public Methods - IThreadSafeMapValueFactory
 
         public IApplicationLogger CreateMapValue(object newValueArg)
         {
@@ -61,7 +61,7 @@ namespace Ttu.Domain
             return new ApplicationLogger(loggerId);
         }
 
-        # endregion
+        #endregion
 
     }
 }

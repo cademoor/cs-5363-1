@@ -5,16 +5,16 @@ namespace Ttu.Service
     public class ContactService : AbstractService, IContactService
     {
 
-        # region Constructors
+        #region Constructors
 
         public ContactService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual void AddContact(IContact user)
         {
@@ -59,7 +59,7 @@ namespace Ttu.Service
             RemoveContact(user.RecordId);
         }
 
-        # endregion
+        #endregion
 
     }
 }

@@ -2,7 +2,7 @@
 using Ttu.Domain;
 using Ttu.Service;
 
-namespace Ttu.ServiceTest
+namespace Ttu.ServiceTest.service
 {
     [TestFixture]
     public class ContactServiceTest : AbstractServiceTest
@@ -20,7 +20,7 @@ namespace Ttu.ServiceTest
             UnitOfWork.Abort();
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
         [Test]
         public void TestBlueSky_MaintainContacts()
@@ -46,21 +46,21 @@ namespace Ttu.ServiceTest
             Assert.IsNotNull(Service.GetContact(contactMobile.RecordId));
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()
         {
         }
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IContact CreateContact(ContactType contactType, string value)
         {
             return new Contact(User, contactType, value);
         }
 
-        # endregion
+        #endregion
 
     }
 }

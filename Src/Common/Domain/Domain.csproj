@@ -45,8 +45,10 @@
     <Compile Include="exception\PersistenceException.cs" />
     <Compile Include="implementation\Contact.cs" />
     <Compile Include="implementation\User.cs" />
+    <Compile Include="implementation\VolunteerProfile.cs" />
     <Compile Include="interface\IContact.cs" />
     <Compile Include="interface\IUser.cs" />
+    <Compile Include="interface\IVolunteerProfile.cs" />
     <Compile Include="log\AbstractApplicationLogger.cs" />
     <Compile Include="log\AbstractLogger.cs" />
     <Compile Include="log\ApplicationLogger.cs" />
@@ -62,12 +64,15 @@
     <Compile Include="service\common\IServiceFactory.cs" />
     <Compile Include="service\IUserService.cs" />
     <Compile Include="service\common\NullServiceFactory.cs" />
+    <Compile Include="service\IVolunteerProfileService.cs" />
     <Compile Include="service\null\NullContactService.cs" />
     <Compile Include="service\null\NullAuthenticationService.cs" />
     <Compile Include="service\null\NullUnitOfWork.cs" />
     <Compile Include="service\null\NullUnitOfWorkRepository.cs" />
     <Compile Include="service\null\NullUserService.cs" />
+    <Compile Include="service\null\NullVolunteerProfileService.cs" />
     <Compile Include="utility\AssemblyFileReader.cs" />
+    <Compile Include="utility\Cipher.cs" />
     <Compile Include="utility\ExtensionMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

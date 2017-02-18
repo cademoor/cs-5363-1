@@ -5,15 +5,15 @@
 
         public static IServiceFactory Singleton = new NullServiceFactory();
 
-        # region Constructors
+        #region Constructors
 
         private NullServiceFactory()
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual IAuthenticationService CreateAuthenticationService()
         {
@@ -25,7 +25,7 @@
             return NullUserService.Singleton;
         }
 
-        # endregion
+        #endregion
 
     }
 }

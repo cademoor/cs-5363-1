@@ -7,22 +7,22 @@ namespace Ttu.PresentationTest
     public class MockUserService : NullUserService
     {
 
-        # region Constructors
+        #region Constructors
 
         public MockUserService()
         {
             Users = new List<IUser>();
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private List<IUser> Users { get; set; }
 
-        # endregion
+        #endregion
 
-        # region IUserService Members
+        #region IUserService Members
 
         public override void AddUser(IUser user)
         {
@@ -67,7 +67,7 @@ namespace Ttu.PresentationTest
             Users.Remove(user);
         }
 
-        # endregion
+        #endregion
 
     }
 }

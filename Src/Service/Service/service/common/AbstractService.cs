@@ -5,21 +5,21 @@ namespace Ttu.Service
     public abstract class AbstractService : AbstractApplicationLogger
     {
 
-        # region Constructors
+        #region Constructors
 
         protected AbstractService(IUnitOfWork unitOfwork)
         {
             UnitOfWork = unitOfwork;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         protected ServiceEnvironment ServiceEnvironment { get { return ServiceEnvironment.Singleton; } }
         protected IUnitOfWork UnitOfWork { get; private set; }
 
-        # endregion
+        #endregion
 
     }
 }

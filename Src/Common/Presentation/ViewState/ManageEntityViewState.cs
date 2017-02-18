@@ -5,14 +5,14 @@ namespace Ttu.Presentation
     public class ManageEntityViewState : AbstractViewState
     {
 
-        # region Constructors
+        #region Constructors
 
         protected ManageEntityViewState(IUser user, IUnitOfWork unitOfWork)
             : base(user, unitOfWork)
         {
         }
 
-        # endregion
+        #endregion
 
     }
 }

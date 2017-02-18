@@ -9,22 +9,22 @@ namespace Ttu.PresentationTest
     public class MockUnitOfWorkRepository<T> : IUnitOfWorkRepository<T> where T : class
     {
 
-        # region Constructors
+        #region Constructors
 
         public MockUnitOfWorkRepository()
         {
             Items = new List<T>();
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public List<T> Items { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public void Add(T newEntity)
         {
@@ -102,7 +102,7 @@ namespace Ttu.PresentationTest
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

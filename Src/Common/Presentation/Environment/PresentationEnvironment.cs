@@ -7,7 +7,7 @@ namespace Ttu.Presentation
 
         public static PresentationEnvironment Singleton = new PresentationEnvironment();
 
-        # region Constructors
+        #region Constructors
 
         private PresentationEnvironment()
         {
@@ -15,17 +15,17 @@ namespace Ttu.Presentation
             ServiceFactory = NullServiceFactory.Singleton;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public IServiceFactory ServiceFactory { get; private set; }
 
         private ThreadSafeMap<string, IPresenterFactory> Map { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public void MapPresenterFactory(string sessionId, IPresenterFactory presenterFactory)
         {
@@ -49,7 +49,7 @@ namespace Ttu.Presentation
             ServiceFactory = serviceFactory ?? NullServiceFactory.Singleton;
         }
 
-        # endregion
+        #endregion
 
     }
 }

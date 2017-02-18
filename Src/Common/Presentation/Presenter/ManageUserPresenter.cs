@@ -5,14 +5,14 @@ namespace Ttu.Presentation
     public class ManageUserPresenter : AbstractPresenter
     {
 
-        # region Constructors
+        #region Constructors
 
         public ManageUserPresenter(IUser user, IUnitOfWork unitOfWork)
             : base(user, unitOfWork)
         {
         }
 
-        # endregion
+        #endregion
 
     }
 }

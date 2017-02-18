@@ -8,16 +8,16 @@ namespace Ttu.Library
     public partial class AddUserForm : Form
     {
 
-        # region Constructors
+        #region Constructors
 
         public AddUserForm()
         {
             InitializeComponent();
         }
 
-        # endregion
+        #endregion
 
-        # region Event Handlers
+        #region Event Handlers
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -30,9 +30,9 @@ namespace Ttu.Library
             Close();
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private void AddUser()
         {
@@ -61,12 +61,12 @@ namespace Ttu.Library
             IUser user = new User();
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
-            user.Password = txtPassword.Text;
+            user.PasswordEncrypted = txtPassword.Text;
             user.UserId = txtUserId.Text.ToUpper();
             return user;
         }
 
-        # endregion
+        #endregion
 
     }
 }

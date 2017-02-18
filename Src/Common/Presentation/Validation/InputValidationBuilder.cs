@@ -5,7 +5,7 @@ namespace Ttu.Presentation
     public class InputValidationBuilder
     {
 
-        # region Public Methods
+        #region Public Methods
 
         public string ValidateValue(string fieldName, string value, int minLength, int maxLength, InputType inputType)
         {
@@ -24,9 +24,9 @@ namespace Ttu.Presentation
             }
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private string GetInputTypeValidationText(InputType inputType)
         {
@@ -145,7 +145,7 @@ namespace Ttu.Presentation
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

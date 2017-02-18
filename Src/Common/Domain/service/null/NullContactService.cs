@@ -5,15 +5,15 @@
 
         public static IContactService Singleton = new NullContactService();
 
-        # region Constructors
+        #region Constructors
 
         private NullContactService()
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual void AddContact(IContact user)
         {
@@ -45,7 +45,7 @@
             // do nothing
         }
 
-        # endregion
+        #endregion
 
     }
 }

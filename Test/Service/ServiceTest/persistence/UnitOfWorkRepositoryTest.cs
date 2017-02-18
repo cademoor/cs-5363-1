@@ -2,7 +2,7 @@
 using Ttu.Domain;
 using Ttu.Service;
 
-namespace Ttu.ServiceTest
+namespace Ttu.ServiceTest.persistence
 {
     [TestFixture]
     public class UnitOfWorkRepositoryTest : AbstractServiceTest
@@ -24,7 +24,7 @@ namespace Ttu.ServiceTest
             TestObjectNotMapped = new TestClassNotMapped();
         }
 
-        # region Non Blue Sky Tests (Stateful)
+        #region Non Blue Sky Tests (Stateful)
 
         [Test]
         public void TestNonBlueSky_Stateful_Add()
@@ -153,7 +153,7 @@ namespace Ttu.ServiceTest
             }
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()

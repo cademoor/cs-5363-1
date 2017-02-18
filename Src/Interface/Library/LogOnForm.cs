@@ -8,7 +8,7 @@ namespace Ttu.Library
     public partial class LogOnForm : Form
     {
 
-        # region Constructors
+        #region Constructors
 
         public LogOnForm()
         {
@@ -17,15 +17,15 @@ namespace Ttu.Library
             Presenter = new LogOnPresenter(null, null); // TODO:ACM - change to factory method
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private LogOnPresenter Presenter { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Event Handlers
+        #region Event Handlers
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -53,7 +53,7 @@ namespace Ttu.Library
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

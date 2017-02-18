@@ -5,7 +5,7 @@ namespace Ttu.Service
     public class ServiceFactory : IServiceFactory
     {
 
-        # region Public Methods
+        #region Public Methods
 
         public IAuthenticationService CreateAuthenticationService()
         {
@@ -17,7 +17,7 @@ namespace Ttu.Service
             return new UserService(unitOfWork);
         }
 
-        # endregion
+        #endregion
 
     }
 }

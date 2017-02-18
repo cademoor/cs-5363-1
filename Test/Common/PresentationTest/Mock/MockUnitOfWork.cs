@@ -5,7 +5,7 @@ namespace Ttu.PresentationTest
     public class MockUnitOfWork : NullUnitOfWork
     {
 
-        # region Constructors
+        #region Constructors
 
         public MockUnitOfWork()
         {
@@ -13,25 +13,25 @@ namespace Ttu.PresentationTest
             _Users = new MockUnitOfWorkRepository<IUser>();
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public override string SessionId { get; set; }
         public override IUser User { get; set; }
         public override IUnitOfWorkRepository<IContact> Contacts { get { return Contacts; } }
         public override IUnitOfWorkRepository<IUser> Users { get { return _Users; } }
 
-        # endregion
+        #endregion
 
-        # region Variables
+        #region Variables
 
         private IUnitOfWorkRepository<IContact> _Contacts;
         private IUnitOfWorkRepository<IUser> _Users;
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public override void Abort()
         {
@@ -45,7 +45,7 @@ namespace Ttu.PresentationTest
         {
         }
 
-        # endregion
+        #endregion
 
     }
 }

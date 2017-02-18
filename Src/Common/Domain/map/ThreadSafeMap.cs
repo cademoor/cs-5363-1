@@ -6,16 +6,16 @@ namespace Ttu.Domain
     public class ThreadSafeMap<TKey, TValue>
     {
 
-        # region Constructors
+        #region Constructors
 
         public ThreadSafeMap()
         {
             Map = new Dictionary<TKey, TValue>();
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public int Count { get { return Map.Count; } }
 
@@ -27,9 +27,9 @@ namespace Ttu.Domain
 
         private Dictionary<TKey, TValue> Map { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public void Clear()
         {
@@ -111,9 +111,9 @@ namespace Ttu.Domain
             }
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private TValue GetValue(TKey key)
         {
@@ -133,7 +133,7 @@ namespace Ttu.Domain
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

@@ -5,7 +5,7 @@ namespace Ttu.Presentation
     public class AbstractPresenter
     {
 
-        # region Constructors
+        #region Constructors
 
         public AbstractPresenter(IUser user, IUnitOfWork unitOfWork)
         {
@@ -13,18 +13,18 @@ namespace Ttu.Presentation
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         protected PresentationEnvironment PresentationEnvironment { get { return PresentationEnvironment.Singleton; } }
         protected IUnitOfWork UnitOfWork { get; private set; }
         protected IUser User { get; private set; }
         protected IServiceFactory ServiceFactory { get { return PresentationEnvironment.ServiceFactory; } }
 
-        # endregion
+        #endregion
 
-        # region Shared Methods
+        #region Shared Methods
 
         protected void ValidateValue(string fieldName, string value, int minLength, int maxLength, InputType inputType)
         {
@@ -38,7 +38,7 @@ namespace Ttu.Presentation
             throw new BusinessException(errorValue);
         }
 
-        # endregion
+        #endregion
 
     }
 }

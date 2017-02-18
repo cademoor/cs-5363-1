@@ -7,7 +7,7 @@ namespace Ttu.Presentation
 
         private static IPresenterFactory Singleton = new NullPresenterFactory();
 
-        # region Constructors
+        #region Constructors
 
         private NullPresenterFactory()
         {
@@ -15,23 +15,23 @@ namespace Ttu.Presentation
             User = null;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public IUnitOfWork UnitOfWork { get; private set; }
         public IUser User { get; private set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public ManageUserPresenter CreateManageUserPresenter()
         {
             return null;
         }
 
-        # endregion
+        #endregion
 
     }
 }

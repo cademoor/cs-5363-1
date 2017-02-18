@@ -10,7 +10,7 @@ namespace Ttu.Service
     public class ServiceInitializer : AbstractApplicationLogger
     {
 
-        # region Public Methods
+        #region Public Methods
 
         public ISessionFactory Initialize(bool forceDropBeforeCreate)
         {
@@ -22,9 +22,9 @@ namespace Ttu.Service
             return sessionFactory;
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private ISessionFactory BuildSessionFactory(Configuration cfg)
         {
@@ -112,7 +112,7 @@ namespace Ttu.Service
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

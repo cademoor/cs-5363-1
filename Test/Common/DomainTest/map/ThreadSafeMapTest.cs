@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Ttu.Domain;
 
-namespace Tcp.DomainTest
+namespace Tcp.DomainTest.map
 {
     [TestFixture]
     public class ThreadSafeMapTest
@@ -32,7 +32,7 @@ namespace Tcp.DomainTest
             Map["5"] = User5;
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
         [Test]
         public void TestBlueSky_Coverage()
@@ -75,14 +75,14 @@ namespace Tcp.DomainTest
             Assert.AreEqual(0, Map.Count);
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()
         {
         }
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IUser CreateUser(string userId)
         {
@@ -92,7 +92,7 @@ namespace Tcp.DomainTest
             return user;
         }
 
-        # endregion
+        #endregion
 
     }
 }

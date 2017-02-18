@@ -5,21 +5,21 @@ namespace Ttu.PresentationTest
     public class MockServiceFactory : IServiceFactory
     {
 
-        # region Constructors
+        #region Constructors
 
         public MockServiceFactory()
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
 
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public IAuthenticationService CreateAuthenticationService()
         {
@@ -31,13 +31,13 @@ namespace Ttu.PresentationTest
             throw new System.NotImplementedException();
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
 
 
-        # endregion
+        #endregion
 
     }
 }

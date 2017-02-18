@@ -7,24 +7,24 @@ namespace Ttu.Domain
 
         public const string ID_SEPARATOR = "::";
 
-        # region Constructors
+        #region Constructors
 
         protected AbstractLogger(string loggerId)
         {
             LoggerId = loggerId;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         protected string LoggerId { get; set; }
 
         private Logger Logger { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods (IO)
+        #region Public Methods (IO)
 
         public void Debug(object message)
         {
@@ -74,9 +74,9 @@ namespace Ttu.Domain
             }
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods (Query)
+        #region Public Methods (Query)
 
         public bool IsDebugEnabled()
         {
@@ -108,15 +108,15 @@ namespace Ttu.Domain
             return GetLogger().IsWarnEnabled;
         }
 
-        # endregion
+        #endregion
 
-        # region Abstract Methods
+        #region Abstract Methods
 
         protected abstract Logger CreateLogger();
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private Logger GetLogger()
         {
@@ -129,7 +129,7 @@ namespace Ttu.Domain
             return Logger;
         }
 
-        # endregion
+        #endregion
 
     }
 }

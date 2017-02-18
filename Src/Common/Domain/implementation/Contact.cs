@@ -4,7 +4,7 @@ namespace Ttu.Domain
     public class Contact : IContact
     {
 
-        # region Constructors
+        #region Constructors
 
         public Contact()
             : this(null, ContactType.None, string.Empty)
@@ -21,9 +21,9 @@ namespace Ttu.Domain
             RecordId = 0;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public virtual ContactType ContactType { get; set; }
         public virtual DateTime DateAddedUtc { get; set; }
@@ -31,7 +31,7 @@ namespace Ttu.Domain
         public virtual IUser User { get; protected set; }
         public virtual string Value { get; set; }
 
-        # endregion
+        #endregion
 
     }
 }

@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 
 namespace Ttu.Domain
 {
     public class User : IUser
     {
 
-        # region Constructors
+        #region Constructors
 
         public User()
             : this(string.Empty)
@@ -22,13 +19,13 @@ namespace Ttu.Domain
             EmailAddress = string.Empty;
             FirstName = string.Empty;
             LastName = string.Empty;
-            Password = string.Empty;
+            PasswordEncrypted = string.Empty;
             RecordId = 0;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public virtual string EmailAddress { get; set; }
 
@@ -36,15 +33,15 @@ namespace Ttu.Domain
 
         public virtual string LastName { get; set; }
 
-        public virtual string Password { get; set; }
+        public virtual string PasswordEncrypted { get; set; }
 
         public virtual int RecordId { get; set; }
 
         public virtual string UserId { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual string GetFullName()
         {
@@ -70,10 +67,15 @@ namespace Ttu.Domain
 
         public virtual bool MatchesPassword(string password)
         {
-            return Password == password;
+            return PasswordEncrypted == new Cipher().Encrypt(password);
         }
 
-        # endregion
+        public virtual void SetPassword(string password)
+        {
+            PasswordEncrypted = new Cipher().Encrypt(password);
+        }
+
+        #endregion
 
     }
 }

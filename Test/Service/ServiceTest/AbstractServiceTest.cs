@@ -10,7 +10,7 @@ namespace Ttu.ServiceTest
 
         protected const string USER_ID = "ADMIN";
 
-        # region Constructors
+        #region Constructors
 
         public AbstractServiceTest()
         {
@@ -27,17 +27,17 @@ namespace Ttu.ServiceTest
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         protected static SessionDecorator Session { get; private set; }
         protected IUnitOfWork UnitOfWork;
         protected IUser User;
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IUser InitializeUser()
         {
@@ -56,7 +56,7 @@ namespace Ttu.ServiceTest
             return newUser;
         }
 
-        # endregion
+        #endregion
 
     }
 }

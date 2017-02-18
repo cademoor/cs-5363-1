@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Ttu.Presentation;
 
-namespace Ttu.PresentationTest
+namespace Ttu.PresentationTest.Builder
 {
     [TestFixture]
     public class InputValidationBuilderTest
@@ -15,7 +15,7 @@ namespace Ttu.PresentationTest
             InputValidationBuilder = new InputValidationBuilder();
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
         [Test]
         public void TestBlueSky_Alpha_Valid()
@@ -87,9 +87,9 @@ namespace Ttu.PresentationTest
             Assert.IsEmpty(actualValue);
         }
 
-        # endregion
+        #endregion
 
-        # region Non Blue Sky Tests
+        #region Non Blue Sky Tests
 
         [Test]
         public void TestNonBlueSky_Alpha_InvalidType()
@@ -141,16 +141,16 @@ namespace Ttu.PresentationTest
             Assert.AreEqual("The \"TestField\" must be between 1 and 10 characters and must only contain numbers.", actualValue);
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()
         {
         }
 
-        # region Helper Methods
+        #region Helper Methods
 
-        # endregion
+        #endregion
 
     }
 }

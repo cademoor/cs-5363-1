@@ -5,15 +5,15 @@
 
         public static IAuthenticationService Singleton = new NullAuthenticationService();
 
-        # region Constructors
+        #region Constructors
 
         public NullAuthenticationService()
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual IUnitOfWork Authenticate(string userId, string password)
         {
@@ -25,7 +25,7 @@
             return NullUnitOfWork.Singleton;
         }
 
-        # endregion
+        #endregion
 
     }
 }

@@ -2,7 +2,7 @@
 using Ttu.Domain;
 using Ttu.Service;
 
-namespace Ttu.ServiceTest
+namespace Ttu.ServiceTest.service
 {
     [TestFixture]
     public class UserServiceTest : AbstractServiceTest
@@ -20,7 +20,7 @@ namespace Ttu.ServiceTest
             UnitOfWork.Abort();
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
         [Test]
         public void TestBlueSky_MaintainUsers()
@@ -46,7 +46,7 @@ namespace Ttu.ServiceTest
             Assert.IsNotNull(Service.GetUser(user2.RecordId));
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()

@@ -6,22 +6,22 @@ namespace Ttu.Domain
     public class AssemblyFileReader
     {
 
-        # region Constructors
+        #region Constructors
 
         public AssemblyFileReader(Assembly assembly)
         {
             Assembly = assembly;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private Assembly Assembly { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public byte[] ReadBinaryFile(string filePath)
         {
@@ -46,9 +46,9 @@ namespace Ttu.Domain
             }
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IApplicationLogger GetLogger()
         {
@@ -60,7 +60,7 @@ namespace Ttu.Domain
             return Assembly.GetManifestResourceStream(name);
         }
 
-        # endregion
+        #endregion
 
     }
 }

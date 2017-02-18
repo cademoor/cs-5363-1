@@ -10,7 +10,7 @@
 
         string LastName { get; set; }
 
-        string Password { get; set; }
+        string PasswordEncrypted { get; set; }
 
         int RecordId { get; }
 
@@ -20,6 +20,8 @@
         bool IsValid();
 
         bool MatchesPassword(string password);
+
+        void SetPassword(string password);
 
     }
 }

@@ -7,7 +7,7 @@ namespace Ttu.Presentation
 
         public static IUser Singleton = new NullUser();
 
-        # region Constructors
+        #region Constructors
 
         private NullUser()
         {
@@ -19,9 +19,9 @@ namespace Ttu.Presentation
             _UserId = string.Empty;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public string EmailAddress { get { return _EmailAddress; } set { } }
 
@@ -29,15 +29,15 @@ namespace Ttu.Presentation
 
         public string LastName { get { return _LastName; } set { } }
 
-        public string Password { get { return _Password; } set { } }
+        public string PasswordEncrypted { get { return _Password; } set { } }
 
         public int RecordId { get { return _RecordId; } set { } }
 
         public string UserId { get { return _UserId; } set { } }
 
-        # endregion
+        #endregion
 
-        # region Variables
+        #region Variables
 
         public string _EmailAddress;
         public string _FirstName;
@@ -46,29 +46,9 @@ namespace Ttu.Presentation
         public int _RecordId;
         public string _UserId;
 
-        # endregion
+        #endregion
 
-        # region Public Methods
-
-        public virtual void AddContact(IContact contact)
-        {
-            // do nothing
-        }
-
-        public virtual IContact GetContact(int recordId)
-        {
-            return null;
-        }
-
-        public virtual IContact GetContact(ContactType contactType)
-        {
-            return null;
-        }
-
-        public virtual IContact[] GetContacts()
-        {
-            return new IContact[0];
-        }
+        #region Public Methods
 
         public virtual bool IsValid()
         {
@@ -80,12 +60,12 @@ namespace Ttu.Presentation
             return false;
         }
 
-        public virtual void RemoveContact(IContact contact)
+        public virtual void SetPassword(string password)
         {
             // do nothing
         }
 
-        # endregion
+        #endregion
 
     }
 }

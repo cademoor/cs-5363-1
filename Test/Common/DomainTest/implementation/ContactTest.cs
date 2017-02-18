@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Ttu.Domain;
 
-namespace Ttu.DomainTest
+namespace Ttu.DomainTest.implementation
 {
     [TestFixture]
     public class ContactTest
@@ -17,7 +17,7 @@ namespace Ttu.DomainTest
             User = new User("ADMIN");
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
         [Test]
         public void TestBlueSky_Coverage()
@@ -38,7 +38,7 @@ namespace Ttu.DomainTest
             Assert.AreEqual("1112223333", Contact.Value);
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()

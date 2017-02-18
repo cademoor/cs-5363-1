@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using Ttu.Domain;
 using Ttu.Presentation;
 
-namespace Ttu.PresentationTest
+namespace Ttu.PresentationTest.Null
 {
     [TestFixture]
     public class NullUserTest
@@ -16,7 +15,7 @@ namespace Ttu.PresentationTest
             User = NullUser.Singleton as NullUser;
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
         [Test]
         public void TestBlueSky_Coverage()
@@ -24,7 +23,7 @@ namespace Ttu.PresentationTest
             // pre-conditions
             Assert.IsEmpty(User.FirstName);
             Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.Password);
+            Assert.IsEmpty(User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
             Assert.IsEmpty(User.UserId);
             Assert.IsFalse(User.IsValid());
@@ -32,20 +31,20 @@ namespace Ttu.PresentationTest
             // exercise
             User.FirstName = "Harper";
             User.LastName = "Moorman";
-            User.Password = "TestPassword";
+            User.PasswordEncrypted = "TestPassword";
             User.RecordId = 1;
             User.UserId = "A";
 
             // post-conditions
             Assert.IsEmpty(User.FirstName);
             Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.Password);
+            Assert.IsEmpty(User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
             Assert.IsEmpty(User.UserId);
             Assert.IsFalse(User.IsValid());
         }
 
-        # endregion
+        #endregion
 
         [TearDown]
         public void TearDown()

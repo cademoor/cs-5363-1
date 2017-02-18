@@ -5,16 +5,16 @@ namespace Ttu.Presentation
     public class LogOnPresenter : AbstractPresenter
     {
 
-        # region Constructors
+        #region Constructors
 
         public LogOnPresenter(IUser user, IUnitOfWork unitOfWork)
             : base(user, unitOfWork)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public string LogOn(string userId, string password)
         {
@@ -24,9 +24,9 @@ namespace Ttu.Presentation
             return ConfigureAuthenticatedSession(uow);
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private string ConfigureAuthenticatedSession(IUnitOfWork uow)
         {
@@ -55,7 +55,7 @@ namespace Ttu.Presentation
             ValidateValue("User Id", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
         }
 
-        # endregion
+        #endregion
 
     }
 }

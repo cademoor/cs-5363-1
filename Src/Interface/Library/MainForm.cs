@@ -8,16 +8,16 @@ namespace Ttu.Library
     public partial class MainForm : Form
     {
 
-        # region Constructors
+        #region Constructors
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        # endregion
+        #endregion
 
-        # region Event Handlers
+        #region Event Handlers
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -33,9 +33,9 @@ namespace Ttu.Library
             }
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private bool ShouldOpenAddUserForm()
         {
@@ -61,7 +61,7 @@ namespace Ttu.Library
             return false;
         }
 
-        # endregion
+        #endregion
 
     }
 }

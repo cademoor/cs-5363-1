@@ -5,22 +5,22 @@ namespace Ttu.PresentationTest
     public class MockAuthenticationService : NullAuthenticationService
     {
 
-        # region Constructors
+        #region Constructors
 
         public MockAuthenticationService()
         {
             MockUnitOfWork = new MockUnitOfWork();
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public IUnitOfWork MockUnitOfWork { get; set; }
 
-        # endregion
+        #endregion
 
-        # region IAuthenticationService Members
+        #region IAuthenticationService Members
 
         public override IUnitOfWork Authenticate(string userId, string password)
         {
@@ -32,7 +32,7 @@ namespace Ttu.PresentationTest
             return MockUnitOfWork;
         }
 
-        # endregion
+        #endregion
 
     }
 }

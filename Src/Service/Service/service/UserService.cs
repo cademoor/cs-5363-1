@@ -5,16 +5,16 @@ namespace Ttu.Service
     public class UserService : AbstractService, IUserService
     {
 
-        # region Constructors
+        #region Constructors
 
         public UserService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual void AddUser(IUser user)
         {
@@ -59,7 +59,7 @@ namespace Ttu.Service
             RemoveUser(user.RecordId);
         }
 
-        # endregion
+        #endregion
 
     }
 }

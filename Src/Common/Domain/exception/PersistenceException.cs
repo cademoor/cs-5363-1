@@ -7,7 +7,7 @@ namespace Ttu.Domain
     public class PersistenceException : Exception
     {
 
-        # region Constructors
+        #region Constructors
 
         public PersistenceException()
         {
@@ -29,7 +29,7 @@ namespace Ttu.Domain
         {
         }
 
-        # endregion
+        #endregion
 
     }
 }

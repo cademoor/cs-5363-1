@@ -5,15 +5,15 @@
 
         public static IUserService Singleton = new NullUserService();
 
-        # region Constructors
+        #region Constructors
 
         protected NullUserService()
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public virtual void AddUser(IUser user)
         {
@@ -45,7 +45,7 @@
             // do nothing
         }
 
-        # endregion
+        #endregion
 
     }
 }

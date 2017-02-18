@@ -9,7 +9,7 @@ namespace Ttu.Service
     public class UnitOfWork : IUnitOfWork
     {
 
-        # region Utility
+        #region Utility
 
         public static PersistenceException LogAndWrapException(string customExceptionPrefix, Exception ex)
         {
@@ -82,9 +82,9 @@ namespace Ttu.Service
             return ApplicationLogger.GetLogger(typeof(UnitOfWork));
         }
 
-        # endregion
+        #endregion
 
-        # region Constructors
+        #region Constructors
 
         public UnitOfWork(SessionDecorator session, IUser user)
         {
@@ -92,21 +92,22 @@ namespace Ttu.Service
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public string SessionId { get { return Session.SessionId; } }
         public IUser User { get; private set; }
 
         public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
+        public IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get { return CreateUowRepository<IVolunteerProfile>(); } }
 
         private SessionDecorator Session { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public void Abort()
         {
@@ -137,16 +138,16 @@ namespace Ttu.Service
             Session.ClearAndReleaseSafely();
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IUnitOfWorkRepository<T> CreateUowRepository<T>() where T : class
         {
             return new UnitOfWorkRepository<T>(Session);
         }
 
-        # endregion
+        #endregion
 
     }
 }

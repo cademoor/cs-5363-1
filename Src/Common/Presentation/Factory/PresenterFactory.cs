@@ -5,7 +5,7 @@ namespace Ttu.Presentation
     public class PresenterFactory : IPresenterFactory
     {
 
-        # region Constructors
+        #region Constructors
 
         public PresenterFactory(IUser user, IUnitOfWork unitOfWork, string sessionId)
         {
@@ -14,24 +14,24 @@ namespace Ttu.Presentation
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public string SessionId { get; private set; }
         public IUnitOfWork UnitOfWork { get; private set; }
         public IUser User { get; private set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public ManageUserPresenter CreateManageUserPresenter()
         {
             return new ManageUserPresenter(User, UnitOfWork);
         }
 
-        # endregion
+        #endregion
 
     }
 }

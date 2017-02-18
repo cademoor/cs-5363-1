@@ -8,22 +8,22 @@ namespace Ttu.Service
 
         public static ServiceEnvironment Singleton = new ServiceEnvironment();
 
-        # region Constructors
+        #region Constructors
 
         public ServiceEnvironment()
         {
             SessionFactory = null;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public ISessionFactory SessionFactory { get; private set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public SessionDecorator OpenSession()
         {
@@ -43,7 +43,7 @@ namespace Ttu.Service
             SessionFactory = sessionFactory;
         }
 
-        # endregion
+        #endregion
 
     }
 }

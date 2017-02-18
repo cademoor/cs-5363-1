@@ -5,31 +5,31 @@ namespace Ttu.Service
     public class DatabaseCreator
     {
 
-        # region Constructors
+        #region Constructors
 
         public DatabaseCreator(string connectionString)
         {
             ConnectionString = connectionString;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private string ConnectionString { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public void Create()
         {
             CreateEmptySchema();
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private void CreateEmptySchema()
         {
@@ -56,7 +56,7 @@ namespace Ttu.Service
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

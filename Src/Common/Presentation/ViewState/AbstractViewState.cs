@@ -5,7 +5,7 @@ namespace Ttu.Presentation
     public abstract class AbstractViewState
     {
 
-        # region Constructors
+        #region Constructors
 
         protected AbstractViewState(IUser user, IUnitOfWork unitOfWork)
         {
@@ -13,14 +13,14 @@ namespace Ttu.Presentation
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public IUnitOfWork UnitOfWork { get; private set; }
         public IUser User { get; private set; }
 
-        # endregion
+        #endregion
 
     }
 }
