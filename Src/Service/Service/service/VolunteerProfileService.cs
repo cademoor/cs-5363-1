@@ -21,6 +21,17 @@ namespace Ttu.Service
             UnitOfWork.VolunteerProfiles.Add(volunteerProfile);
         }
 
+        public virtual IVolunteerProfile GetVolunteerProfile(IUser user)
+        {
+            IVolunteerProfile[] volunteerProfiles = UnitOfWork.VolunteerProfiles.FindBy(vp => vp.User == user);
+            if (volunteerProfiles.Length == 0)
+            {
+                return null;
+            }
+
+            return volunteerProfiles[0];
+        }
+
         public virtual IVolunteerProfile GetVolunteerProfile(int recordId)
         {
             return UnitOfWork.VolunteerProfiles.FindByRecordId(recordId);

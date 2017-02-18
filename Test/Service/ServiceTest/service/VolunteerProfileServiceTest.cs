@@ -27,6 +27,7 @@ namespace Ttu.ServiceTest.service
         {
             // pre-conditions
             Assert.AreEqual(0, Service.GetVolunteerProfiles().Length);
+            Assert.IsNull(Service.GetVolunteerProfile(User));
 
             // exercise
             IVolunteerProfile volunteerProfile1 = CreateVolunteerProfile();
@@ -44,6 +45,7 @@ namespace Ttu.ServiceTest.service
             Assert.AreEqual(1, Service.GetVolunteerProfiles().Length);
             Assert.IsNull(Service.GetVolunteerProfile(volunteerProfile1.RecordId));
             Assert.IsNotNull(Service.GetVolunteerProfile(volunteerProfile2.RecordId));
+            Assert.IsNotNull(Service.GetVolunteerProfile(User));
         }
 
         #endregion

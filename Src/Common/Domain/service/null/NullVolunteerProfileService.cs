@@ -20,6 +20,11 @@
             // do nothing
         }
 
+        public virtual IVolunteerProfile GetVolunteerProfile(IUser user)
+        {
+            return null;
+        }
+
         public virtual IVolunteerProfile GetVolunteerProfile(int recordId)
         {
             return null;

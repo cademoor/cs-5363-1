@@ -7,10 +7,9 @@ namespace Ttu.Presentation
 
         #region Constructors
 
-        public AbstractPresenter(IUser user, IUnitOfWork unitOfWork)
+        public AbstractPresenter(IViewState viewState)
         {
-            UnitOfWork = unitOfWork;
-            User = user;
+            ViewState = viewState;
         }
 
         #endregion
@@ -18,13 +17,15 @@ namespace Ttu.Presentation
         #region Properties
 
         protected PresentationEnvironment PresentationEnvironment { get { return PresentationEnvironment.Singleton; } }
-        protected IUnitOfWork UnitOfWork { get; private set; }
-        protected IUser User { get; private set; }
+        protected IUnitOfWork UnitOfWork { get { return ViewState.UnitOfWork; } }
+        protected IUser User { get { return ViewState.User; } }
         protected IServiceFactory ServiceFactory { get { return PresentationEnvironment.ServiceFactory; } }
+
+        private IViewState ViewState { get; set; }
 
         #endregion
 
-        #region Shared Methods
+        #region Shared Methods - Common
 
         protected void ValidateValue(string fieldName, string value, int minLength, int maxLength, InputType inputType)
         {
@@ -36,6 +37,30 @@ namespace Ttu.Presentation
             }
 
             throw new BusinessException(errorValue);
+        }
+
+        #endregion
+
+        #region Shared Methods - Service
+
+        protected IContactService CreateContactService()
+        {
+            return ServiceFactory.CreateContactService(UnitOfWork);
+        }
+
+        protected IVolunteerProfileReviewService CreateVolunteerProfileReviewService()
+        {
+            return ServiceFactory.CreateVolunteerProfileReviewService(UnitOfWork);
+        }
+
+        protected IVolunteerProfileService CreateVolunteerProfileService()
+        {
+            return ServiceFactory.CreateVolunteerProfileService(UnitOfWork);
+        }
+
+        protected IUserService CreateUserService()
+        {
+            return ServiceFactory.CreateUserService(UnitOfWork);
         }
 
         #endregion

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Ttu.Domain" assembly="Ttu.Domain">
+    <class name="VolunteerProfileReview" table="VolunteerProfileReview" lazy="true">
+        <id name="RecordId">
+            <generator class="identity" />
+        </id>
+
+        <many-to-one name="Reviewer" column="ReviewerRecordId" class="User" />
+
+        <property name="Notes" />
+        <property name="Rating" />
+
+    </class>
+</hibernate-mapping>

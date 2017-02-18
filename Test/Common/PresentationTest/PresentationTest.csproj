@@ -46,6 +46,8 @@
     <Compile Include="Mock\MockUnitOfWork.cs" />
     <Compile Include="Mock\MockUnitOfWorkRepository.cs" />
     <Compile Include="Mock\MockUserService.cs" />
+    <Compile Include="Mock\MockVolunteerProfileReviewService.cs" />
+    <Compile Include="Mock\MockVolunteerProfileService.cs" />
     <Compile Include="Null\NullUserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

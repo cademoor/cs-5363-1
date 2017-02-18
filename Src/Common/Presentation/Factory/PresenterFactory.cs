@@ -12,11 +12,20 @@ namespace Ttu.Presentation
             SessionId = sessionId;
             UnitOfWork = unitOfWork;
             User = user;
+
+            InitializeFeatureViewStates();
         }
 
         #endregion
 
-        #region Properties
+        #region Properties - Feature
+
+        public LogOnViewState LogOnViewState { get; set; }
+        public ManageUserViewState ManageUserViewState { get; set; }
+
+        #endregion
+
+        #region Properties - Session
 
         public string SessionId { get; private set; }
         public IUnitOfWork UnitOfWork { get; private set; }
@@ -26,9 +35,24 @@ namespace Ttu.Presentation
 
         #region Public Methods
 
+        public LogOnPresenter CreateLogOnPresenter()
+        {
+            return new LogOnPresenter(LogOnViewState);
+        }
+
         public ManageUserPresenter CreateManageUserPresenter()
         {
-            return new ManageUserPresenter(User, UnitOfWork);
+            return new ManageUserPresenter(ManageUserViewState);
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private void InitializeFeatureViewStates()
+        {
+            LogOnViewState = new LogOnViewState(this);
+            ManageUserViewState = new ManageUserViewState(this);
         }
 
         #endregion

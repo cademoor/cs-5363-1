@@ -1,4 +1,5 @@
-﻿using Ttu.Domain;
+﻿using System;
+using Ttu.Domain;
 
 namespace Ttu.PresentationTest
 {
@@ -23,12 +24,27 @@ namespace Ttu.PresentationTest
 
         public IAuthenticationService CreateAuthenticationService()
         {
-            throw new System.NotImplementedException();
+            return new MockAuthenticationService();
+        }
+
+        public IContactService CreateContactService(IUnitOfWork unitOfWork)
+        {
+            throw new NotImplementedException();
         }
 
         public IUserService CreateUserService(IUnitOfWork unitOfWork)
         {
-            throw new System.NotImplementedException();
+            return new MockUserService();
+        }
+
+        public IVolunteerProfileReviewService CreateVolunteerProfileReviewService(IUnitOfWork unitOfWork)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

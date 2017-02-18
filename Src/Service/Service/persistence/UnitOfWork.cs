@@ -102,6 +102,7 @@ namespace Ttu.Service
         public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
         public IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get { return CreateUowRepository<IVolunteerProfile>(); } }
+        public IUnitOfWorkRepository<IVolunteerProfileReview> VolunteerProfileReviews { get { return CreateUowRepository<IVolunteerProfileReview>(); } }
 
         private SessionDecorator Session { get; set; }
 

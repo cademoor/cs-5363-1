@@ -49,6 +49,7 @@
     <Compile Include="service\ContactServiceTest.cs" />
     <Compile Include="service\UserServiceTest.cs" />
     <Compile Include="service\VolunteerProfileServiceTest.cs" />
+    <Compile Include="service\VolunteerProfileReviewServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Src\Common\Domain\Domain.csproj">

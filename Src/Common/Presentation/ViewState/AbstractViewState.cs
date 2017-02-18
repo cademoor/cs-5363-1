@@ -2,23 +2,24 @@
 
 namespace Ttu.Presentation
 {
-    public abstract class AbstractViewState
+    public abstract class AbstractViewState : IViewState
     {
 
         #region Constructors
 
-        protected AbstractViewState(IUser user, IUnitOfWork unitOfWork)
+        protected AbstractViewState(IPresenterFactory presenterFactory)
         {
-            UnitOfWork = unitOfWork;
-            User = user;
+            PresenterFactory = presenterFactory ?? NullPresenterFactory.Singleton;
         }
 
         #endregion
 
         #region Properties
 
-        public IUnitOfWork UnitOfWork { get; private set; }
-        public IUser User { get; private set; }
+        public IUnitOfWork UnitOfWork { get { return PresenterFactory.UnitOfWork; } }
+        public IUser User { get { return PresenterFactory.User; } }
+
+        private IPresenterFactory PresenterFactory { get; set; }
 
         #endregion
 

@@ -5,7 +5,7 @@ namespace Ttu.Presentation
     public class NullPresenterFactory : IPresenterFactory
     {
 
-        private static IPresenterFactory Singleton = new NullPresenterFactory();
+        public static IPresenterFactory Singleton = new NullPresenterFactory();
 
         #region Constructors
 
@@ -25,6 +25,11 @@ namespace Ttu.Presentation
         #endregion
 
         #region Public Methods
+
+        public LogOnPresenter CreateLogOnPresenter()
+        {
+            return null;
+        }
 
         public ManageUserPresenter CreateManageUserPresenter()
         {

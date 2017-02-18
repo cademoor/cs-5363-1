@@ -4,6 +4,7 @@
     {
 
         int RecordId { get; }
+        IUser User { get; }
 
     }
 }

@@ -25,6 +25,21 @@
             return NullUserService.Singleton;
         }
 
+        public virtual IContactService CreateContactService(IUnitOfWork unitOfWork)
+        {
+            return NullContactService.Singleton;
+        }
+
+        public virtual IVolunteerProfileReviewService CreateVolunteerProfileReviewService(IUnitOfWork unitOfWork)
+        {
+            return NullVolunteerProfileReviewService.Singleton;
+        }
+
+        public virtual IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork)
+        {
+            return NullVolunteerProfileService.Singleton;
+        }
+
         #endregion
 
     }

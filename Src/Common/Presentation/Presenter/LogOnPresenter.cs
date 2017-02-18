@@ -7,8 +7,8 @@ namespace Ttu.Presentation
 
         #region Constructors
 
-        public LogOnPresenter(IUser user, IUnitOfWork unitOfWork)
-            : base(user, unitOfWork)
+        public LogOnPresenter(IViewState viewState)
+            : base(viewState)
         {
         }
 

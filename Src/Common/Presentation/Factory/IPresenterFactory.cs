@@ -10,6 +10,7 @@ namespace Ttu.Presentation
         IUser User { get; }
 
         // behavior
+        LogOnPresenter CreateLogOnPresenter();
         ManageUserPresenter CreateManageUserPresenter();
 
     }

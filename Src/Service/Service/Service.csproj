@@ -54,6 +54,7 @@
     <Compile Include="service\ContactService.cs" />
     <Compile Include="service\UserService.cs" />
     <Compile Include="service\VolunteerProfileService.cs" />
+    <Compile Include="service\VolunteerProfileReviewService.cs" />
     <Compile Include="session\SessionDecorator.cs" />
     <Compile Include="utility\DatabaseCreator.cs" />
   </ItemGroup>
@@ -83,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="persistence\hbm\volunteerProfile.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="persistence\hbm\volunteerProfileReview.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

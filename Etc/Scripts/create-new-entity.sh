@@ -19,7 +19,7 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 
 DOMAIN_INT_DIR="../../Src/Common/Domain/interface"
@@ -29,7 +29,7 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 
 DOMAIN_NULL_DIR="../../Src/Common/Domain/service/null"
@@ -39,7 +39,7 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 
 HBM_DIR="../../Src/Service/Service/persistence/hbm"
@@ -49,7 +49,7 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 
 SERVICE_DIR="../../Src/Service/service"
@@ -59,7 +59,7 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 
 # tests
@@ -70,7 +70,7 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 
 SERVICE_TEST_DIR="../../Test/Service/ServiceTest/service"
@@ -80,6 +80,6 @@ if [ ! -f $TARGET_PATH ]; then
   sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
   sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
   unix2dos ${TARGET_PATH}
-  git add ${TARGET_PATH} 2> /dev/null
+  #git add ${TARGET_PATH} 2> /dev/null
 fi
 

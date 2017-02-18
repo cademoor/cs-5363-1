@@ -14,7 +14,7 @@ namespace Ttu.Library
         {
             InitializeComponent();
 
-            Presenter = new LogOnPresenter(null, null); // TODO:ACM - change to factory method
+            Presenter = new PresenterFactory(NullUser.Singleton, NullUnitOfWork.Singleton, null).CreateLogOnPresenter();
         }
 
         #endregion
