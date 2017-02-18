@@ -29,17 +29,16 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtUserId = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtUserId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,25 +66,15 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 110);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // label4
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "User Id:";
-            // 
-            // txtUserId
-            // 
-            this.txtUserId.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUserId.Location = new System.Drawing.Point(79, 3);
-            this.txtUserId.MaxLength = 50;
-            this.txtUserId.Name = "txtUserId";
-            this.txtUserId.Size = new System.Drawing.Size(178, 20);
-            this.txtUserId.TabIndex = 1;
-            this.txtUserId.Text = "ADMIN";
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 84);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Last Name:";
             // 
             // label2
             // 
@@ -108,6 +97,26 @@
             this.txtPassword.TabIndex = 3;
             this.txtPassword.Text = "1";
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "User Id:";
+            // 
+            // txtUserId
+            // 
+            this.txtUserId.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUserId.Location = new System.Drawing.Point(79, 3);
+            this.txtUserId.MaxLength = 50;
+            this.txtUserId.Name = "txtUserId";
+            this.txtUserId.Size = new System.Drawing.Size(178, 20);
+            this.txtUserId.TabIndex = 1;
+            this.txtUserId.Text = "ADMIN";
+            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -128,16 +137,6 @@
             this.txtFirstName.TabIndex = 5;
             this.txtFirstName.Text = "Harper";
             // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 84);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Last Name:";
-            // 
             // txtLastName
             // 
             this.txtLastName.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -151,7 +150,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAdd.Location = new System.Drawing.Point(97, 169);
+            this.btnAdd.Location = new System.Drawing.Point(66, 133);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 1;
@@ -162,7 +161,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnClose.Location = new System.Drawing.Point(175, 169);
+            this.btnClose.Location = new System.Drawing.Point(144, 133);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
@@ -170,22 +169,11 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(27, 135);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(301, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Don\'t use a real password...being stored in plain text right now.";
-            // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 204);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(284, 168);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -197,7 +185,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -214,6 +201,5 @@
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Label label5;
     }
 }

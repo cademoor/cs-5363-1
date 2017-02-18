@@ -61,7 +61,7 @@ namespace Ttu.Library
             IUser user = new User();
             user.FirstName = txtFirstName.Text;
             user.LastName = txtLastName.Text;
-            user.PasswordEncrypted = txtPassword.Text;
+            user.SetPassword(txtPassword.Text);
             user.UserId = txtUserId.Text.ToUpper();
             return user;
         }
