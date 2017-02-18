@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Ttu.Domain
 {
     public class Contact : IContact
