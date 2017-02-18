@@ -9,7 +9,7 @@ fi
 cd "$(dirname "$0")"
 
 ENTITY_NAME_PROVIDED=$1
-ENTITY_NAME_LOWER_START=${2}
+ENTITY_NAME_LOWER_START=$2
 
 # classes 
 DOMAIN_IMPL_DIR="../../Src/Common/Domain/implementation"
