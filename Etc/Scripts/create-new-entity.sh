@@ -13,52 +13,73 @@ ENTITY_NAME_LOWER_START=${2}
 
 # classes 
 DOMAIN_IMPL_DIR="../../Src/Common/Domain/implementation"
-cp tmpl/Entity.cs ${DOMAIN_IMPL_DIR}/${ENTITY_NAME_PROVIDED}.cs
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${DOMAIN_IMPL_DIR}/${ENTITY_NAME_PROVIDED}.cs
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${DOMAIN_IMPL_DIR}/${ENTITY_NAME_PROVIDED}.cs
-unix2dos ${DOMAIN_IMPL_DIR}/${ENTITY_NAME_PROVIDED}.cs
-git add ${DOMAIN_IMPL_DIR}/${ENTITY_NAME_PROVIDED}.cs 2> /dev/null
+TARGET_PATH=${DOMAIN_IMPL_DIR}/${ENTITY_NAME_PROVIDED}.cs
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/Entity.cs ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
 DOMAIN_INT_DIR="../../Src/Common/Domain/interface"
-cp tmpl/IEntity.cs ${DOMAIN_INT_DIR}/I${ENTITY_NAME_PROVIDED}.cs
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${DOMAIN_INT_DIR}/I${ENTITY_NAME_PROVIDED}.cs
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${DOMAIN_INT_DIR}/I${ENTITY_NAME_PROVIDED}.cs
-unix2dos ${DOMAIN_INT_DIR}/I${ENTITY_NAME_PROVIDED}.cs
-git add ${DOMAIN_INT_DIR}/I${ENTITY_NAME_PROVIDED}.cs 2> /dev/null
+TARGET_PATH=${DOMAIN_INT_DIR}/I${ENTITY_NAME_PROVIDED}.cs
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/IEntity.cs ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
 DOMAIN_NULL_DIR="../../Src/Common/Domain/service/null"
-cp tmpl/NullEntityService.cs ${DOMAIN_NULL_DIR}/Null${ENTITY_NAME_PROVIDED}Service.cs
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${DOMAIN_NULL_DIR}/Null${ENTITY_NAME_PROVIDED}Service.cs
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${DOMAIN_NULL_DIR}/Null${ENTITY_NAME_PROVIDED}Service.cs
-unix2dos ${DOMAIN_NULL_DIR}/Null${ENTITY_NAME_PROVIDED}Service.cs
-git add ${DOMAIN_NULL_DIR}/Null${ENTITY_NAME_PROVIDED}Service.cs 2> /dev/null
+TARGET_PATH=${DOMAIN_NULL_DIR}/Null${ENTITY_NAME_PROVIDED}Service.cs
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/NullEntityService.cs ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
 HBM_DIR="../../Src/Service/Service/persistence/hbm"
-cp tmpl/Entity.hbm.xml ${HBM_DIR_DIR}/${ENTITY_NAME_LOWER_START}.hbm.xml
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${HBM_DIR_DIR}/${ENTITY_NAME_LOWER_START}.hbm.xml
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${HBM_DIR_DIR}/${ENTITY_NAME_LOWER_START}.hbm.xml
-unix2dos ${HBM_DIR}/${ENTITY_NAME_LOWER_START}.hbm.xml
-git add ${HBM_DIR}/${ENTITY_NAME_LOWER_START}.hbm.xml 2> /dev/null
+TARGET_PATH=${HBM_DIR_DIR}/${ENTITY_NAME_LOWER_START}.hbm.xml
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/entity.hbm.xml ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
 SERVICE_DIR="../../Src/Service/service"
-cp tmpl/EntityService.cs ${SERVICE_DIR}/${ENTITY_NAME_PROVIDED}Service.cs
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${SERVICE_DIR}/${ENTITY_NAME_PROVIDED}Service.cs
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${SERVICE_DIR}/${ENTITY_NAME_PROVIDED}Service.cs
-unix2dos ${SERVICE_DIR}/${ENTITY_NAME_PROVIDED}Service.cs
-git add ${SERVICE_DIR}/${ENTITY_NAME_PROVIDED}Service.cs 2> /dev/null
+TARGET_PATH=${SERVICE_DIR}/${ENTITY_NAME_PROVIDED}Service.cs
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/EntityService.cs ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
 # tests
 DOMAIN_TEST_DIR="../../Test/Common/DomainTest/implementation"
-cp tmpl/EntityTest.cs ${DOMAIN_TEST_DIR}/${ENTITY_NAME_PROVIDED}Test.cs
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${DOMAIN_TEST_DIR}/${ENTITY_NAME_PROVIDED}Test.cs
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${DOMAIN_TEST_DIR}/${ENTITY_NAME_PROVIDED}Test.cs
-unix2dos ${DOMAIN_TEST_DIR}/${ENTITY_NAME_PROVIDED}Test.cs
-git add ${DOMAIN_TEST_DIR}/${ENTITY_NAME_PROVIDED}Test.cs 2> /dev/null
+TARGET_PATH=${DOMAIN_TEST_DIR}/${ENTITY_NAME_PROVIDED}Test.cs
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/EntityTest.cs ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
 SERVICE_TEST_DIR="../../Test/Service/ServiceTest/service"
-cp tmpl/EntityServiceTest.cs ${SERVICE_TEST_DIR}/${ENTITY_NAME_PROVIDED}ServiceTest.cs
-sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${SERVICE_TEST_DIR}/${ENTITY_NAME_PROVIDED}ServiceTest.cs
-sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${SERVICE_TEST_DIR}/${ENTITY_NAME_PROVIDED}ServiceTest.cs
-unix2dos ${SERVICE_TEST_DIR}/${ENTITY_NAME_PROVIDED}ServiceTest.cs
-git add ${SERVICE_TEST_DIR}/${ENTITY_NAME_PROVIDED}ServiceTest.cs 2> /dev/null
+TARGET_PATH=${SERVICE_TEST_DIR}/${ENTITY_NAME_PROVIDED}ServiceTest.cs
+if [ ! -f $TARGET_PATH ]; then
+  cp tmpl/EntityServiceTest.cs ${TARGET_PATH}
+  sed -i "s/Entity/${ENTITY_NAME_PROVIDED}/g" ${TARGET_PATH}
+  sed -i "s/entity/${ENTITY_NAME_LOWER_START}/g" ${TARGET_PATH}
+  unix2dos ${TARGET_PATH}
+  git add ${TARGET_PATH} 2> /dev/null
+fi
 
