@@ -35,7 +35,7 @@ namespace Ttu.DomainTest.implementation
             // post-conditions
             Assert.AreEqual(ContactType.HomePhone, Contact.ContactType);
             Assert.AreEqual(1, Contact.RecordId);
-            Assert.AreEqual("1112223333", Contact.Value);
+            Assert.AreEqual("1112223334", Contact.Value);
         }
 
         #endregion
