@@ -1,0 +1,9 @@
+language: csharp
+script:
+    - xbuild /p:Configuration=Debug cs-5363-1.sln
+before_install:
+    - sudo apt-get install nunit-console
+before_script:
+    - nuget restore cs-5363-1.sln
+after_script:
+    - nunit-console Test/Common/DomainTest/bin/Debug/Tests.dll
