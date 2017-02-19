@@ -19,7 +19,7 @@ namespace Ttu.PresentationTest
 
         public override string SessionId { get; set; }
         public override IUser User { get; set; }
-        public override IUnitOfWorkRepository<IContact> Contacts { get { return Contacts; } }
+        public override IUnitOfWorkRepository<IContact> Contacts { get { return _Contacts; } }
         public override IUnitOfWorkRepository<IUser> Users { get { return _Users; } }
 
         #endregion

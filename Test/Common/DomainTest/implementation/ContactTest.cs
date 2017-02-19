@@ -8,13 +8,11 @@ namespace Ttu.DomainTest.implementation
     {
 
         private Contact Contact;
-        private IUser User;
 
         [SetUp]
         public void SetUp()
         {
             Contact = new Contact();
-            User = new User("ADMIN");
         }
 
         #region Blue Sky Tests
