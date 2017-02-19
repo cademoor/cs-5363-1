@@ -6,4 +6,4 @@ before_install:
 before_script:
     - nuget restore cs-5363-1.sln
 after_script:
-    - nunit-console Test/Common/DomainTest/bin/Debug/Tests.dll
+    - nunit-console Test/Common/DomainTest/bin/Debug/DomainTest.dll
