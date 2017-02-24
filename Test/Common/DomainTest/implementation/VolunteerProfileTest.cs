@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 
 namespace Ttu.DomainTest.implementation
 {
-    [TestFixture]
+    [TestClass]
     public class VolunteerProfileTest
     {
 
         private IUser User;
         private VolunteerProfile VolunteerProfile;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             User = new User();
@@ -20,7 +20,7 @@ namespace Ttu.DomainTest.implementation
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
@@ -37,7 +37,7 @@ namespace Ttu.DomainTest.implementation
 
         #region Non Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_()
         {
 
@@ -45,7 +45,7 @@ namespace Ttu.DomainTest.implementation
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

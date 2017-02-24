@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 
 namespace Tcp.DomainTest.map
 {
-    [TestFixture]
+    [TestClass]
     public class ThreadSafeMapTest
     {
 
@@ -15,7 +15,7 @@ namespace Tcp.DomainTest.map
 
         private ThreadSafeMap<string, IUser> Map;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Map = new ThreadSafeMap<string, IUser>();
@@ -34,7 +34,7 @@ namespace Tcp.DomainTest.map
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
@@ -77,7 +77,7 @@ namespace Tcp.DomainTest.map
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

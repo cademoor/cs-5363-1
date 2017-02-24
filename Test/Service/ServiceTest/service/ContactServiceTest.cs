@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 using Ttu.Service;
 
 namespace Ttu.ServiceTest.service
 {
-    [TestFixture]
+    [TestClass]
     public class ContactServiceTest : AbstractServiceTest
     {
 
         private ContactService Service;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Service = new ContactService(UnitOfWork);
@@ -22,7 +22,7 @@ namespace Ttu.ServiceTest.service
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_MaintainContacts()
         {
             // pre-conditions
@@ -48,7 +48,7 @@ namespace Ttu.ServiceTest.service
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 
 namespace Ttu.DomainTest.implementation
 {
-    [TestFixture]
+    [TestClass]
     public class ContactTest
     {
 
         private Contact Contact;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Contact = new Contact();
@@ -17,13 +17,13 @@ namespace Ttu.DomainTest.implementation
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
             Assert.AreEqual(ContactType.None, Contact.ContactType);
             Assert.AreEqual(0, Contact.RecordId);
-            Assert.IsEmpty(Contact.Value);
+            Assert.AreEqual(string.Empty, Contact.Value);
 
             // exercise
             Contact.ContactType = ContactType.HomePhone;
@@ -33,12 +33,12 @@ namespace Ttu.DomainTest.implementation
             // post-conditions
             Assert.AreEqual(ContactType.HomePhone, Contact.ContactType);
             Assert.AreEqual(1, Contact.RecordId);
-            Assert.AreEqual("1112223334", Contact.Value);
+            Assert.AreEqual("1112223333", Contact.Value);
         }
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

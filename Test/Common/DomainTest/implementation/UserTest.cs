@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 
 namespace Ttu.DomainTest.implementation
 {
-    [TestFixture]
+    [TestClass]
     public class UserTest
     {
 
         private User User;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             User = new User();
@@ -17,15 +17,15 @@ namespace Ttu.DomainTest.implementation
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.PasswordEncrypted);
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
-            Assert.IsEmpty(User.UserId);
+            Assert.AreEqual(string.Empty, User.UserId);
             Assert.IsTrue(User.IsValid());
 
             // exercise
@@ -44,13 +44,13 @@ namespace Ttu.DomainTest.implementation
             Assert.IsTrue(User.IsValid());
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_GetFullName()
         {
             // pre-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.GetFullName());
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.GetFullName());
 
             // exercise
             User.FirstName = "Harper";
@@ -64,7 +64,7 @@ namespace Ttu.DomainTest.implementation
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }
