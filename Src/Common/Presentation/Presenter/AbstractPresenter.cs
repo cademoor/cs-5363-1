@@ -41,6 +41,20 @@ namespace Ttu.Presentation
 
         #endregion
 
+        #region Shared Methods - Persistence
+
+        protected void Commit()
+        {
+            UnitOfWork.Commit();
+        }
+
+        protected void Reset()
+        {
+            UnitOfWork.Reset();
+        }
+
+        #endregion
+
         #region Shared Methods - Service
 
         protected IContactService CreateContactService()

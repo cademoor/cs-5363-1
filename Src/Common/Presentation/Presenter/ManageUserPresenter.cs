@@ -28,11 +28,13 @@ namespace Ttu.Presentation
         public void AddUser(IUser user)
         {
             UserService.AddUser(user);
+            Commit();
         }
 
         public void AddVolunteerProfile(IVolunteerProfile volunteerProfile)
         {
             VolunteerProfileService.AddVolunteerProfile(volunteerProfile);
+            Commit();
         }
 
         public IUser GetUser(string userId)
@@ -57,12 +59,13 @@ namespace Ttu.Presentation
 
         public void InitializeFeature()
         {
-            UnitOfWork.Reset();
+            Reset();
         }
 
         public void RemoveUser(IUser user)
         {
             UserService.RemoveUser(user);
+            Commit();
         }
 
         #endregion

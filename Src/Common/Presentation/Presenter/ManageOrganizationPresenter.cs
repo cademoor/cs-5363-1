@@ -26,6 +26,7 @@ namespace Ttu.Presentation
         public void AddOrganization(IOrganization organization)
         {
             Service.AddOrganization(organization);
+            Commit();
         }
 
         public IOrganization GetOrganization(int recordId)
@@ -40,12 +41,13 @@ namespace Ttu.Presentation
 
         public void InitializeFeature()
         {
-            UnitOfWork.Reset();
+            Reset();
         }
 
         public void RemoveOrganization(IOrganization organization)
         {
             Service.RemoveOrganization(organization);
+            Commit();
         }
 
         #endregion
