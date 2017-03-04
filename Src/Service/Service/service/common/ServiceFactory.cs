@@ -1,4 +1,4 @@
-﻿using Ttu.Domain;
+using Ttu.Domain;
 
 namespace Ttu.Service
 {
@@ -15,6 +15,11 @@ namespace Ttu.Service
         public IContactService CreateContactService(IUnitOfWork unitOfWork)
         {
             return new ContactService(unitOfWork);
+        }
+
+        public IOrganizationService CreateOrganizationService(IUnitOfWork unitOfWork)
+        {
+            return new OrganizationService(unitOfWork);
         }
 
         public IUserService CreateUserService(IUnitOfWork unitOfWork)

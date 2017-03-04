@@ -43,11 +43,13 @@
     <Compile Include="Factory\PresenterFactory.cs" />
     <Compile Include="Null\NullUser.cs" />
     <Compile Include="Presenter\AbstractPresenter.cs" />
+    <Compile Include="Presenter\ManageOrganizationPresenter.cs" />
     <Compile Include="Presenter\LogOnPresenter.cs" />
     <Compile Include="Presenter\ManageUserPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\InputValidationBuilder.cs" />
     <Compile Include="ViewState\AbstractViewState.cs" />
+    <Compile Include="ViewState\ManageOrganizationViewState.cs" />
     <Compile Include="ViewState\IViewState.cs" />
     <Compile Include="ViewState\LogOnViewState.cs" />
     <Compile Include="ViewState\ManageUserViewState.cs" />

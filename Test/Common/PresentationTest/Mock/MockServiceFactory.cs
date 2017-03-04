@@ -11,6 +11,7 @@ namespace Ttu.PresentationTest
         {
             AuthenticationService = new MockAuthenticationService();
             ContactService = new MockContactService();
+            OrganizationService = new MockOrganizationService();
             UserService = new MockUserService();
             VolunteerProfileReviewService = new MockVolunteerProfileReviewService();
             VolunteerProfileService = new MockVolunteerProfileService();
@@ -22,6 +23,7 @@ namespace Ttu.PresentationTest
 
         private MockAuthenticationService AuthenticationService { get; set; }
         private MockContactService ContactService { get; set; }
+        private MockOrganizationService OrganizationService { get; set; }
         private MockUserService UserService { get; set; }
         private MockVolunteerProfileReviewService VolunteerProfileReviewService { get; set; }
         private MockVolunteerProfileService VolunteerProfileService { get; set; }
@@ -38,6 +40,11 @@ namespace Ttu.PresentationTest
         public IContactService CreateContactService(IUnitOfWork unitOfWork)
         {
             return ContactService;
+        }
+
+        public IOrganizationService CreateOrganizationService(IUnitOfWork unitOfWork)
+        {
+            return OrganizationService;
         }
 
         public IUserService CreateUserService(IUnitOfWork unitOfWork)

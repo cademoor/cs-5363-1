@@ -2,7 +2,7 @@
 
 namespace Ttu.Presentation
 {
-    public class PresenterFactory : IPresenterFactory
+    public class PresenterFactory : NullPresenterFactory
     {
 
         #region Constructors
@@ -21,6 +21,7 @@ namespace Ttu.Presentation
         #region Properties - Feature
 
         public LogOnViewState LogOnViewState { get; set; }
+        public ManageOrganizationViewState ManageOrganizationViewState { get; set; }
         public ManageUserViewState ManageUserViewState { get; set; }
 
         #endregion
@@ -35,12 +36,17 @@ namespace Ttu.Presentation
 
         #region Public Methods
 
-        public LogOnPresenter CreateLogOnPresenter()
+        public override LogOnPresenter CreateLogOnPresenter()
         {
             return new LogOnPresenter(LogOnViewState);
         }
 
-        public ManageUserPresenter CreateManageUserPresenter()
+        public override ManageOrganizationPresenter CreateManageOrganizationPresenter()
+        {
+            return new ManageOrganizationPresenter(ManageOrganizationViewState);
+        }
+
+        public override ManageUserPresenter CreateManageUserPresenter()
         {
             return new ManageUserPresenter(ManageUserViewState);
         }
@@ -52,6 +58,7 @@ namespace Ttu.Presentation
         private void InitializeFeatureViewStates()
         {
             LogOnViewState = new LogOnViewState(this);
+            ManageOrganizationViewState = new ManageOrganizationViewState(this);
             ManageUserViewState = new ManageUserViewState(this);
         }
 

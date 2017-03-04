@@ -9,7 +9,7 @@ namespace Ttu.Presentation
 
         #region Constructors
 
-        private NullPresenterFactory()
+        protected NullPresenterFactory()
         {
             UnitOfWork = NullUnitOfWork.Singleton;
             User = null;
@@ -26,12 +26,17 @@ namespace Ttu.Presentation
 
         #region Public Methods
 
-        public LogOnPresenter CreateLogOnPresenter()
+        public virtual LogOnPresenter CreateLogOnPresenter()
         {
             return null;
         }
 
-        public ManageUserPresenter CreateManageUserPresenter()
+        public virtual ManageOrganizationPresenter CreateManageOrganizationPresenter()
+        {
+            return null;
+        }
+
+        public virtual ManageUserPresenter CreateManageUserPresenter()
         {
             return null;
         }

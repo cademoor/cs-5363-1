@@ -16,9 +16,9 @@ namespace Ttu.Service
 
         #region Public Methods
 
-        public virtual void AddOrganization(IOrganization user)
+        public virtual void AddOrganization(IOrganization organization)
         {
-            UnitOfWork.Organizations.Add(user);
+            UnitOfWork.Organizations.Add(organization);
         }
 
         public virtual IOrganization GetOrganization(int recordId)
@@ -39,13 +39,13 @@ namespace Ttu.Service
         public virtual void RemoveOrganization(int recordId)
         {
             // guard clause - not found
-            IOrganization user = GetOrganization(recordId);
-            if (user == null)
+            IOrganization organization = GetOrganization(recordId);
+            if (organization == null)
             {
                 return;
             }
 
-            UnitOfWork.Organizations.Remove(user);
+            UnitOfWork.Organizations.Remove(organization);
         }
 
         public virtual void RemoveOrganization(IOrganization createdByUser)

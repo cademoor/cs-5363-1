@@ -48,6 +48,11 @@ namespace Ttu.Presentation
             return ServiceFactory.CreateContactService(UnitOfWork);
         }
 
+        protected IOrganizationService CreateOrganizationService()
+        {
+            return ServiceFactory.CreateOrganizationService(UnitOfWork);
+        }
+
         protected IVolunteerProfileReviewService CreateVolunteerProfileReviewService()
         {
             return ServiceFactory.CreateVolunteerProfileReviewService(UnitOfWork);

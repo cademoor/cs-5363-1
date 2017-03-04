@@ -16,27 +16,27 @@ namespace Ttu.Service
 
         #region Public Methods
 
-        public virtual void AddUser(IUser user)
+        public void AddUser(IUser user)
         {
             UnitOfWork.Users.Add(user);
         }
 
-        public virtual IUser GetUser(string userId)
+        public IUser GetUser(string userId)
         {
             return UnitOfWork.Users.FindByUnique(u => u.UserId == userId);
         }
 
-        public virtual IUser GetUser(int recordId)
+        public IUser GetUser(int recordId)
         {
             return UnitOfWork.Users.FindByRecordId(recordId);
         }
 
-        public virtual IUser[] GetUsers()
+        public IUser[] GetUsers()
         {
             return UnitOfWork.Users.FindAll();
         }
 
-        public virtual void RemoveUser(int recordId)
+        public void RemoveUser(int recordId)
         {
             // guard clause - not found
             IUser user = GetUser(recordId);
@@ -48,7 +48,7 @@ namespace Ttu.Service
             UnitOfWork.Users.Remove(user);
         }
 
-        public virtual void RemoveUser(IUser user)
+        public void RemoveUser(IUser user)
         {
             // guard clause - invalid input
             if (user == null)

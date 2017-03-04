@@ -3,7 +3,7 @@
     public interface IOrganizationService
     {
 
-        void AddOrganization(IOrganization user);
+        void AddOrganization(IOrganization organization);
 
         IOrganization GetOrganization(int recordId);
         IOrganization[] GetOrganizations();

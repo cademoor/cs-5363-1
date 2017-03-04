@@ -7,7 +7,7 @@
 
         #region Constructors
 
-        private NullOrganizationService()
+        protected NullOrganizationService()
         {
         }
 
@@ -15,7 +15,7 @@
 
         #region Public Methods
 
-        public virtual void AddOrganization(IOrganization user)
+        public virtual void AddOrganization(IOrganization organization)
         {
             // do nothing
         }

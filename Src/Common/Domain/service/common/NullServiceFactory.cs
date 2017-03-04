@@ -20,14 +20,19 @@
             return NullAuthenticationService.Singleton;
         }
 
-        public virtual IUserService CreateUserService(IUnitOfWork unitOfWork)
-        {
-            return NullUserService.Singleton;
-        }
-
         public virtual IContactService CreateContactService(IUnitOfWork unitOfWork)
         {
             return NullContactService.Singleton;
+        }
+
+        public virtual IOrganizationService CreateOrganizationService(IUnitOfWork unitOfWork)
+        {
+            return NullOrganizationService.Singleton;
+        }
+
+        public virtual IUserService CreateUserService(IUnitOfWork unitOfWork)
+        {
+            return NullUserService.Singleton;
         }
 
         public virtual IVolunteerProfileReviewService CreateVolunteerProfileReviewService(IUnitOfWork unitOfWork)
