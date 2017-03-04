@@ -27,12 +27,16 @@ namespace Ttu.Presentation
 
         public void AddUser(IUser user)
         {
+            ValidateUser(user);
+
             UserService.AddUser(user);
             Commit();
         }
 
         public void AddVolunteerProfile(IVolunteerProfile volunteerProfile)
         {
+            ValidateVolunteerProfile(volunteerProfile);
+
             VolunteerProfileService.AddVolunteerProfile(volunteerProfile);
             Commit();
         }
@@ -66,6 +70,36 @@ namespace Ttu.Presentation
         {
             UserService.RemoveUser(user);
             Commit();
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private void ValidateUser(IUser user)
+        {
+            ValidateUserId(user.UserId);
+        }
+
+        private void ValidateUserId(string userId)
+        {
+            ValidateValue("User ID", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
+        }
+
+        private void ValidateVolunteerProfile(IVolunteerProfile volunteerProfile)
+        {
+            ValidateVolunteerProfileDescription(volunteerProfile.Description);
+            ValidateVolunteerProfileName(volunteerProfile.Name);
+        }
+
+        private void ValidateVolunteerProfileDescription(string description)
+        {
+            ValidateValue("Description", description, Constants.VOLUNTEER_PROFILE_DESCRIPTION_MIN_LENGTH, Constants.VOLUNTEER_PROFILE_DESCRIPTION_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
+        }
+
+        private void ValidateVolunteerProfileName(string name)
+        {
+            ValidateValue("Name", name, Constants.VOLUNTEER_PROFILE_NAME_MIN_LENGTH, Constants.VOLUNTEER_PROFILE_NAME_MAX_LENGTH, InputType.AlphaNumericWithoutDecimal);
         }
 
         #endregion

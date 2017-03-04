@@ -52,7 +52,7 @@ namespace Ttu.Presentation
 
         private void ValidateUserId(string userId)
         {
-            ValidateValue("User Id", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
+            ValidateValue("User ID", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
         }
 
         #endregion

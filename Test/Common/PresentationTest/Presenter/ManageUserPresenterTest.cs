@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Ttu.Domain;
 using Ttu.Presentation;
 
@@ -47,9 +48,19 @@ namespace Ttu.PresentationTest.Presenter
         #region Non Blue Sky Tests
 
         [TestMethod]
-        public void TestNonBlueSky_()
+        public void TestNonBlueSky_UserId_TooLong()
         {
+            IUser invalidUser = CreateUser(new string('A', Constants.USER_ID_MAX_LENGTH + 1), 1);
 
+            try
+            {
+                Presenter.AddUser(invalidUser);
+                Assert.Fail("An exception should have been thrown.");
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("The \"User ID\" must be between 1 and 50 characters.", ex.Message);
+            }
         }
 
         #endregion

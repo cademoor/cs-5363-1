@@ -7,5 +7,8 @@
 
         <many-to-one name="User" column="UserRecordId" class="User" />
 
+        <property name="Description" length="500" />
+        <property name="Name" length="50" />
+
     </class>
 </hibernate-mapping>
