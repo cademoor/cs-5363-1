@@ -1,15 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Presentation;
 
 namespace Ttu.PresentationTest.Null
 {
-    [TestFixture]
+    [TestClass]
     public class NullUserTest
     {
 
         private NullUser User;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             User = NullUser.Singleton as NullUser;
@@ -17,15 +17,15 @@ namespace Ttu.PresentationTest.Null
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.PasswordEncrypted);
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
-            Assert.IsEmpty(User.UserId);
+            Assert.AreEqual(string.Empty, User.UserId);
             Assert.IsFalse(User.IsValid());
 
             // exercise
@@ -36,17 +36,17 @@ namespace Ttu.PresentationTest.Null
             User.UserId = "A";
 
             // post-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.PasswordEncrypted);
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
-            Assert.IsEmpty(User.UserId);
+            Assert.AreEqual(string.Empty, User.UserId);
             Assert.IsFalse(User.IsValid());
         }
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

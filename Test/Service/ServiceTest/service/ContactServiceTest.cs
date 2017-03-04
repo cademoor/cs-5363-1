@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 using Ttu.Service;
 
 namespace Ttu.ServiceTest.service
 {
-    [TestFixture]
+    [TestClass]
     public class ContactServiceTest : AbstractServiceTest
     {
 
         private ContactService Service;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Service = new ContactService(UnitOfWork);
@@ -22,7 +22,7 @@ namespace Ttu.ServiceTest.service
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_MaintainContacts()
         {
             // pre-conditions
@@ -34,6 +34,9 @@ namespace Ttu.ServiceTest.service
 
             IContact contactMobile = CreateContact(ContactType.MobilePhone, "4445556666");
             Service.AddContact(contactMobile);
+
+            UnitOfWork.Commit();
+            UnitOfWork.Abort();
 
             Service.RemoveContact(contactHome);
 
@@ -48,7 +51,7 @@ namespace Ttu.ServiceTest.service
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 using Ttu.Service;
 
 namespace Ttu.ServiceTest.service
 {
-    [TestFixture]
+    [TestClass]
     public class VolunteerProfileServiceTest : AbstractServiceTest
     {
 
         private VolunteerProfileService Service;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Service = new VolunteerProfileService(UnitOfWork);
@@ -22,7 +22,7 @@ namespace Ttu.ServiceTest.service
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_MaintainVolunteerProfiles()
         {
             // pre-conditions
@@ -50,7 +50,7 @@ namespace Ttu.ServiceTest.service
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

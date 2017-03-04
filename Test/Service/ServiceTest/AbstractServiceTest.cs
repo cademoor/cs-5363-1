@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using System;
+using System.IO;
 using Ttu.Domain;
 using Ttu.Service;
 
@@ -16,8 +17,16 @@ namespace Ttu.ServiceTest
         {
             if (Session == null)
             {
-                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true);
+                try
+                {
+                    File.Delete("volunteermetest.db");
+                }
+                catch (Exception e)
+                {
+                    // best effort
+                }
 
+                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true);
                 ISession openSession = sessionFactory.OpenSession();
                 Session = new SessionDecorator(openSession, Guid.NewGuid().ToString());
             }

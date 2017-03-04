@@ -6,7 +6,7 @@ using Ttu.Domain;
 
 namespace Ttu.Service
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : NullUnitOfWork
     {
 
         #region Utility
@@ -96,13 +96,15 @@ namespace Ttu.Service
 
         #region Properties
 
-        public string SessionId { get { return Session.SessionId; } }
-        public IUser User { get; private set; }
+        public override string SessionId { get { return Session.SessionId; } }
+        public override IUser User { get; set; }
 
-        public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
-        public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
-        public IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get { return CreateUowRepository<IVolunteerProfile>(); } }
-        public IUnitOfWorkRepository<IVolunteerProfileReview> VolunteerProfileReviews { get { return CreateUowRepository<IVolunteerProfileReview>(); } }
+        public override IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
+        public override IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
+        public override IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }
+        public override IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get { return CreateUowRepository<IVolunteerOpportunityApplication>(); } }
+        public override IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get { return CreateUowRepository<IVolunteerProfile>(); } }
+        public override IUnitOfWorkRepository<IVolunteerProfileReview> VolunteerProfileReviews { get { return CreateUowRepository<IVolunteerProfileReview>(); } }
 
         private SessionDecorator Session { get; set; }
 
@@ -110,7 +112,7 @@ namespace Ttu.Service
 
         #region Public Methods
 
-        public void Abort()
+        public override void Abort()
         {
             try
             {
@@ -122,7 +124,7 @@ namespace Ttu.Service
             }
         }
 
-        public void Commit()
+        public override void Commit()
         {
             try
             {
@@ -134,7 +136,7 @@ namespace Ttu.Service
             }
         }
 
-        public void Release()
+        public override void Release()
         {
             Session.ClearAndReleaseSafely();
         }

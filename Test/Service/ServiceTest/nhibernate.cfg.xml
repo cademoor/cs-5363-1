@@ -8,7 +8,7 @@
         <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
         <property name="connection.driver_class">NHibernate.Driver.SQLite20Driver</property>
         <!--<property name="connection.connection_string">Data Source=librarytest.db;Password=rSTwtn*oH9%5^r;Pooling=true;</property>-->
-        <property name="connection.connection_string">Data Source=librarytest.db;Pooling=true;</property>
+        <property name="connection.connection_string">Data Source=volunteermetest.db;Pooling=true;</property>
         <property name="show_sql">false</property>
         <property name="dialect">NHibernate.Dialect.SQLiteDialect</property>
 

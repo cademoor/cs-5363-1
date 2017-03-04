@@ -1,15 +1,15 @@
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Presentation;
 
 namespace Ttu.PresentationTest.Builder
 {
-    [TestFixture]
+    [TestClass]
     public class InputValidationBuilderTest
     {
 
         private InputValidationBuilder InputValidationBuilder;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             InputValidationBuilder = new InputValidationBuilder();
@@ -17,81 +17,81 @@ namespace Ttu.PresentationTest.Builder
 
         #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Alpha_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "abc", 1, 10, Domain.InputType.Alpha);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_AlphaNumericWithDecimal_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "abc123.50", 1, 10, Domain.InputType.AlphaNumericWithDecimal);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_AlphaNumericWithoutDecimal_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "abc123", 1, 10, Domain.InputType.AlphaNumericWithoutDecimal);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_AlphaNumericWithSymbols_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "abc123@", 1, 10, Domain.InputType.AlphaNumericWithSymbols);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_None_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "!@#$%^&*()abc123@", 1, 100, Domain.InputType.None);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_NumericWithDecimal_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "123.50", 1, 10, Domain.InputType.NumericWithDecimal);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_NumericWithoutDecimal_Valid()
         {
             // exercise
             string actualValue = InputValidationBuilder.ValidateValue("TestField", "123", 1, 10, Domain.InputType.NumericWithoutDecimal);
 
             // post-conditions
-            Assert.IsEmpty(actualValue);
+            Assert.AreEqual(string.Empty, actualValue);
         }
 
         #endregion
 
         #region Non Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Alpha_InvalidType()
         {
             // exercise
@@ -101,7 +101,7 @@ namespace Ttu.PresentationTest.Builder
             Assert.AreEqual("The \"TestField\" must be between 1 and 10 characters and must only contain letters.", actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_AlphaNumericWithDecimal_InvalidType()
         {
             // exercise
@@ -111,7 +111,7 @@ namespace Ttu.PresentationTest.Builder
             Assert.AreEqual("The \"TestField\" must be between 1 and 10 characters and must only contain letters or numbers or a decimal.", actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_AlphaNumericWithoutDecimal_InvalidType()
         {
             // exercise
@@ -121,7 +121,7 @@ namespace Ttu.PresentationTest.Builder
             Assert.AreEqual("The \"TestField\" must be between 1 and 10 characters and must only contain letters or numbers.", actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_NumericWithDecimal_InvalidType()
         {
             // exercise
@@ -131,7 +131,7 @@ namespace Ttu.PresentationTest.Builder
             Assert.AreEqual("The \"TestField\" must be between 1 and 10 characters and must only contain numbers or a decimal.", actualValue);
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_NumericWithoutDecimal_InvalidType()
         {
             // exercise
@@ -143,7 +143,7 @@ namespace Ttu.PresentationTest.Builder
 
         #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }
