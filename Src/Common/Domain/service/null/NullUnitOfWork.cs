@@ -19,6 +19,7 @@
         public virtual IUser User { get; set; }
 
         public virtual IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
+        public virtual IUnitOfWorkRepository<IOrganization> Organizations { get { return CreateUowRepository<IOrganization>(); } }
         public virtual IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
         public virtual IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }
         public virtual IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get { return CreateUowRepository<IVolunteerOpportunityApplication>(); } }
@@ -40,6 +41,11 @@
         }
 
         public virtual void Release()
+        {
+            // do nothing
+        }
+
+        public virtual void Reset()
         {
             // do nothing
         }

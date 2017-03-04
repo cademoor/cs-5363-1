@@ -7,7 +7,7 @@
 
         #region Constructors
 
-        private NullContactService()
+        protected NullContactService()
         {
         }
 
@@ -15,7 +15,7 @@
 
         #region Public Methods
 
-        public virtual void AddContact(IContact user)
+        public virtual void AddContact(IContact contact)
         {
             // do nothing
         }
@@ -40,7 +40,7 @@
             // do nothing
         }
 
-        public virtual void RemoveContact(IContact user)
+        public virtual void RemoveContact(IContact contact)
         {
             // do nothing
         }

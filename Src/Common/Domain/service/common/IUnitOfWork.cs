@@ -9,6 +9,7 @@
 
         // attributes - repository
         IUnitOfWorkRepository<IContact> Contacts { get; }
+        IUnitOfWorkRepository<IOrganization> Organizations { get; }
         IUnitOfWorkRepository<IUser> Users { get; }
         IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get; }
         IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get; }
@@ -19,6 +20,7 @@
         void Abort();
         void Commit();
         void Release();
+        void Reset();
 
     }
 }

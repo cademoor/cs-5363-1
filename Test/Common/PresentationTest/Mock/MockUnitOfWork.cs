@@ -10,6 +10,7 @@ namespace Ttu.PresentationTest
         public MockUnitOfWork()
         {
             _Contacts = new MockUnitOfWorkRepository<IContact>();
+            _Organizations = new MockUnitOfWorkRepository<IOrganization>();
             _Users = new MockUnitOfWorkRepository<IUser>();
         }
 
@@ -20,6 +21,7 @@ namespace Ttu.PresentationTest
         public override string SessionId { get; set; }
         public override IUser User { get; set; }
         public override IUnitOfWorkRepository<IContact> Contacts { get { return _Contacts; } }
+        public override IUnitOfWorkRepository<IOrganization> Organizations { get { return _Organizations; } }
         public override IUnitOfWorkRepository<IUser> Users { get { return _Users; } }
 
         #endregion
@@ -27,6 +29,7 @@ namespace Ttu.PresentationTest
         #region Variables
 
         private IUnitOfWorkRepository<IContact> _Contacts;
+        private IUnitOfWorkRepository<IOrganization> _Organizations;
         private IUnitOfWorkRepository<IUser> _Users;
 
         #endregion

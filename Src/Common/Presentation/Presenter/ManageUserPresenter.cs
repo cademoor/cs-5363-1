@@ -30,14 +30,29 @@ namespace Ttu.Presentation
             UserService.AddUser(user);
         }
 
-        public IVolunteerProfile GetVolunteerProfile(IUser user)
+        public IUser GetUser(string userId)
         {
-            return VolunteerProfileService.GetVolunteerProfile(user);
+            return UserService.GetUser(userId);
+        }
+
+        public IUser GetUser(int recordId)
+        {
+            return UserService.GetUser(recordId);
         }
 
         public IUser[] GetUsers()
         {
             return UserService.GetUsers();
+        }
+
+        public IVolunteerProfile GetVolunteerProfile(IUser user)
+        {
+            return VolunteerProfileService.GetVolunteerProfile(user);
+        }
+
+        public void InitializeFeature()
+        {
+            UnitOfWork.Reset();
         }
 
         public void RemoveUser(IUser user)

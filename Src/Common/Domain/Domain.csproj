@@ -45,11 +45,13 @@
     <Compile Include="exception\BusinessException.cs" />
     <Compile Include="exception\PersistenceException.cs" />
     <Compile Include="implementation\Contact.cs" />
+    <Compile Include="implementation\Organization.cs" />
     <Compile Include="implementation\VolunteerOpportunityApplication.cs" />
     <Compile Include="implementation\User.cs" />
     <Compile Include="implementation\VolunteerOpportunity.cs" />
     <Compile Include="implementation\VolunteerProfile.cs" />
     <Compile Include="implementation\VolunteerProfileReview.cs" />
+    <Compile Include="interface\IOrganization.cs" />
     <Compile Include="interface\IVolunteerOpportunityApplication.cs" />
     <Compile Include="interface\IContact.cs" />
     <Compile Include="interface\IUser.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\common\IUnitOfWork.cs" />
     <Compile Include="service\common\IUnitOfWorkRepository.cs" />
+    <Compile Include="service\IOrganizationService.cs" />
     <Compile Include="service\IVolunteerOpportunityService.cs" />
     <Compile Include="service\IContactService.cs" />
     <Compile Include="service\IAuthenticationService.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="service\common\NullServiceFactory.cs" />
     <Compile Include="service\IVolunteerProfileReviewService.cs" />
     <Compile Include="service\IVolunteerProfileService.cs" />
+    <Compile Include="service\null\NullOrganizationService.cs" />
     <Compile Include="service\null\NullVolunteerOpportunityService.cs" />
     <Compile Include="service\null\NullContactService.cs" />
     <Compile Include="service\null\NullAuthenticationService.cs" />

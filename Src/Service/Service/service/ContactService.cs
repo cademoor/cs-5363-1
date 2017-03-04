@@ -16,9 +16,9 @@ namespace Ttu.Service
 
         #region Public Methods
 
-        public virtual void AddContact(IContact user)
+        public virtual void AddContact(IContact contact)
         {
-            UnitOfWork.Contacts.Add(user);
+            UnitOfWork.Contacts.Add(contact);
         }
 
         public virtual IContact GetContact(int recordId)
@@ -48,15 +48,15 @@ namespace Ttu.Service
             UnitOfWork.Contacts.Remove(user);
         }
 
-        public virtual void RemoveContact(IContact user)
+        public virtual void RemoveContact(IContact contact)
         {
             // guard clause - invalid input
-            if (user == null)
+            if (contact == null)
             {
                 return;
             }
 
-            RemoveContact(user.RecordId);
+            RemoveContact(contact.RecordId);
         }
 
         #endregion

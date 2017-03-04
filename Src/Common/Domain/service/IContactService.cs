@@ -3,14 +3,14 @@
     public interface IContactService
     {
 
-        void AddContact(IContact user);
+        void AddContact(IContact contact);
 
         IContact GetContact(int recordId);
         IContact[] GetContacts();
         IContact[] GetContacts(IUser user);
 
         void RemoveContact(int recordId);
-        void RemoveContact(IContact user);
+        void RemoveContact(IContact contact);
 
     }
 }

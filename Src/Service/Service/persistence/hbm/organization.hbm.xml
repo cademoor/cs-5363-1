@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Ttu.Domain" assembly="Ttu.Domain">
+    <class name="Organization" table="Organization" lazy="true">
+        <id name="RecordId">
+            <generator class="identity" />
+        </id>
+
+        <many-to-one name="CreatedBy" column="UserRecordId" class="User" />
+
+        <property name="Description" />
+        <property name="Name" />
+
+    </class>
+</hibernate-mapping>

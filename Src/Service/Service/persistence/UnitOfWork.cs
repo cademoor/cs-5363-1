@@ -100,6 +100,7 @@ namespace Ttu.Service
         public override IUser User { get; set; }
 
         public override IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
+        public override IUnitOfWorkRepository<IOrganization> Organizations { get { return CreateUowRepository<IOrganization>(); } }
         public override IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
         public override IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }
         public override IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get { return CreateUowRepository<IVolunteerOpportunityApplication>(); } }
@@ -139,6 +140,17 @@ namespace Ttu.Service
         public override void Release()
         {
             Session.ClearAndReleaseSafely();
+        }
+
+        public override void Reset()
+        {
+            Abort();
+
+            IUser persistentUser = Users.FindByRecordId(User.RecordId);
+            if (persistentUser != null)
+            {
+                User = persistentUser;
+            }
         }
 
         #endregion
