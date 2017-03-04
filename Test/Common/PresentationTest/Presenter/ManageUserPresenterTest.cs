@@ -32,6 +32,8 @@ namespace Ttu.PresentationTest.Presenter
             IUser user2 = CreateUser("TESTUSER2", 2);
             Presenter.AddUser(user2);
 
+            Presenter.AddVolunteerProfile(CreateVolunteerProfile(user2, "Profile 1"));
+
             Presenter.RemoveUser(user1);
 
             // post-conditions
@@ -64,6 +66,13 @@ namespace Ttu.PresentationTest.Presenter
             User user = new User(userId);
             user.RecordId = recordId;
             return user;
+        }
+
+        private IVolunteerProfile CreateVolunteerProfile(IUser user, string name)
+        {
+            VolunteerProfile volunteerProfile = new VolunteerProfile(user, name);
+            volunteerProfile.Description = "I really want to volunteer to help hungry children!";
+            return volunteerProfile;
         }
 
         #endregion

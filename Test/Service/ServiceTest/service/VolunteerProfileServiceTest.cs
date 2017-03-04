@@ -59,7 +59,7 @@ namespace Ttu.ServiceTest.service
 
         private IVolunteerProfile CreateVolunteerProfile()
         {
-            return new VolunteerProfile(User);
+            return new VolunteerProfile(User, "TestProfile1");
         }
 
         #endregion

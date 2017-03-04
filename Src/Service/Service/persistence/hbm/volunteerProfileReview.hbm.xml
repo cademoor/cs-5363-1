@@ -7,7 +7,7 @@
 
         <many-to-one name="Reviewer" column="ReviewerRecordId" class="User" />
 
-        <property name="Notes" />
+        <property name="Notes" length="500" />
         <property name="Rating" />
 
     </class>

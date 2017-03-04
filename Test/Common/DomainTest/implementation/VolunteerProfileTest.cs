@@ -15,7 +15,7 @@ namespace Ttu.DomainTest.implementation
         {
             User = new User();
 
-            VolunteerProfile = new VolunteerProfile(User);
+            VolunteerProfile = new VolunteerProfile(User, "Test Profile");
         }
 
         #region Blue Sky Tests
@@ -24,12 +24,18 @@ namespace Ttu.DomainTest.implementation
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
+            Assert.AreEqual(string.Empty, VolunteerProfile.Description);
+            Assert.AreEqual("Test Profile", VolunteerProfile.Name);
             Assert.AreEqual(0, VolunteerProfile.RecordId);
 
             // exercise
+            VolunteerProfile.Name = "Name 1";
+            VolunteerProfile.Description = "Desc 1";
             VolunteerProfile.RecordId = 1;
 
             // post-conditions
+            Assert.AreEqual("Desc 1", VolunteerProfile.Description);
+            Assert.AreEqual("Name 1", VolunteerProfile.Name);
             Assert.AreEqual(1, VolunteerProfile.RecordId);
         }
 

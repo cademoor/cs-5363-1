@@ -1,4 +1,4 @@
-﻿using Ttu.Domain;
+using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
@@ -28,6 +28,11 @@ namespace Ttu.Presentation
         public void AddUser(IUser user)
         {
             UserService.AddUser(user);
+        }
+
+        public void AddVolunteerProfile(IVolunteerProfile volunteerProfile)
+        {
+            VolunteerProfileService.AddVolunteerProfile(volunteerProfile);
         }
 
         public IUser GetUser(string userId)
