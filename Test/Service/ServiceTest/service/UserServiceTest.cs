@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Ttu.Domain;
 using Ttu.Service;
 
@@ -15,9 +16,15 @@ namespace Ttu.ServiceTest.service
         {
             Service = new UserService(UnitOfWork);
 
-            UnitOfWork.Users.RemoveAll(UnitOfWork.Users.FindBy(u => u.UserId != USER_ID));
-            UnitOfWork.Commit();
-            UnitOfWork.Abort();
+            try
+            {
+                UnitOfWork.Users.RemoveAll(UnitOfWork.Users.FindBy(u => u.UserId != USER_ID));
+                UnitOfWork.Commit();
+                UnitOfWork.Abort();
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         #region Blue Sky Tests

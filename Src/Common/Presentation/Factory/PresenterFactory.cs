@@ -29,8 +29,6 @@ namespace Ttu.Presentation
         #region Properties - Session
 
         public string SessionId { get; private set; }
-        public IUnitOfWork UnitOfWork { get; private set; }
-        public IUser User { get; private set; }
 
         #endregion
 

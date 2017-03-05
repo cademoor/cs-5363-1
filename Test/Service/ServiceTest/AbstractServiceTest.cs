@@ -21,7 +21,7 @@ namespace Ttu.ServiceTest
                 {
                     File.Delete("volunteermetest.db");
                 }
-                catch (Exception e)
+                catch
                 {
                     // best effort
                 }

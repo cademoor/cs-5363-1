@@ -33,7 +33,7 @@ namespace Ttu.PresentationTest.Presenter
             IUser user2 = CreateUser("TESTUSER2", 2);
             Presenter.AddUser(user2);
 
-            Presenter.AddVolunteerProfile(CreateVolunteerProfile(user2, "Profile 1"));
+            Presenter.AddVolunteerProfile(CreateVolunteerProfile(user2, "Profile1"));
 
             Presenter.RemoveUser(user1);
 

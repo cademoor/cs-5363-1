@@ -10,5 +10,10 @@
         <property name="Description" length="500" />
         <property name="Name" length="50" />
 
+        <property name="Causes" length="500" />
+        <property name="Location" length="500" />
+        <property name="Photo" />
+        <property name="Skills" length="500" />
+
     </class>
 </hibernate-mapping>

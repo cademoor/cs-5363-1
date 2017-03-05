@@ -19,8 +19,8 @@ namespace Ttu.Presentation
 
         #region Properties
 
-        public IUnitOfWork UnitOfWork { get; private set; }
-        public IUser User { get; private set; }
+        public virtual IUnitOfWork UnitOfWork { get; protected set; }
+        public virtual IUser User { get; protected set; }
 
         #endregion
 
