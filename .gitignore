@@ -5,3 +5,4 @@ obj
 *.DotSettings
 *.user
 /Src/App/log
+/Src/App/volunteerme.db
