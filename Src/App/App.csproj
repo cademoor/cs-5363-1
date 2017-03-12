@@ -61,7 +61,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Etc\Lib\SQLite-1.0.66.0-binaries\bin\x64\System.Data.SQLite.DLL</HintPath>
+      <HintPath>..\..\Etc\Lib\SQLite-1.0.66.0-binaries\x64\System.Data.SQLite.DLL</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
