@@ -25,9 +25,13 @@ namespace Ttu.Presentation
 
         #region Public Methods
 
-        public void AddUser(IUser user)
+        public void AddUser(UserModel userModel)
         {
-            ValidateUser(user);
+            ValidateUser(userModel);
+
+            IUser user = new User(userModel.UserId);
+            user.FirstName = userModel.FirstName;
+            user.LastName = userModel.LastName;
 
             UserService.AddUser(user);
             Commit();
@@ -76,9 +80,9 @@ namespace Ttu.Presentation
 
         #region Helper Methods
 
-        private void ValidateUser(IUser user)
+        private void ValidateUser(UserModel userModel)
         {
-            ValidateUserId(user.UserId);
+            ValidateUserId(userModel.UserId);
         }
 
         private void ValidateUserId(string userId)

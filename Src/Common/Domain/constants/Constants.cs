@@ -5,11 +5,15 @@
 
         // constant values change here must also be changed in the hbm file for that entity...be careful using a value LESS than original
 
-        public const int USER_PASSWORD_MAX_LENGTH = 50;
-        public const int USER_PASSWORD_MIN_LENGTH = 1;
+        public const string COOKIE_NAME = "ttu.volunteer.me";
+
+        public const string USER_ID_ADMIN = "ADMIN";
 
         public const int USER_ID_MAX_LENGTH = 50;
         public const int USER_ID_MIN_LENGTH = 1;
+
+        public const int USER_PASSWORD_MAX_LENGTH = 50;
+        public const int USER_PASSWORD_MIN_LENGTH = 1;
 
         public const int VOLUNTEER_PROFILE_DESCRIPTION_MAX_LENGTH = 500;
         public const int VOLUNTEER_PROFILE_DESCRIPTION_MIN_LENGTH = 1;
