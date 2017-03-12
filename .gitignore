@@ -4,3 +4,4 @@ obj
 *.suo
 *.DotSettings
 *.user
+/Src/App/log
