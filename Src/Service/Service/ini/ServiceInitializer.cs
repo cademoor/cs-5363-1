@@ -12,8 +12,13 @@ namespace Ttu.Service
 
         #region Public Methods
 
-        public ISessionFactory Initialize(bool forceDropBeforeCreate)
+        public ISessionFactory Initialize(bool forceDropBeforeCreate, bool writeSqliteLibraries)
         {
+            if (writeSqliteLibraries)
+            {
+                InitializeSqlite();
+            }
+
             ISessionFactory sessionFactory = InitializeDatabase(forceDropBeforeCreate);
             TestStatefulSession(sessionFactory);
             ServiceEnvironment.Singleton.SetSessionFactory(sessionFactory);
@@ -55,12 +60,33 @@ namespace Ttu.Service
             return BuildSessionFactory(cfg);
         }
 
+        private void InitializeFile(string directory, string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                return;
+            }
+
+            AssemblyFileReader reader = new AssemblyFileReader(GetType().Assembly);
+            byte[] fileBytes = reader.ReadBinaryFile(string.Format("Ttu.Service.lib.{0}.{1}", directory, fileName));
+            File.WriteAllBytes(fileName, fileBytes);
+        }
+
         private Configuration InitializeNHibernateConfiguration()
         {
             Configuration cfg = new Configuration();
             cfg.Configure(Path.Combine(System.Environment.CurrentDirectory, "nhibernate.cfg.xml"));
             cfg.AddAssembly(typeof(SessionDecorator).Assembly);
             return cfg;
+        }
+
+        private void InitializeSqlite()
+        {
+            bool require64BitLink = System.Environment.Is64BitOperatingSystem || System.Environment.Is64BitProcess;
+            string directory = require64BitLink ? "x64" : "x86";
+
+            InitializeFile(directory, "SQLite.Interop.dll");
+            InitializeFile(directory, "System.Data.SQLite.dll");
         }
 
         private void InstallSchema(Configuration cfg, bool forceDropBeforeCreate)

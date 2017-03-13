@@ -26,7 +26,7 @@ namespace Ttu.ServiceTest
                     // best effort
                 }
 
-                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true);
+                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true, true);
                 ISession openSession = sessionFactory.OpenSession();
                 Session = new SessionDecorator(openSession, Guid.NewGuid().ToString());
             }

@@ -29,6 +29,7 @@ namespace Ttu.ServiceTest.service
 
         #region Blue Sky Tests
 
+        [Ignore]
         [TestMethod]
         public void TestBlueSky_MaintainUsers()
         {

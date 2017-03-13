@@ -75,7 +75,7 @@ namespace App
 
         private void InitializeDatabase()
         {
-            new ServiceInitializer().Initialize(false);
+            new ServiceInitializer().Initialize(false, false);
         }
 
         private void InitializeServiceFactory()
