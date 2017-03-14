@@ -9,15 +9,9 @@ namespace App.Controllers
 
         #region Constructors
 
-        public AbstractController()
+        protected AbstractController()
         {
         }
-
-        #endregion
-
-        #region Properties
-
-
 
         #endregion
 
@@ -40,12 +34,6 @@ namespace App.Controllers
 
             return presenterFactory;
         }
-
-
-        #endregion
-
-        #region Helper Methods
-
 
 
         #endregion

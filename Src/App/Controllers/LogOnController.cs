@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using Ttu.Domain;
 using Ttu.Presentation;
 using Ttu.Presentation.Model;
 
@@ -8,17 +9,6 @@ namespace App.Controllers
 {
     public class LogOnController : AbstractController
     {
-        // GET: LogOn
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: LogOn/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: LogOn/Create
         public ActionResult Create()
@@ -35,54 +25,9 @@ namespace App.Controllers
                 LogOnPresenter presenter = new LogOnPresenter(null);
                 string sessionId = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
                 PersistCookie(sessionId);
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "ManageUser");
             }
             catch (Exception ex)
-            {
-                return View();
-            }
-        }
-
-        // GET: LogOn/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: LogOn/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: LogOn/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: LogOn/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
             {
                 return View();
             }
@@ -92,11 +37,25 @@ namespace App.Controllers
 
         private void PersistCookie(string sessionId)
         {
-            HttpCookie cookie = new HttpCookie(Ttu.Domain.Constants.COOKIE_NAME);
-            cookie.Value = sessionId;
-            cookie.Expires = DateTime.Now.AddMinutes(5);
-            Response.SetCookie(cookie);
-            Response.Flush();
+            HttpCookie existingCookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
+            if (existingCookie != null)
+            {
+                ApplicationLogger.GetLogger(GetType()).Info(string.Format("Existing Cookie Session ID: {0}", existingCookie.Value));
+                existingCookie.Value = sessionId;
+                existingCookie.Expires = DateTime.Now.AddMinutes(5);
+                Response.Cookies.Set(existingCookie);
+                ApplicationLogger.GetLogger(GetType()).Info(string.Format("Update Cookie Session ID: {0}", sessionId));
+            }
+            else
+            {
+                HttpCookie cookie = new HttpCookie(Ttu.Domain.Constants.COOKIE_NAME);
+                cookie.Value = sessionId;
+                cookie.Expires = DateTime.Now.AddMinutes(5);
+                Response.Cookies.Add(cookie);
+                ApplicationLogger.GetLogger(GetType()).Info(string.Format("New Cookie Session ID: {0}", sessionId));
+            }
+
+            //Response.Flush();
         }
 
         #endregion
