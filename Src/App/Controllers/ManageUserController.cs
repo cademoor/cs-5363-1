@@ -8,7 +8,9 @@ namespace App.Controllers
         // GET: ManageUser
         public ActionResult Index()
         {
-            return View();
+            IPresenterFactory presenterFactory = ValidatePresenterFactory();
+            ManageUserPresenter presenter = presenterFactory.CreateManageUserPresenter();
+            return View(presenter.GetUsers());
         }
 
         // GET: ManageUser/Details/5

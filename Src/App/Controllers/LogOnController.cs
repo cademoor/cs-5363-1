@@ -27,7 +27,7 @@ namespace App.Controllers
                 PersistCookie(sessionId);
                 return RedirectToAction("Create", "ManageUser");
             }
-            catch (Exception ex)
+            catch
             {
                 return View();
             }
@@ -54,8 +54,6 @@ namespace App.Controllers
                 Response.Cookies.Add(cookie);
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("New Cookie Session ID: {0}", sessionId));
             }
-
-            //Response.Flush();
         }
 
         #endregion

@@ -1,3 +1,4 @@
+using System.Linq;
 using Ttu.Domain;
 
 namespace Ttu.Presentation
@@ -30,8 +31,7 @@ namespace Ttu.Presentation
             ValidateUser(userModel);
 
             IUser user = new User(userModel.UserId);
-            user.FirstName = userModel.FirstName;
-            user.LastName = userModel.LastName;
+            userModel.ApplyTo(user);
 
             UserService.AddUser(user);
             Commit();
@@ -45,34 +45,62 @@ namespace Ttu.Presentation
             Commit();
         }
 
-        public IUser GetUser(string userId)
+        public UserModel GetUser(string userId)
         {
-            return UserService.GetUser(userId);
+            // guard clause - not found
+            IUser user = UserService.GetUser(userId);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return CreateUserModel(user);
         }
 
-        public IUser GetUser(int recordId)
+        public UserModel GetUser(int recordId)
         {
-            return UserService.GetUser(recordId);
+            // guard clause - not found
+            IUser user = UserService.GetUser(recordId);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return CreateUserModel(user);
         }
 
-        public IUser[] GetUsers()
+        public UserModel[] GetUsers()
         {
-            return UserService.GetUsers();
+            return UserService.GetUsers().Select(u => CreateUserModel(u)).ToArray();
         }
 
-        public IVolunteerProfile GetVolunteerProfile(IUser user)
+        public IVolunteerProfile GetVolunteerProfile(UserModel userModel)
         {
+            // guard clause - invalid input
+            if (userModel == null)
+            {
+                return null;
+            }
+
+            // guard clause - not found
+            IUser user = UserService.GetUser(userModel.RecordId);
+            if (user == null)
+            {
+                return null;
+            }
+
             return VolunteerProfileService.GetVolunteerProfile(user);
         }
 
-        public void InitializeFeature()
+        public void RemoveUser(UserModel userModel)
         {
-            Reset();
-        }
+            // guard clause - invalid input
+            if (userModel == null)
+            {
+                return;
+            }
 
-        public void RemoveUser(IUser user)
-        {
-            UserService.RemoveUser(user);
+            UserService.RemoveUser(userModel.RecordId);
             Commit();
         }
 
@@ -80,8 +108,26 @@ namespace Ttu.Presentation
 
         #region Helper Methods
 
+        private UserModel CreateUserModel(IUser user)
+        {
+            UserModel userModel = new UserModel();
+            userModel.CopyFrom(user);
+            return userModel;
+        }
+
+        private void ValidateInput(UserModel userModel)
+        {
+            if (userModel != null)
+            {
+                return;
+            }
+
+            throw new System.Exception("Invalid input");
+        }
+
         private void ValidateUser(UserModel userModel)
         {
+            ValidateInput(userModel);
             ValidateUserId(userModel.UserId);
         }
 

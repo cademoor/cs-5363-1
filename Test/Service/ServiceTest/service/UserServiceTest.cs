@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Ttu.Domain;
 using Ttu.Service;
 
@@ -22,8 +21,9 @@ namespace Ttu.ServiceTest.service
                 UnitOfWork.Commit();
                 UnitOfWork.Abort();
             }
-            catch (Exception e)
+            catch
             {
+                // do nothing
             }
         }
 

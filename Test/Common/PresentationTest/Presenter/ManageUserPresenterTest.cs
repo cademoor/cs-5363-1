@@ -14,7 +14,6 @@ namespace Ttu.PresentationTest.Presenter
         public void SetUp()
         {
             Presenter = PresenterFactory.CreateManageUserPresenter();
-            Presenter.InitializeFeature();
         }
 
         #region Blue Sky Tests
