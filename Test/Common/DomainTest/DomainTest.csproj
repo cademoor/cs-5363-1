@@ -83,6 +83,7 @@
     <Compile Include="implementation\UserTest.cs" />
     <Compile Include="implementation\VolunteerProfileTest.cs" />
     <Compile Include="implementation\VolunteerProfileReviewTest.cs" />
+    <Compile Include="import-export\RecommendationImporterTest.cs" />
     <Compile Include="import-export\RecommendationExporterTest.cs" />
     <Compile Include="map\ThreadSafeMapTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

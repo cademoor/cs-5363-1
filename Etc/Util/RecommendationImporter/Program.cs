@@ -23,10 +23,8 @@ namespace Ttu.RecommendationImporter
             IServiceFactory serviceFactory = ApplicationEnvironment.Singleton.ServiceFactory;
             try
             {
-                IUserService userService = serviceFactory.CreateUserService(uow);
-
                 string path = ApplicationEnvironment.Singleton.FullyQualifiedInputFilePath;
-                new Domain.RecommendationImporter(serviceFactory, uow, path).ImportRecommendations();
+                new Domain.RecommendationImporter(serviceFactory, uow, path).Import();
 
                 Environment.Exit(0);
             }

@@ -31,7 +31,7 @@ namespace Ttu.Domain
 
         #region Public Methods
 
-        public void ImportRecommendations()
+        public void Import()
         {
             string[] fileLines = File.ReadAllLines(FullyQualifiedInputFilePath);
             fileLines.ToList().ForEach(line => ImportRecommendation(line));
