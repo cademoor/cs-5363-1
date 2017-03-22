@@ -1,5 +1,4 @@
-﻿using NHibernate.Linq;
-using System;
+﻿using System;
 using Ttu.Domain;
 
 namespace Ttu.RecommendationExporter
@@ -24,9 +23,9 @@ namespace Ttu.RecommendationExporter
             IServiceFactory serviceFactory = ApplicationEnvironment.Singleton.ServiceFactory;
             try
             {
-                IRecommendationService recommendationService = serviceFactory.CreateRecommendationService(uow);
-                IRecommendation[] recommendations = recommendationService.GetRecommendations();
-                WriteRecommendations(recommendations);
+                string path = ApplicationEnvironment.Singleton.FullyQualifiedOutputFilePath;
+                new Domain.RecommendationExporter(serviceFactory, uow, path).ExportRecommendations();
+
                 Environment.Exit(0);
             }
             catch (Exception e)
@@ -46,25 +45,6 @@ namespace Ttu.RecommendationExporter
 
             IServiceFactory serviceFactory = ApplicationEnvironment.Singleton.InitializeService();
             return serviceFactory.CreateAuthenticationService().CreateAdHocUnitOfWork();
-        }
-
-        private static void WriteRecommendation(FileWriter fw, IRecommendation recommendation)
-        {
-            fw.PrintLine("{0},{1},{2}", recommendation.RecordId, recommendation.User.RecordId, recommendation.ProbabilityRank ?? -1);
-        }
-
-        private static void WriteRecommendations(IRecommendation[] recommendations)
-        {
-            string fullPath = ApplicationEnvironment.Singleton.FullyQualifiedOutputFilePath;
-            FileWriter fw = FileWriter.CreateFile(fullPath);
-            if (fw == null)
-            {
-                return;
-            }
-
-            recommendations.ForEach(r => WriteRecommendation(fw, r));
-
-            fw.Close();
         }
 
         #endregion

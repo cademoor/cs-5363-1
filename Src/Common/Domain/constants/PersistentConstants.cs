@@ -8,4 +8,10 @@
         Denied = 2,
     }
 
+    public enum RecommendationType : int
+    {
+        Unknown = 0,
+        OrganizationToUser = 1,
+    }
+
 }

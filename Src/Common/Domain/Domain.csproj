@@ -94,6 +94,8 @@
     <Compile Include="implementation\VolunteerProfile.cs" />
     <Compile Include="implementation\VolunteerProfileReview.cs" />
     <Compile Include="implementation\VolunteerProfileSkill.cs" />
+    <Compile Include="import-export\RecommendationExporter.cs" />
+    <Compile Include="import-export\RecommendationImporter.cs" />
     <Compile Include="interface\ILocation.cs" />
     <Compile Include="interface\IOrganization.cs" />
     <Compile Include="interface\IVolunteerOpportunityApplication.cs" />
