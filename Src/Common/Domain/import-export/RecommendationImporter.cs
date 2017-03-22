@@ -13,6 +13,7 @@ namespace Ttu.Domain
         {
             FullyQualifiedInputFilePath = fullyQualifiedInputFilePath;
             ServiceFactory = serviceFactory;
+            UnitOfWork = unitOfWork;
 
             RecommendationService = serviceFactory.CreateRecommendationService(unitOfWork);
             UserService = serviceFactory.CreateUserService(unitOfWork);
@@ -25,6 +26,7 @@ namespace Ttu.Domain
         private string FullyQualifiedInputFilePath { get; set; }
         private IRecommendationService RecommendationService { get; set; }
         private IServiceFactory ServiceFactory { get; set; }
+        private IUnitOfWork UnitOfWork { get; set; }
         private IUserService UserService { get; set; }
 
         #endregion
@@ -35,6 +37,8 @@ namespace Ttu.Domain
         {
             string[] fileLines = File.ReadAllLines(FullyQualifiedInputFilePath);
             fileLines.ToList().ForEach(line => ImportRecommendation(line));
+            UnitOfWork.Commit();
+            UnitOfWork.Abort();
 
             // TODO:ACM - need to add/update here (should we just delete and re-add)
         }
