@@ -24,7 +24,7 @@ namespace Ttu.RecommendationExporter
             try
             {
                 string path = ApplicationEnvironment.Singleton.FullyQualifiedOutputFilePath;
-                new Domain.RecommendationExporter(serviceFactory, uow, path).ExportRecommendations();
+                new Domain.RecommendationExporter(serviceFactory, uow, path).Export();
 
                 Environment.Exit(0);
             }

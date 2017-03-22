@@ -1,6 +1,6 @@
 ﻿using Ttu.Domain;
 
-namespace Ttu.PresentationTest
+namespace Ttu.TestFramework
 {
     public class MockServiceFactory : IServiceFactory
     {
@@ -41,36 +41,43 @@ namespace Ttu.PresentationTest
 
         public IAuthenticationService CreateAuthenticationService()
         {
+            AuthenticationService.MockUnitOfWork = null;
             return AuthenticationService;
         }
 
         public IContactService CreateContactService(IUnitOfWork unitOfWork)
         {
+            ContactService.MockUnitOfWork = unitOfWork;
             return ContactService;
         }
 
         public IOrganizationService CreateOrganizationService(IUnitOfWork unitOfWork)
         {
+            OrganizationService.MockUnitOfWork = unitOfWork;
             return OrganizationService;
         }
 
         public IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork)
         {
+            RecommendationService.MockUnitOfWork = unitOfWork;
             return RecommendationService;
         }
 
         public IUserService CreateUserService(IUnitOfWork unitOfWork)
         {
+            UserService.MockUnitOfWork = unitOfWork;
             return UserService;
         }
 
         public IVolunteerProfileReviewService CreateVolunteerProfileReviewService(IUnitOfWork unitOfWork)
         {
+            VolunteerProfileReviewService.MockUnitOfWork = unitOfWork;
             return VolunteerProfileReviewService;
         }
 
         public IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork)
         {
+            VolunteerProfileService.MockUnitOfWork = unitOfWork;
             return VolunteerProfileService;
 
         }

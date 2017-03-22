@@ -2,7 +2,7 @@
 using System.Linq;
 using Ttu.Domain;
 
-namespace Ttu.PresentationTest
+namespace Ttu.TestFramework
 {
     public class MockVolunteerProfileReviewService : NullVolunteerProfileReviewService
     {
@@ -17,6 +17,8 @@ namespace Ttu.PresentationTest
         #endregion
 
         #region Properties
+
+        public IUnitOfWork MockUnitOfWork { get; set; }
 
         private List<IVolunteerProfileReview> VolunteerProfileReviews { get; set; }
 

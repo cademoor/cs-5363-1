@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ttu.Domain;
 
-namespace Ttu.PresentationTest
+namespace Ttu.TestFramework
 {
     public class MockContactService : NullContactService
     {
@@ -16,6 +16,8 @@ namespace Ttu.PresentationTest
         #endregion
 
         #region Properties
+
+        public IUnitOfWork MockUnitOfWork { get; set; }
 
         private List<IContact> VolunteerProfiles { get; set; }
 

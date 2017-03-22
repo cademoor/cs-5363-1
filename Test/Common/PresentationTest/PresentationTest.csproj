@@ -81,16 +81,6 @@
   <ItemGroup>
     <Compile Include="AbstractPresentationTest.cs" />
     <Compile Include="Builder\InputValidationBuilderTest.cs" />
-    <Compile Include="Mock\MockRecommendationService.cs" />
-    <Compile Include="Mock\MockOrganizationService.cs" />
-    <Compile Include="Mock\MockAuthenticationService.cs" />
-    <Compile Include="Mock\MockContactService.cs" />
-    <Compile Include="Mock\MockServiceFactory.cs" />
-    <Compile Include="Mock\MockUnitOfWork.cs" />
-    <Compile Include="Mock\MockUnitOfWorkRepository.cs" />
-    <Compile Include="Mock\MockUserService.cs" />
-    <Compile Include="Mock\MockVolunteerProfileReviewService.cs" />
-    <Compile Include="Mock\MockVolunteerProfileService.cs" />
     <Compile Include="Null\NullUserTest.cs" />
     <Compile Include="Presenter\ManageOrganizationPresenterTest.cs" />
     <Compile Include="Presenter\ManageUserPresenterTest.cs" />
@@ -104,6 +94,10 @@
     <ProjectReference Include="..\..\..\Src\Common\Presentation\Presentation.csproj">
       <Project>{05e4ec87-b996-4179-a906-ebc47b6a9230}</Project>
       <Name>Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestFramework\TestFramework.csproj">
+      <Project>{62b82868-3ff8-48bb-8a12-7f3e36992cd6}</Project>
+      <Name>TestFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

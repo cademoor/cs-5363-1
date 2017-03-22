@@ -1,6 +1,6 @@
 ﻿using Ttu.Domain;
 
-namespace Ttu.PresentationTest
+namespace Ttu.TestFramework
 {
     public class MockUnitOfWork : NullUnitOfWork
     {

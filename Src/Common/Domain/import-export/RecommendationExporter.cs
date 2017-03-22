@@ -28,7 +28,7 @@ namespace Ttu.Domain
 
         #region Public Methods
 
-        public void ExportRecommendations()
+        public void Export()
         {
             IRecommendation[] recommendations = RecommendationService.GetRecommendations();
             WriteRecommendations(recommendations);

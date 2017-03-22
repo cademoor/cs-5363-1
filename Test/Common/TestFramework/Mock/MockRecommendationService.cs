@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Ttu.Domain;
+﻿using Ttu.Domain;
 
-namespace Ttu.PresentationTest
+namespace Ttu.TestFramework
 {
     public class MockRecommendationService : NullRecommendationService
     {
@@ -11,14 +9,14 @@ namespace Ttu.PresentationTest
 
         public MockRecommendationService()
         {
-            Recommendations = new List<IRecommendation>();
+            MockUnitOfWork = new MockUnitOfWork();
         }
 
         #endregion
 
         #region Properties
 
-        private List<IRecommendation> Recommendations { get; set; }
+        public IUnitOfWork MockUnitOfWork { get; set; }
 
         #endregion
 
@@ -26,22 +24,22 @@ namespace Ttu.PresentationTest
 
         public override void AddRecommendation(IRecommendation recommendation)
         {
-            Recommendations.Add(recommendation);
+            MockUnitOfWork.Recommendations.Add(recommendation);
         }
 
         public override IRecommendation GetRecommendation(int recordId)
         {
-            return Recommendations.FirstOrDefault(u => u.RecordId == recordId);
+            return MockUnitOfWork.Recommendations.FindByUnique(u => u.RecordId == recordId);
         }
 
         public override IRecommendation[] GetRecommendations()
         {
-            return Recommendations.ToArray();
+            return MockUnitOfWork.Recommendations.FindAll();
         }
 
         public override IRecommendation[] GetRecommendations(IUser user)
         {
-            return Recommendations.ToArray();
+            return MockUnitOfWork.Recommendations.FindBy(r => r.User == user);
         }
 
         public override void RemoveRecommendation(int recordId)
@@ -53,7 +51,7 @@ namespace Ttu.PresentationTest
                 return;
             }
 
-            Recommendations.Add(recommendation);
+            MockUnitOfWork.Recommendations.Add(recommendation);
         }
 
         public override void RemoveRecommendation(IRecommendation recommendation)
@@ -64,7 +62,7 @@ namespace Ttu.PresentationTest
                 return;
             }
 
-            Recommendations.Remove(recommendation);
+            MockUnitOfWork.Recommendations.Remove(recommendation);
         }
 
         #endregion

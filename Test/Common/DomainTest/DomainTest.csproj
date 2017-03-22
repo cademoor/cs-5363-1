@@ -83,6 +83,7 @@
     <Compile Include="implementation\UserTest.cs" />
     <Compile Include="implementation\VolunteerProfileTest.cs" />
     <Compile Include="implementation\VolunteerProfileReviewTest.cs" />
+    <Compile Include="import-export\RecommendationExporterTest.cs" />
     <Compile Include="map\ThreadSafeMapTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -94,6 +95,10 @@
     <ProjectReference Include="..\..\..\Src\Service\Service\Service.csproj">
       <Project>{68EEBA4D-A4C2-4080-92F5-B019711827FE}</Project>
       <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestFramework\TestFramework.csproj">
+      <Project>{62b82868-3ff8-48bb-8a12-7f3e36992cd6}</Project>
+      <Name>TestFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Ttu.Domain;
 
-namespace Ttu.PresentationTest
+namespace Ttu.TestFramework
 {
     public class MockUnitOfWorkRepository<T> : IUnitOfWorkRepository<T> where T : class
     {
