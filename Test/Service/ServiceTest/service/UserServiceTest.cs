@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Ttu.Domain;
 using Ttu.Service;
 
@@ -21,15 +22,14 @@ namespace Ttu.ServiceTest.service
                 UnitOfWork.Commit();
                 UnitOfWork.Abort();
             }
-            catch
+            catch (Exception ex)
             {
-                // do nothing
+                Console.WriteLine(ex.Message);
             }
         }
 
         #region Blue Sky Tests
 
-        [Ignore]
         [TestMethod]
         public void TestBlueSky_MaintainUsers()
         {

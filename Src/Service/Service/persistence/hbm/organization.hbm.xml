@@ -8,6 +8,7 @@
         <many-to-one name="CreatedBy" column="UserRecordId" class="User" />
 
         <property name="Description" length="500" />
+        <property name="MissionStatement" length="500" />
         <property name="Name" length="100" />
 
     </class>

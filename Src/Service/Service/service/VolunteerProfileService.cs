@@ -45,12 +45,13 @@ namespace Ttu.Service
         public virtual void RemoveVolunteerProfile(int recordId)
         {
             // guard clause - not found
-            IVolunteerProfile volunteerProfile = GetVolunteerProfile(recordId);
+            VolunteerProfile volunteerProfile = GetVolunteerProfile(recordId) as VolunteerProfile;
             if (volunteerProfile == null)
             {
                 return;
             }
 
+            volunteerProfile.User = null;
             UnitOfWork.VolunteerProfiles.Remove(volunteerProfile);
         }
 

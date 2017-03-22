@@ -1,4 +1,5 @@
-﻿using Ttu.Domain;
+﻿using System.Linq;
+using Ttu.Domain;
 
 namespace Ttu.Service
 {
@@ -45,7 +46,33 @@ namespace Ttu.Service
                 return;
             }
 
+            //RemoveVolunteerProfiles(user);
+            //RemoveVolunteerProfileReviews(user);
+
             UnitOfWork.Users.Remove(user);
+        }
+
+        private void RemoveVolunteerProfile(IVolunteerProfileService volunteerProfileService, IVolunteerProfile volunteerProfile)
+        {
+            volunteerProfileService.RemoveVolunteerProfile(volunteerProfile);
+        }
+
+        private void RemoveVolunteerProfiles(IUser user)
+        {
+            IVolunteerProfileService volunteerProfileService = new VolunteerProfileService(UnitOfWork);
+            RemoveVolunteerProfile(volunteerProfileService, volunteerProfileService.GetVolunteerProfile(user));
+        }
+
+        private void RemoveVolunteerProfileReview(IVolunteerProfileReviewService volunteerProfileReviewService, IVolunteerProfileReview volunteerProfileReview)
+        {
+            volunteerProfileReviewService.RemoveVolunteerProfileReview(volunteerProfileReview);
+        }
+
+        private void RemoveVolunteerProfileReviews(IUser user)
+        {
+            IVolunteerProfileReviewService volunteerProfileReviewService = new VolunteerProfileReviewService(UnitOfWork);
+            IVolunteerProfileReview[] volunteerProfileReviews = volunteerProfileReviewService.GetVolunteerProfileReviews(user);
+            volunteerProfileReviews.ToList().ForEach(vpr => RemoveVolunteerProfileReview(volunteerProfileReviewService, vpr));
         }
 
         public void RemoveUser(IUser user)

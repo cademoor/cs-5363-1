@@ -5,9 +5,9 @@
             <generator class="identity" />
         </id>
 
-        <many-to-one name="LastChangeStatusUser" column="LastChangeStatusUserRecordId" class="User" />
-        <many-to-one name="User" column="UserRecordId" class="User" />
-        <many-to-one name="VolunteerOpportunity" column="VolunteerOpportunityRecordId" class="VolunteerOpportunity" />
+        <many-to-one name="LastChangeStatusUser" column="LastChangeStatusUserRecordId" class="User" cascade="all-delete-orphan" />
+        <many-to-one name="User" column="UserRecordId" class="User" cascade="all-delete-orphan" />
+        <many-to-one name="VolunteerOpportunity" column="VolunteerOpportunityRecordId" class="VolunteerOpportunity" cascade="all-delete-orphan" />
 
         <property name="Note" length="500" />
         <property name="Status" />

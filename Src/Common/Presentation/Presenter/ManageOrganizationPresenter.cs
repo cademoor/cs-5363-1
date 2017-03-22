@@ -1,4 +1,5 @@
-﻿using Ttu.Domain;
+﻿using System.Linq;
+using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
@@ -23,8 +24,11 @@ namespace Ttu.Presentation
 
         #region Public Methods
 
-        public void AddOrganization(IOrganization organization)
+        public void AddOrganization(OrganizationModel organizationModel)
         {
+            IOrganization organization = new Organization(User, organizationModel.Name);
+            organizationModel.ApplyTo(organization);
+
             Service.AddOrganization(organization);
             Commit();
         }
@@ -34,9 +38,9 @@ namespace Ttu.Presentation
             return Service.GetOrganization(recordId);
         }
 
-        public IOrganization[] GetOrganizations()
+        public OrganizationModel[] GetOrganizations()
         {
-            return Service.GetOrganizations();
+            return Service.GetOrganizations().Select(o => CreateOrganizationModel(o)).ToArray();
         }
 
         public void InitializeFeature()
@@ -48,6 +52,17 @@ namespace Ttu.Presentation
         {
             Service.RemoveOrganization(organization);
             Commit();
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private OrganizationModel CreateOrganizationModel(IOrganization organization)
+        {
+            OrganizationModel organizationModel = new OrganizationModel();
+            organizationModel.CopyFrom(organization);
+            return organizationModel;
         }
 
         #endregion

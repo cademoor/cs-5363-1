@@ -9,6 +9,8 @@
 
         IOrganizationService CreateOrganizationService(IUnitOfWork unitOfWork);
 
+        IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork);
+
         IVolunteerProfileReviewService CreateVolunteerProfileReviewService(IUnitOfWork unitOfWork);
         IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork);
 

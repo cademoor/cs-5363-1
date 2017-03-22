@@ -22,6 +22,11 @@ namespace Ttu.Service
             return new OrganizationService(unitOfWork);
         }
 
+        public IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork)
+        {
+            return new RecommendationService(unitOfWork);
+        }
+
         public IUserService CreateUserService(IUnitOfWork unitOfWork)
         {
             return new UserService(unitOfWork);

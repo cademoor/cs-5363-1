@@ -18,7 +18,11 @@ namespace Ttu.ServiceTest.service
             Service = new VolunteerOpportunityService(UnitOfWork);
             UserService = new UserService(UnitOfWork);
 
-            UnitOfWork.VolunteerOpportunities.RemoveAll(UnitOfWork.VolunteerOpportunities.FindAll());
+            foreach (IVolunteerOpportunity volunteerOpportunity in UnitOfWork.VolunteerOpportunities.FindAll())
+            {
+                Service.RemoveVolunteerOpportunity(volunteerOpportunity);
+            }
+
             UnitOfWork.Commit();
             UnitOfWork.Abort();
         }
@@ -134,6 +138,20 @@ namespace Ttu.ServiceTest.service
         [TestCleanup]
         public void TearDown()
         {
+            foreach (IVolunteerOpportunity volunteerOpportunity in UnitOfWork.VolunteerOpportunities.FindAll())
+            {
+                Service.RemoveVolunteerOpportunity(volunteerOpportunity);
+            }
+            UnitOfWork.Commit();
+            UnitOfWork.Abort();
+
+            IUser[] users = UnitOfWork.Users.FindBy(u => u.UserId != USER_ID);
+            if (users.Length > 1)
+            {
+                UserService.RemoveUser(users[0]);
+            }
+            UnitOfWork.Commit();
+            UnitOfWork.Abort();
         }
 
         #region Helper Methods

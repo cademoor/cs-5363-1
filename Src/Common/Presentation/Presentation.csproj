@@ -84,6 +84,7 @@
     <Compile Include="Factory\NullPresenterFactory.cs" />
     <Compile Include="Factory\PresenterFactory.cs" />
     <Compile Include="Model\LogOnModel.cs" />
+    <Compile Include="Model\OrganizationModel.cs" />
     <Compile Include="Null\NullUser.cs" />
     <Compile Include="Presenter\AbstractPresenter.cs" />
     <Compile Include="Presenter\ManageOrganizationPresenter.cs" />

@@ -75,11 +75,15 @@ namespace Ttu.Service
         public void RemoveVolunteerOpportunity(int recordId)
         {
             // guard clause - not found
-            IVolunteerOpportunity volunteerOpportunity = GetVolunteerOpportunity(recordId);
+            VolunteerOpportunity volunteerOpportunity = GetVolunteerOpportunity(recordId) as VolunteerOpportunity;
             if (volunteerOpportunity == null)
             {
                 return;
             }
+
+            IVolunteerOpportunityApplication[] applications = UnitOfWork.VolunteerOpportunityApplications.FindBy(voa => voa.VolunteerOpportunity == volunteerOpportunity);
+            UnitOfWork.VolunteerOpportunityApplications.RemoveAll(applications);
+            volunteerOpportunity.CreatedBy = null;
 
             UnitOfWork.VolunteerOpportunities.Remove(volunteerOpportunity);
         }

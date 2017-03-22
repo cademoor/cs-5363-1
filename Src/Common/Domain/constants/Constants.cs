@@ -9,6 +9,9 @@
 
         public const string USER_ID_ADMIN = "ADMIN";
 
+        public const int ORGANIZATION_MAX_LENGTH = 500;
+        public const int ORGANIZATION_MIN_LENGTH = 1;
+
         public const int USER_ID_MAX_LENGTH = 50;
         public const int USER_ID_MIN_LENGTH = 1;
 

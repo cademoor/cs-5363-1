@@ -30,6 +30,11 @@
             return NullOrganizationService.Singleton;
         }
 
+        public virtual IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork)
+        {
+            return NullRecommendationService.Singleton;
+        }
+
         public virtual IUserService CreateUserService(IUnitOfWork unitOfWork)
         {
             return NullUserService.Singleton;

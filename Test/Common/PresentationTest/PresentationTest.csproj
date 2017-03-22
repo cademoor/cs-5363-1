@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="AbstractPresentationTest.cs" />
     <Compile Include="Builder\InputValidationBuilderTest.cs" />
+    <Compile Include="Mock\MockRecommendationService.cs" />
     <Compile Include="Mock\MockOrganizationService.cs" />
     <Compile Include="Mock\MockAuthenticationService.cs" />
     <Compile Include="Mock\MockContactService.cs" />

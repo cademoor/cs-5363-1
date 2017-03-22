@@ -94,6 +94,7 @@
     <Compile Include="service\common\ServiceFactory.cs" />
     <Compile Include="service\ContactService.cs" />
     <Compile Include="service\OrganizationService.cs" />
+    <Compile Include="service\RecommendationService.cs" />
     <Compile Include="service\VolunteerOpportunityService.cs" />
     <Compile Include="service\UserService.cs" />
     <Compile Include="service\VolunteerProfileService.cs" />

@@ -5,7 +5,7 @@
             <generator class="identity" />
         </id>
 
-        <many-to-one name="User" column="UserRecordId" class="User" />
+        <many-to-one name="User" column="UserRecordId" class="User" cascade="all-delete-orphan" />
 
         <property name="Description" length="500" />
         <property name="Name" length="50" />
