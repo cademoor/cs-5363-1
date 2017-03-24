@@ -41,6 +41,7 @@ namespace Ttu.Presentation
             organization.Description = Description;
             organization.MissionStatement = MissionStatement;
             organization.Name = Name;
+            organization.Website = Website;
         }
 
         public void CopyFrom(IOrganization organization)
@@ -49,6 +50,7 @@ namespace Ttu.Presentation
             MissionStatement = organization.MissionStatement;
             Name = organization.Name;
             RecordId = organization.RecordId;
+            Website = organization.Website;
         }
 
         #endregion

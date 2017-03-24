@@ -42,6 +42,7 @@ namespace Ttu.RecommendationExporter
 
         public IServiceFactory InitializeService()
         {
+            new ServiceInitializer().Initialize(false, true);
             ServiceFactory = new ServiceFactory();
             return ServiceFactory;
         }

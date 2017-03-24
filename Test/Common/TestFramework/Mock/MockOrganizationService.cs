@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Ttu.Domain;
 
 namespace Ttu.TestFramework
@@ -11,7 +10,7 @@ namespace Ttu.TestFramework
 
         public MockOrganizationService()
         {
-            Organizations = new List<IOrganization>();
+            MockUnitOfWork = new MockUnitOfWork();
         }
 
         #endregion
@@ -20,25 +19,32 @@ namespace Ttu.TestFramework
 
         public IUnitOfWork MockUnitOfWork { get; set; }
 
-        private List<IOrganization> Organizations { get; set; }
-
         #endregion
 
         #region IOrganizationService Members
 
         public override void AddOrganization(IOrganization organization)
         {
-            Organizations.Add(organization);
+            IOrganization[] organizations = GetOrganizations();
+            if (organizations.Length == 0)
+            {
+                organization.RecordId = 1;
+            }
+            else
+            {
+                organization.RecordId = organizations.Max(o => o.RecordId) + 1;
+            }
+            MockUnitOfWork.Organizations.Add(organization);
         }
 
         public override IOrganization GetOrganization(int recordId)
         {
-            return Organizations.FirstOrDefault(u => u.RecordId == recordId);
+            return MockUnitOfWork.Organizations.FindByRecordId(recordId);
         }
 
         public override IOrganization[] GetOrganizations()
         {
-            return Organizations.ToArray();
+            return MockUnitOfWork.Organizations.FindAll();
         }
 
         public override void RemoveOrganization(int recordId)
@@ -50,7 +56,7 @@ namespace Ttu.TestFramework
                 return;
             }
 
-            Organizations.Add(organization);
+            MockUnitOfWork.Organizations.Remove(organization);
         }
 
         public override void RemoveOrganization(IOrganization organization)
@@ -61,7 +67,7 @@ namespace Ttu.TestFramework
                 return;
             }
 
-            Organizations.Remove(organization);
+            MockUnitOfWork.Organizations.Remove(organization);
         }
 
         #endregion

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Ttu.Domain;
 
@@ -28,7 +29,7 @@ namespace Ttu.Presentation
 
         public void AddUser(UserModel userModel)
         {
-            ValidateUser(userModel);
+            ValidateInput(userModel);
 
             IUser user = new User(userModel.UserId);
             userModel.ApplyTo(user);
@@ -122,18 +123,7 @@ namespace Ttu.Presentation
                 return;
             }
 
-            throw new System.Exception("Invalid input");
-        }
-
-        private void ValidateUser(UserModel userModel)
-        {
-            ValidateInput(userModel);
-            ValidateUserId(userModel.UserId);
-        }
-
-        private void ValidateUserId(string userId)
-        {
-            ValidateValue("User ID", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
+            throw new Exception("Invalid input");
         }
 
         private void ValidateVolunteerProfile(IVolunteerProfile volunteerProfile)

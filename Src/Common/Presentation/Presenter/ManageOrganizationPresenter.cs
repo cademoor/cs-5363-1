@@ -26,6 +26,12 @@ namespace Ttu.Presentation
 
         public void AddOrganization(OrganizationModel organizationModel)
         {
+            // guard clause - invalid input
+            if (organizationModel == null)
+            {
+                return;
+            }
+
             IOrganization organization = new Organization(User, organizationModel.Name);
             organizationModel.ApplyTo(organization);
 
@@ -33,9 +39,16 @@ namespace Ttu.Presentation
             Commit();
         }
 
-        public IOrganization GetOrganization(int recordId)
+        public OrganizationModel GetOrganization(int recordId)
         {
-            return Service.GetOrganization(recordId);
+            // guard clause - not found
+            IOrganization organization = Service.GetOrganization(recordId);
+            if (organization == null)
+            {
+                return null;
+            }
+
+            return CreateOrganizationModel(organization);
         }
 
         public OrganizationModel[] GetOrganizations()
@@ -43,14 +56,15 @@ namespace Ttu.Presentation
             return Service.GetOrganizations().Select(o => CreateOrganizationModel(o)).ToArray();
         }
 
-        public void InitializeFeature()
+        public void RemoveOrganization(OrganizationModel organizationModel)
         {
-            Reset();
-        }
+            // guard clause - invalid input
+            if (organizationModel == null)
+            {
+                return;
+            }
 
-        public void RemoveOrganization(IOrganization organization)
-        {
-            Service.RemoveOrganization(organization);
+            Service.RemoveOrganization(organizationModel.RecordId);
             Commit();
         }
 

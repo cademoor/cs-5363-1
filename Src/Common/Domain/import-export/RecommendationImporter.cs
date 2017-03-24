@@ -39,8 +39,6 @@ namespace Ttu.Domain
             fileLines.ToList().ForEach(line => ImportRecommendation(line));
             UnitOfWork.Commit();
             UnitOfWork.Abort();
-
-            // TODO:ACM - need to add/update here (should we just delete and re-add)
         }
 
         #endregion
@@ -66,14 +64,16 @@ namespace Ttu.Domain
                 return;
             }
 
-            Recommendation recommendation = new Recommendation();
+            IRecommendation recommendation = RecommendationService.GetRecommendation(recordId.Value) ?? new Recommendation();
             recommendation.ProbabilityRank = probabilityRank;
-            recommendation.RecordId = recordId.Value;
             recommendation.Type = recommendationType;
             recommendation.User = UserService.GetUser(userRecordId.Value);
             recommendation.Value = value;
 
-            RecommendationService.AddRecommendation(recommendation);
+            if (recommendation.RecordId == 0)
+            {
+                RecommendationService.AddRecommendation(recommendation);
+            }
         }
 
         private int? ToInt(string value, int? defaultValue)

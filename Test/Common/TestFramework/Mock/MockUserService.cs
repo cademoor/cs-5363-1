@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Ttu.Domain;
 
 namespace Ttu.TestFramework
@@ -11,7 +10,7 @@ namespace Ttu.TestFramework
 
         public MockUserService()
         {
-            Users = new List<IUser>();
+            MockUnitOfWork = new MockUnitOfWork();
         }
 
         #endregion
@@ -20,30 +19,37 @@ namespace Ttu.TestFramework
 
         public IUnitOfWork MockUnitOfWork { get; set; }
 
-        private List<IUser> Users { get; set; }
-
         #endregion
 
         #region IUserService Members
 
         public override void AddUser(IUser user)
         {
-            Users.Add(user);
+            IUser[] users = GetUsers();
+            if (users.Length == 0)
+            {
+                (user as User).RecordId = 1;
+            }
+            else
+            {
+                (user as User).RecordId = users.Max(u => u.RecordId) + 1;
+            }
+            MockUnitOfWork.Users.Add(user);
         }
 
         public override IUser GetUser(string userId)
         {
-            return Users.FirstOrDefault(u => u.UserId == userId);
+            return MockUnitOfWork.Users.FindByUnique(u => u.UserId == userId);
         }
 
         public override IUser GetUser(int recordId)
         {
-            return Users.FirstOrDefault(u => u.RecordId == recordId);
+            return MockUnitOfWork.Users.FindByRecordId(recordId);
         }
 
         public override IUser[] GetUsers()
         {
-            return Users.ToArray();
+            return MockUnitOfWork.Users.FindAll();
         }
 
         public override void RemoveUser(int recordId)
@@ -55,7 +61,7 @@ namespace Ttu.TestFramework
                 return;
             }
 
-            Users.Add(user);
+            MockUnitOfWork.Users.Remove(user);
         }
 
         public override void RemoveUser(IUser user)
@@ -66,7 +72,7 @@ namespace Ttu.TestFramework
                 return;
             }
 
-            Users.Remove(user);
+            MockUnitOfWork.Users.Remove(user);
         }
 
         #endregion
