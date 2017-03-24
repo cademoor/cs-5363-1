@@ -4928,22 +4928,27 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
-  padding: 30px;
-  margin-bottom: 30px;
+  background-image: url("/VolunteerMe/Images/volunteer-hands-400px.png");
+  background-repeat: repeat-x;
+  background-position: left center;
+  background-color: #eeeeee;
   font-size: 21px;
   font-weight: 200;
   line-height: 2.1428571435;
-  color: inherit;
-  background-color: #eeeeee;
+  color: #000000;
 }
 
 .jumbotron h1 {
   line-height: 1;
-  color: inherit;
+  font-family: cursive;
+  font-weight: bold;
 }
 
 .jumbotron p {
   line-height: 1.4;
+  font-family: cursive;
+  font-weight: bold;
+  margin-left: 30px;
 }
 
 .container .jumbotron {
