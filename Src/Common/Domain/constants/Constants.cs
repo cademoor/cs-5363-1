@@ -12,8 +12,14 @@
         public const int ORGANIZATION_MAX_LENGTH = 500;
         public const int ORGANIZATION_MIN_LENGTH = 1;
 
+        public const int USER_FIRST_NAME_MAX_LENGTH = 50;
+        public const int USER_FIRST_NAME_MIN_LENGTH = 1;
+
         public const int USER_ID_MAX_LENGTH = 50;
         public const int USER_ID_MIN_LENGTH = 1;
+
+        public const int USER_LAST_NAME_MAX_LENGTH = 50;
+        public const int USER_LAST_NAME_MIN_LENGTH = 1;
 
         public const int USER_PASSWORD_MAX_LENGTH = 50;
         public const int USER_PASSWORD_MIN_LENGTH = 1;
@@ -23,17 +29,6 @@
         public const int VOLUNTEER_PROFILE_NAME_MAX_LENGTH = 50;
         public const int VOLUNTEER_PROFILE_NAME_MIN_LENGTH = 1;
 
-    }
-
-    public enum InputType : int
-    {
-        None = 0,
-        Alpha = 1,
-        NumericWithoutDecimal = 2,
-        NumericWithDecimal = 3,
-        AlphaNumericWithoutDecimal = 4,
-        AlphaNumericWithDecimal = 5,
-        AlphaNumericWithSymbols = 6,
     }
 
     public enum ContactType : int

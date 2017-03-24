@@ -18,15 +18,30 @@ namespace Ttu.Presentation
 
         public string LogOn(string userId, string password)
         {
-            ValidateUserId(userId);
-            ValidatePassword(password);
             IUnitOfWork uow = ValidateCredentials(userId, password);
+            return ConfigureAuthenticatedSession(uow);
+        }
+
+        public string RegisterUser(RegisterUserModel registerUserModel)
+        {
+            ValidateInput(registerUserModel);
+
+            IUnitOfWork uow = CreateUnitOfWork();
+            AddUser(uow, registerUserModel);
             return ConfigureAuthenticatedSession(uow);
         }
 
         #endregion
 
         #region Helper Methods
+
+        private void AddUser(IUnitOfWork uow, RegisterUserModel registerUserModel)
+        {
+            IUser newUser = new User(registerUserModel.UserId);
+            registerUserModel.ApplyTo(newUser);
+
+            uow.Users.Add(newUser);
+        }
 
         private string ConfigureAuthenticatedSession(IUnitOfWork uow)
         {
@@ -39,20 +54,16 @@ namespace Ttu.Presentation
             return sessionId;
         }
 
+        private IUnitOfWork CreateUnitOfWork()
+        {
+            IAuthenticationService authenticationService = ServiceFactory.CreateAuthenticationService();
+            return authenticationService.CreateAdHocUnitOfWork();
+        }
+
         private IUnitOfWork ValidateCredentials(string userId, string password)
         {
             IAuthenticationService authenticationService = ServiceFactory.CreateAuthenticationService();
             return authenticationService.Authenticate(userId, password);
-        }
-
-        private void ValidatePassword(string password)
-        {
-            ValidateValue("Password", password, Constants.USER_PASSWORD_MIN_LENGTH, Constants.USER_PASSWORD_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
-        }
-
-        private void ValidateUserId(string userId)
-        {
-            ValidateValue("User ID", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
         }
 
         #endregion

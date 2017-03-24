@@ -32,7 +32,7 @@ namespace Ttu.Presentation
         {
             user.FirstName = FirstName;
             user.LastName = LastName;
-            user.UserId = user.UserId;
+            user.UserId = UserId;
         }
 
         public void CopyFrom(IUser user)

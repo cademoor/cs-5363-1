@@ -1,4 +1,5 @@
-﻿using Ttu.Domain;
+﻿using System;
+using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
@@ -25,18 +26,16 @@ namespace Ttu.Presentation
 
         #endregion
 
-        #region Shared Methods - Common
+        #region Shared Methods
 
-        protected void ValidateValue(string fieldName, string value, int minLength, int maxLength, InputType inputType)
+        protected void ValidateInput(object o)
         {
-            // guard clause - no validation error
-            string errorValue = new InputValidationBuilder().ValidateValue(fieldName, value, minLength, maxLength, inputType);
-            if (string.IsNullOrEmpty(errorValue))
+            if (o != null)
             {
                 return;
             }
 
-            throw new BusinessException(errorValue);
+            throw new Exception("Invalid input");
         }
 
         #endregion

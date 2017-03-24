@@ -80,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractPresentationTest.cs" />
-    <Compile Include="Builder\InputValidationBuilderTest.cs" />
     <Compile Include="Null\NullUserTest.cs" />
     <Compile Include="Presenter\ManageOrganizationPresenterTest.cs" />
     <Compile Include="Presenter\ManageUserPresenterTest.cs" />

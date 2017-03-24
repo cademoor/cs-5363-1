@@ -1,29 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Ttu.Domain;
 using Ttu.Presentation;
-using Ttu.Presentation.Model;
 
 namespace App.Controllers
 {
-    public class LogOnController : AbstractController
+    public class RegisterUserController : AbstractController
     {
+        // GET: RegisterUser
+        public ActionResult Index()
+        {
+            return View();
+        }
 
-        // GET: LogOn/Create
+        // GET: RegisterUser/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: LogOn/Create
+        // POST: RegisterUser/Create
         [HttpPost]
-        public ActionResult Create(LogOnModel logOnModel)
+        public ActionResult Create(RegisterUserModel registerUserModel)
         {
             try
             {
                 LogOnPresenter presenter = new LogOnPresenter(null);
-                string sessionId = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
+                string sessionId = presenter.RegisterUser(registerUserModel);
                 PersistCookie(sessionId);
                 return RedirectToAction("Create", "ManageUser");
             }
@@ -32,10 +37,6 @@ namespace App.Controllers
                 return View();
             }
         }
-
-        #region Helper Methods
-
-        #endregion
 
     }
 }
