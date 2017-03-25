@@ -27,9 +27,15 @@ namespace Ttu.Presentation
         [Display(Name = "Description")]
         public string Description { get; set; }
 
+        [Display(Name = "Mission Statement")]
         public string MissionStatement { get; set; }
+
+        [Display(Name = "Organization Name")]
         public string Name { get; set; }
+
         public int RecordId { get; set; }
+
+        [Display(Name = "Website URL")]
         public string Website { get; set; }
 
         #endregion

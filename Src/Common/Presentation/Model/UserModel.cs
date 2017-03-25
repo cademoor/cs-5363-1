@@ -1,4 +1,5 @@
-﻿using Ttu.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
@@ -19,9 +20,15 @@ namespace Ttu.Presentation
 
         #region Properties
 
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
         public int RecordId { get; set; }
+
+        [Display(Name = "User ID")]
         public string UserId { get; set; }
 
         #endregion
