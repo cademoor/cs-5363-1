@@ -31,6 +31,12 @@ namespace Ttu.Presentation
         [Display(Name = "User ID")]
         public string UserId { get; set; }
 
+        [Display(Name = "Location")]
+        public string Location { get; set; }
+
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -40,6 +46,8 @@ namespace Ttu.Presentation
             user.FirstName = FirstName;
             user.LastName = LastName;
             user.UserId = UserId;
+            user.Location = Location;
+            user.Description = Description;
         }
 
         public void CopyFrom(IUser user)
@@ -48,6 +56,8 @@ namespace Ttu.Presentation
             LastName = user.LastName;
             RecordId = user.RecordId;
             UserId = user.UserId;
+            Description = user.Description;
+            Location = user.Location;
         }
 
         #endregion

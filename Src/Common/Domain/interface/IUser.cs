@@ -16,6 +16,10 @@
 
         string UserId { get; set; }
 
+        string Location { get; set; }
+
+        string Description { get; set; }
+
         // behavior
         bool IsValid();
 

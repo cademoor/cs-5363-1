@@ -35,6 +35,10 @@ namespace Ttu.Presentation
 
         public string UserId { get { return _UserId; } set { } }
 
+        public string Location { get { return _Location; } set { } }
+
+        public string Description {  get {  return _Description; } set { } }
+
         #endregion
 
         #region Variables
@@ -45,6 +49,8 @@ namespace Ttu.Presentation
         public string _Password;
         public int _RecordId;
         public string _UserId;
+        public string _Location;
+        public string _Description;
 
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace Ttu.Domain
 {
@@ -21,6 +22,8 @@ namespace Ttu.Domain
             LastName = string.Empty;
             PasswordEncrypted = string.Empty;
             RecordId = 0;
+            Location = string.Empty;
+            Description = string.Empty;
         }
 
         #endregion
@@ -38,6 +41,10 @@ namespace Ttu.Domain
         public virtual int RecordId { get; set; }
 
         public virtual string UserId { get; set; }
+
+        public virtual string Location { get; set; }
+
+        public virtual string Description { get; set; }
 
         #endregion
 
