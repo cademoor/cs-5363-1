@@ -86,7 +86,8 @@
     <Compile Include="exception\BusinessException.cs" />
     <Compile Include="exception\PersistenceException.cs" />
     <Compile Include="implementation\Contact.cs" />
-    <Compile Include="implementation\IRecommendation.cs" />
+    <Compile Include="implementation\Location.cs" />
+    <Compile Include="interface\IRecommendation.cs" />
     <Compile Include="implementation\Organization.cs" />
     <Compile Include="implementation\VolunteerOpportunityApplication.cs" />
     <Compile Include="implementation\User.cs" />
