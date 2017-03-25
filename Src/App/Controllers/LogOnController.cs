@@ -25,7 +25,7 @@ namespace App.Controllers
                 LogOnPresenter presenter = new LogOnPresenter(null);
                 string sessionId = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
                 PersistCookie(sessionId);
-                return RedirectToAction("Create", "ManageUser");
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
