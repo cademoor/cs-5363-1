@@ -8,7 +8,6 @@ namespace App
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
         }
     }
 }
