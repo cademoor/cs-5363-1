@@ -5,22 +5,22 @@ namespace Ttu.Domain
     public abstract class AbstractApplicationLogger
     {
 
-        # region Constructors
+        #region Constructors
 
         protected AbstractApplicationLogger()
         {
             Logger = null;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private IApplicationLogger Logger { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         protected virtual void LogDebug(string message, params object[] replacements)
         {
@@ -45,9 +45,9 @@ namespace Ttu.Domain
             GetLogger().Info(string.Format(message, replacements));
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IApplicationLogger GetLogger()
         {
@@ -60,7 +60,7 @@ namespace Ttu.Domain
             return Logger;
         }
 
-        # endregion
+        #endregion
 
     }
 }

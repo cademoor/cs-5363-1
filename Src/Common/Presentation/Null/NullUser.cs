@@ -7,7 +7,7 @@ namespace Ttu.Presentation
 
         public static IUser Singleton = new NullUser();
 
-        # region Constructors
+        #region Constructors
 
         private NullUser()
         {
@@ -19,9 +19,9 @@ namespace Ttu.Presentation
             _UserId = string.Empty;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public string EmailAddress { get { return _EmailAddress; } set { } }
 
@@ -29,15 +29,19 @@ namespace Ttu.Presentation
 
         public string LastName { get { return _LastName; } set { } }
 
-        public string Password { get { return _Password; } set { } }
+        public string PasswordEncrypted { get { return _Password; } set { } }
 
         public int RecordId { get { return _RecordId; } set { } }
 
         public string UserId { get { return _UserId; } set { } }
 
-        # endregion
+        public string Location { get { return _Location; } set { } }
 
-        # region Variables
+        public string Description {  get {  return _Description; } set { } }
+
+        #endregion
+
+        #region Variables
 
         public string _EmailAddress;
         public string _FirstName;
@@ -45,30 +49,12 @@ namespace Ttu.Presentation
         public string _Password;
         public int _RecordId;
         public string _UserId;
+        public string _Location;
+        public string _Description;
 
-        # endregion
+        #endregion
 
-        # region Public Methods
-
-        public virtual void AddContact(IContact contact)
-        {
-            // do nothing
-        }
-
-        public virtual IContact GetContact(int recordId)
-        {
-            return null;
-        }
-
-        public virtual IContact GetContact(ContactType contactType)
-        {
-            return null;
-        }
-
-        public virtual IContact[] GetContacts()
-        {
-            return new IContact[0];
-        }
+        #region Public Methods
 
         public virtual bool IsValid()
         {
@@ -80,12 +66,12 @@ namespace Ttu.Presentation
             return false;
         }
 
-        public virtual void RemoveContact(IContact contact)
+        public virtual void SetPassword(string password)
         {
             // do nothing
         }
 
-        # endregion
+        #endregion
 
     }
 }

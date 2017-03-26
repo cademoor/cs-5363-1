@@ -1,53 +1,52 @@
-﻿using NUnit.Framework;
-using Ttu.Domain;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Presentation;
 
-namespace Ttu.PresentationTest
+namespace Ttu.PresentationTest.Null
 {
-    [TestFixture]
+    [TestClass]
     public class NullUserTest
     {
 
         private NullUser User;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             User = NullUser.Singleton as NullUser;
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.Password);
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
-            Assert.IsEmpty(User.UserId);
+            Assert.AreEqual(string.Empty, User.UserId);
             Assert.IsFalse(User.IsValid());
 
             // exercise
             User.FirstName = "Harper";
             User.LastName = "Moorman";
-            User.Password = "TestPassword";
+            User.PasswordEncrypted = "TestPassword";
             User.RecordId = 1;
             User.UserId = "A";
 
             // post-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.Password);
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
-            Assert.IsEmpty(User.UserId);
+            Assert.AreEqual(string.Empty, User.UserId);
             Assert.IsFalse(User.IsValid());
         }
 
-        # endregion
+        #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

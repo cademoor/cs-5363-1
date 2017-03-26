@@ -1,56 +1,56 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 
-namespace Ttu.DomainTest
+namespace Ttu.DomainTest.implementation
 {
-    [TestFixture]
+    [TestClass]
     public class UserTest
     {
 
         private User User;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             User = new User();
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_Coverage()
         {
             // pre-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.Password);
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.PasswordEncrypted);
             Assert.AreEqual(0, User.RecordId);
-            Assert.IsEmpty(User.UserId);
+            Assert.AreEqual(string.Empty, User.UserId);
             Assert.IsTrue(User.IsValid());
 
             // exercise
             User.FirstName = "Harper";
             User.LastName = "Moorman";
-            User.Password = "TestPassword";
+            User.PasswordEncrypted = "TestPassword";
             User.RecordId = 1;
             User.UserId = "A";
 
             // post-conditions
             Assert.AreEqual("Harper", User.FirstName);
             Assert.AreEqual("Moorman", User.LastName);
-            Assert.AreEqual("TestPassword", User.Password);
+            Assert.AreEqual("TestPassword", User.PasswordEncrypted);
             Assert.AreEqual(1, User.RecordId);
             Assert.AreEqual("A", User.UserId);
             Assert.IsTrue(User.IsValid());
         }
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_GetFullName()
         {
             // pre-conditions
-            Assert.IsEmpty(User.FirstName);
-            Assert.IsEmpty(User.LastName);
-            Assert.IsEmpty(User.GetFullName());
+            Assert.AreEqual(string.Empty, User.FirstName);
+            Assert.AreEqual(string.Empty, User.LastName);
+            Assert.AreEqual(string.Empty, User.GetFullName());
 
             // exercise
             User.FirstName = "Harper";
@@ -62,14 +62,14 @@ namespace Ttu.DomainTest
             Assert.AreEqual("Harper Moorman", User.GetFullName());
         }
 
-        # endregion
+        #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IContact CreateContact(ContactType contactType, string value, int recordId)
         {
@@ -78,7 +78,7 @@ namespace Ttu.DomainTest
             return contact;
         }
 
-        # endregion
+        #endregion
 
     }
 }

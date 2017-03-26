@@ -5,16 +5,16 @@ namespace Ttu.Service
     public class AuthenticationService : AbstractService, IAuthenticationService
     {
 
-        # region Constructors
+        #region Constructors
 
         public AuthenticationService()
             : base(NullUnitOfWork.Singleton)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public IUnitOfWork Authenticate(string userId, string password)
         {
@@ -32,9 +32,9 @@ namespace Ttu.Service
             return new UnitOfWork(openSession, null);
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IUser GetUser(SessionDecorator openSession, string userId)
         {
@@ -55,7 +55,7 @@ namespace Ttu.Service
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

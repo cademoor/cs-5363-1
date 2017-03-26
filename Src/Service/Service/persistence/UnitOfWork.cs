@@ -6,10 +6,10 @@ using Ttu.Domain;
 
 namespace Ttu.Service
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : NullUnitOfWork
     {
 
-        # region Utility
+        #region Utility
 
         public static PersistenceException LogAndWrapException(string customExceptionPrefix, Exception ex)
         {
@@ -82,9 +82,9 @@ namespace Ttu.Service
             return ApplicationLogger.GetLogger(typeof(UnitOfWork));
         }
 
-        # endregion
+        #endregion
 
-        # region Constructors
+        #region Constructors
 
         public UnitOfWork(SessionDecorator session, IUser user)
         {
@@ -92,23 +92,29 @@ namespace Ttu.Service
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
-        public string SessionId { get { return Session.SessionId; } }
-        public IUser User { get; private set; }
+        public override string SessionId { get { return Session.SessionId; } }
+        public override IUser User { get; set; }
 
-        public IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
-        public IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
+        public override IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
+        public override IUnitOfWorkRepository<IOrganization> Organizations { get { return CreateUowRepository<IOrganization>(); } }
+        public override IUnitOfWorkRepository<IRecommendation> Recommendations { get { return CreateUowRepository<IRecommendation>(); } }
+        public override IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
+        public override IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }
+        public override IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get { return CreateUowRepository<IVolunteerOpportunityApplication>(); } }
+        public override IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get { return CreateUowRepository<IVolunteerProfile>(); } }
+        public override IUnitOfWorkRepository<IVolunteerProfileReview> VolunteerProfileReviews { get { return CreateUowRepository<IVolunteerProfileReview>(); } }
 
         private SessionDecorator Session { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
-        public void Abort()
+        public override void Abort()
         {
             try
             {
@@ -120,7 +126,7 @@ namespace Ttu.Service
             }
         }
 
-        public void Commit()
+        public override void Commit()
         {
             try
             {
@@ -132,21 +138,32 @@ namespace Ttu.Service
             }
         }
 
-        public void Release()
+        public override void Release()
         {
             Session.ClearAndReleaseSafely();
         }
 
-        # endregion
+        public override void Reset()
+        {
+            Abort();
 
-        # region Helper Methods
+            IUser persistentUser = Users.FindByRecordId(User.RecordId);
+            if (persistentUser != null)
+            {
+                User = persistentUser;
+            }
+        }
+
+        #endregion
+
+        #region Helper Methods
 
         private IUnitOfWorkRepository<T> CreateUowRepository<T>() where T : class
         {
             return new UnitOfWorkRepository<T>(Session);
         }
 
-        # endregion
+        #endregion
 
     }
 }

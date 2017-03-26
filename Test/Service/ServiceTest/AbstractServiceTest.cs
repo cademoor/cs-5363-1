@@ -1,5 +1,6 @@
 ﻿using NHibernate;
 using System;
+using System.IO;
 using Ttu.Domain;
 using Ttu.Service;
 
@@ -10,14 +11,22 @@ namespace Ttu.ServiceTest
 
         protected const string USER_ID = "ADMIN";
 
-        # region Constructors
+        #region Constructors
 
         public AbstractServiceTest()
         {
             if (Session == null)
             {
-                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true);
+                try
+                {
+                    File.Delete("volunteermetest.db");
+                }
+                catch
+                {
+                    // best effort
+                }
 
+                ISessionFactory sessionFactory = new ServiceInitializer().Initialize(true, true);
                 ISession openSession = sessionFactory.OpenSession();
                 Session = new SessionDecorator(openSession, Guid.NewGuid().ToString());
             }
@@ -27,17 +36,17 @@ namespace Ttu.ServiceTest
             User = user;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         protected static SessionDecorator Session { get; private set; }
         protected IUnitOfWork UnitOfWork;
         protected IUser User;
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private IUser InitializeUser()
         {
@@ -56,7 +65,7 @@ namespace Ttu.ServiceTest
             return newUser;
         }
 
-        # endregion
+        #endregion
 
     }
 }

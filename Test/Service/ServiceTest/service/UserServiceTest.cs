@@ -1,28 +1,36 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Ttu.Domain;
 using Ttu.Service;
 
-namespace Ttu.ServiceTest
+namespace Ttu.ServiceTest.service
 {
-    [TestFixture]
+    [TestClass]
     public class UserServiceTest : AbstractServiceTest
     {
 
         private UserService Service;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Service = new UserService(UnitOfWork);
 
-            UnitOfWork.Users.RemoveAll(UnitOfWork.Users.FindBy(u => u.UserId != USER_ID));
-            UnitOfWork.Commit();
-            UnitOfWork.Abort();
+            try
+            {
+                UnitOfWork.Users.RemoveAll(UnitOfWork.Users.FindBy(u => u.UserId != USER_ID));
+                UnitOfWork.Commit();
+                UnitOfWork.Abort();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
-        # region Blue Sky Tests
+        #region Blue Sky Tests
 
-        [Test]
+        [TestMethod]
         public void TestBlueSky_MaintainUsers()
         {
             // pre-conditions
@@ -46,9 +54,9 @@ namespace Ttu.ServiceTest
             Assert.IsNotNull(Service.GetUser(user2.RecordId));
         }
 
-        # endregion
+        #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

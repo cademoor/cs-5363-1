@@ -1,44 +1,87 @@
-﻿using Ttu.Domain;
+﻿using System;
+using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
     public class AbstractPresenter
     {
 
-        # region Constructors
+        #region Constructors
 
-        public AbstractPresenter(IUser user, IUnitOfWork unitOfWork)
+        public AbstractPresenter(IViewState viewState)
         {
-            UnitOfWork = unitOfWork;
-            User = user;
+            ViewState = viewState;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         protected PresentationEnvironment PresentationEnvironment { get { return PresentationEnvironment.Singleton; } }
-        protected IUnitOfWork UnitOfWork { get; private set; }
-        protected IUser User { get; private set; }
+        protected IUnitOfWork UnitOfWork { get { return ViewState.UnitOfWork; } }
+        protected IUser User { get { return ViewState.User; } }
         protected IServiceFactory ServiceFactory { get { return PresentationEnvironment.ServiceFactory; } }
 
-        # endregion
+        private IViewState ViewState { get; set; }
 
-        # region Shared Methods
+        #endregion
 
-        protected void ValidateValue(string fieldName, string value, int minLength, int maxLength, InputType inputType)
+        #region Shared Methods
+
+        protected void ValidateInput(object o)
         {
-            // guard clause - no validation error
-            string errorValue = new InputValidationBuilder().ValidateValue(fieldName, value, minLength, maxLength, inputType);
-            if (string.IsNullOrEmpty(errorValue))
+            if (o != null)
             {
                 return;
             }
 
-            throw new BusinessException(errorValue);
+            throw new Exception("Invalid input");
         }
 
-        # endregion
+        #endregion
+
+        #region Shared Methods - Persistence
+
+        protected void Commit()
+        {
+            UnitOfWork.Commit();
+        }
+
+        protected void Reset()
+        {
+            UnitOfWork.Reset();
+        }
+
+        #endregion
+
+        #region Shared Methods - Service
+
+        protected IContactService CreateContactService()
+        {
+            return ServiceFactory.CreateContactService(UnitOfWork);
+        }
+
+        protected IOrganizationService CreateOrganizationService()
+        {
+            return ServiceFactory.CreateOrganizationService(UnitOfWork);
+        }
+
+        protected IVolunteerProfileReviewService CreateVolunteerProfileReviewService()
+        {
+            return ServiceFactory.CreateVolunteerProfileReviewService(UnitOfWork);
+        }
+
+        protected IVolunteerProfileService CreateVolunteerProfileService()
+        {
+            return ServiceFactory.CreateVolunteerProfileService(UnitOfWork);
+        }
+
+        protected IUserService CreateUserService()
+        {
+            return ServiceFactory.CreateUserService(UnitOfWork);
+        }
+
+        #endregion
 
     }
 }

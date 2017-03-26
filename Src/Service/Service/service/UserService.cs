@@ -1,42 +1,43 @@
-﻿using Ttu.Domain;
+﻿using System.Linq;
+using Ttu.Domain;
 
 namespace Ttu.Service
 {
     public class UserService : AbstractService, IUserService
     {
 
-        # region Constructors
+        #region Constructors
 
         public UserService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
-        public virtual void AddUser(IUser user)
+        public void AddUser(IUser user)
         {
             UnitOfWork.Users.Add(user);
         }
 
-        public virtual IUser GetUser(string userId)
+        public IUser GetUser(string userId)
         {
             return UnitOfWork.Users.FindByUnique(u => u.UserId == userId);
         }
 
-        public virtual IUser GetUser(int recordId)
+        public IUser GetUser(int recordId)
         {
             return UnitOfWork.Users.FindByRecordId(recordId);
         }
 
-        public virtual IUser[] GetUsers()
+        public IUser[] GetUsers()
         {
             return UnitOfWork.Users.FindAll();
         }
 
-        public virtual void RemoveUser(int recordId)
+        public void RemoveUser(int recordId)
         {
             // guard clause - not found
             IUser user = GetUser(recordId);
@@ -45,10 +46,36 @@ namespace Ttu.Service
                 return;
             }
 
+            //RemoveVolunteerProfiles(user);
+            //RemoveVolunteerProfileReviews(user);
+
             UnitOfWork.Users.Remove(user);
         }
 
-        public virtual void RemoveUser(IUser user)
+        private void RemoveVolunteerProfile(IVolunteerProfileService volunteerProfileService, IVolunteerProfile volunteerProfile)
+        {
+            volunteerProfileService.RemoveVolunteerProfile(volunteerProfile);
+        }
+
+        private void RemoveVolunteerProfiles(IUser user)
+        {
+            IVolunteerProfileService volunteerProfileService = new VolunteerProfileService(UnitOfWork);
+            RemoveVolunteerProfile(volunteerProfileService, volunteerProfileService.GetVolunteerProfile(user));
+        }
+
+        private void RemoveVolunteerProfileReview(IVolunteerProfileReviewService volunteerProfileReviewService, IVolunteerProfileReview volunteerProfileReview)
+        {
+            volunteerProfileReviewService.RemoveVolunteerProfileReview(volunteerProfileReview);
+        }
+
+        private void RemoveVolunteerProfileReviews(IUser user)
+        {
+            IVolunteerProfileReviewService volunteerProfileReviewService = new VolunteerProfileReviewService(UnitOfWork);
+            IVolunteerProfileReview[] volunteerProfileReviews = volunteerProfileReviewService.GetVolunteerProfileReviews(user);
+            volunteerProfileReviews.ToList().ForEach(vpr => RemoveVolunteerProfileReview(volunteerProfileReviewService, vpr));
+        }
+
+        public void RemoveUser(IUser user)
         {
             // guard clause - invalid input
             if (user == null)
@@ -59,7 +86,7 @@ namespace Ttu.Service
             RemoveUser(user.RecordId);
         }
 
-        # endregion
+        #endregion
 
     }
 }

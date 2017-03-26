@@ -8,7 +8,7 @@ namespace Ttu.Domain
     public class ApplicationLogger : AbstractLogger, IApplicationLogger
     {
 
-        # region Utility
+        #region Utility
 
         public static IApplicationLogger GetLogger(string loggerId)
         {
@@ -25,18 +25,18 @@ namespace Ttu.Domain
             return ApplicationLoggerRepository.Singleton;
         }
 
-        # endregion
+        #endregion
 
-        # region Constructors
+        #region Constructors
 
         public ApplicationLogger(string loggerId)
             : base(loggerId)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public string GetLogPath()
         {
@@ -60,16 +60,16 @@ namespace Ttu.Domain
             return Path.GetFullPath(rawPath);
         }
 
-        # endregion
+        #endregion
 
-        # region Overridden Methods
+        #region Overridden Methods
 
         protected override Logger CreateLogger()
         {
             return LogManager.GetLogger(LoggerId);
         }
 
-        # endregion
+        #endregion
 
     }
 }

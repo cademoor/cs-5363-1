@@ -7,7 +7,7 @@ namespace Ttu.Domain
     public class BusinessException : Exception
     {
 
-        # region Constructors
+        #region Constructors
 
         public BusinessException()
         {
@@ -29,7 +29,7 @@ namespace Ttu.Domain
         {
         }
 
-        # endregion
+        #endregion
 
     }
 }

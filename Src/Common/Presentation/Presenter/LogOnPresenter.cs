@@ -5,28 +5,43 @@ namespace Ttu.Presentation
     public class LogOnPresenter : AbstractPresenter
     {
 
-        # region Constructors
+        #region Constructors
 
-        public LogOnPresenter(IUser user, IUnitOfWork unitOfWork)
-            : base(user, unitOfWork)
+        public LogOnPresenter(IViewState viewState)
+            : base(viewState)
         {
         }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public string LogOn(string userId, string password)
         {
-            ValidateUserId(userId);
-            ValidatePassword(password);
             IUnitOfWork uow = ValidateCredentials(userId, password);
             return ConfigureAuthenticatedSession(uow);
         }
 
-        # endregion
+        public string RegisterUser(RegisterUserModel registerUserModel)
+        {
+            ValidateInput(registerUserModel);
 
-        # region Helper Methods
+            IUnitOfWork uow = CreateUnitOfWork();
+            AddUser(uow, registerUserModel);
+            return ConfigureAuthenticatedSession(uow);
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private void AddUser(IUnitOfWork uow, RegisterUserModel registerUserModel)
+        {
+            IUser newUser = new User(registerUserModel.UserId);
+            registerUserModel.ApplyTo(newUser);
+
+            uow.Users.Add(newUser);
+        }
 
         private string ConfigureAuthenticatedSession(IUnitOfWork uow)
         {
@@ -39,23 +54,19 @@ namespace Ttu.Presentation
             return sessionId;
         }
 
+        private IUnitOfWork CreateUnitOfWork()
+        {
+            IAuthenticationService authenticationService = ServiceFactory.CreateAuthenticationService();
+            return authenticationService.CreateAdHocUnitOfWork();
+        }
+
         private IUnitOfWork ValidateCredentials(string userId, string password)
         {
             IAuthenticationService authenticationService = ServiceFactory.CreateAuthenticationService();
             return authenticationService.Authenticate(userId, password);
         }
 
-        private void ValidatePassword(string password)
-        {
-            ValidateValue("Password", password, Constants.USER_PASSWORD_MIN_LENGTH, Constants.USER_PASSWORD_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
-        }
-
-        private void ValidateUserId(string userId)
-        {
-            ValidateValue("User Id", userId, Constants.USER_ID_MIN_LENGTH, Constants.USER_ID_MAX_LENGTH, InputType.AlphaNumericWithSymbols);
-        }
-
-        # endregion
+        #endregion
 
     }
 }

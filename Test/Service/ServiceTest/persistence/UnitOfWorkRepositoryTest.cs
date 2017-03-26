@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ttu.Domain;
 using Ttu.Service;
 
-namespace Ttu.ServiceTest
+namespace Ttu.ServiceTest.persistence
 {
-    [TestFixture]
+    [TestClass]
     public class UnitOfWorkRepositoryTest : AbstractServiceTest
     {
 
@@ -17,16 +17,16 @@ namespace Ttu.ServiceTest
 
         private TestClassNotMapped TestObjectNotMapped;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUp()
         {
             Repository = new UnitOfWorkRepository<TestClassNotMapped>(Session);
             TestObjectNotMapped = new TestClassNotMapped();
         }
 
-        # region Non Blue Sky Tests (Stateful)
+        #region Non Blue Sky Tests (Stateful)
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_Add()
         {
             try
@@ -40,7 +40,7 @@ namespace Ttu.ServiceTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_Add_Null()
         {
             // set-up
@@ -54,7 +54,7 @@ namespace Ttu.ServiceTest
             Assert.AreEqual(preCount, postCount);
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_AddAll()
         {
             try
@@ -77,7 +77,7 @@ namespace Ttu.ServiceTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_FindBy()
         {
             try
@@ -91,7 +91,7 @@ namespace Ttu.ServiceTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_FindByRecordId()
         {
             try
@@ -105,7 +105,7 @@ namespace Ttu.ServiceTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_FindByUnique()
         {
             try
@@ -119,13 +119,13 @@ namespace Ttu.ServiceTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_IsObjectAlreadyPersistent()
         {
             Assert.IsFalse(Repository.IsObjectAlreadyPersistent(TestObjectNotMapped));
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_Remove()
         {
             try
@@ -139,7 +139,7 @@ namespace Ttu.ServiceTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void TestNonBlueSky_Stateful_RemoveAll()
         {
             try
@@ -153,9 +153,9 @@ namespace Ttu.ServiceTest
             }
         }
 
-        # endregion
+        #endregion
 
-        [TearDown]
+        [TestCleanup]
         public void TearDown()
         {
         }

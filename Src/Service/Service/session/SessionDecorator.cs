@@ -9,7 +9,7 @@ namespace Ttu.Service
     public class SessionDecorator
     {
 
-        # region Constructors
+        #region Constructors
 
         public SessionDecorator(ISession session, string sessionId)
         {
@@ -17,16 +17,16 @@ namespace Ttu.Service
             StatefulComponent = session;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         public string SessionId { get; private set; }
         public ISession StatefulComponent { get; private set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods - ISessionDecorator
+        #region Public Methods - ISessionDecorator
 
         public void Clear()
         {
@@ -120,9 +120,9 @@ namespace Ttu.Service
             StatefulComponent.Update(obj);
         }
 
-        # endregion
+        #endregion
 
-        # region Helper Methods
+        #region Helper Methods
 
         private void ClearSafely()
         {
@@ -207,7 +207,7 @@ namespace Ttu.Service
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

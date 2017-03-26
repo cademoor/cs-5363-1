@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Ttu.Domain" assembly="Ttu.Domain">
+    <class name="VolunteerProfile" table="VolunteerProfile" lazy="true">
+        <id name="RecordId">
+            <generator class="identity" />
+        </id>
+
+        <many-to-one name="User" column="UserRecordId" class="User" cascade="all-delete-orphan" />
+
+        <property name="Description" length="500" />
+        <property name="Name" length="50" />
+
+        <property name="Causes" length="500" />
+        <property name="Location" length="500" />
+        <property name="Photo" />
+        <property name="Skills" length="500" />
+
+    </class>
+</hibernate-mapping>

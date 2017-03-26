@@ -9,12 +9,19 @@
 
         // attributes - repository
         IUnitOfWorkRepository<IContact> Contacts { get; }
+        IUnitOfWorkRepository<IOrganization> Organizations { get; }
+        IUnitOfWorkRepository<IRecommendation> Recommendations { get; }
         IUnitOfWorkRepository<IUser> Users { get; }
+        IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get; }
+        IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get; }
+        IUnitOfWorkRepository<IVolunteerProfileReview> VolunteerProfileReviews { get; }
+        IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get; }
 
         // behavior
         void Abort();
         void Commit();
         void Release();
+        void Reset();
 
     }
 }

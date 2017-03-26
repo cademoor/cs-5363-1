@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ttu.Domain</RootNamespace>
     <AssemblyName>Ttu.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,45 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog">
@@ -41,12 +82,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="constants\Constants.cs" />
+    <Compile Include="constants\PersistentConstants.cs" />
     <Compile Include="exception\BusinessException.cs" />
     <Compile Include="exception\PersistenceException.cs" />
     <Compile Include="implementation\Contact.cs" />
+    <Compile Include="implementation\Location.cs" />
+    <Compile Include="interface\IRecommendation.cs" />
+    <Compile Include="implementation\Organization.cs" />
+    <Compile Include="implementation\VolunteerOpportunityApplication.cs" />
     <Compile Include="implementation\User.cs" />
+    <Compile Include="implementation\VolunteerOpportunity.cs" />
+    <Compile Include="implementation\VolunteerProfile.cs" />
+    <Compile Include="implementation\VolunteerProfileReview.cs" />
+    <Compile Include="implementation\VolunteerProfileSkill.cs" />
+    <Compile Include="import-export\RecommendationExporter.cs" />
+    <Compile Include="import-export\RecommendationImporter.cs" />
+    <Compile Include="interface\ILocation.cs" />
+    <Compile Include="interface\IOrganization.cs" />
+    <Compile Include="interface\IVolunteerOpportunityApplication.cs" />
     <Compile Include="interface\IContact.cs" />
     <Compile Include="interface\IUser.cs" />
+    <Compile Include="interface\IVolunteerOpportunity.cs" />
+    <Compile Include="interface\IVolunteerProfile.cs" />
+    <Compile Include="interface\IVolunteerProfileReview.cs" />
+    <Compile Include="interface\IVolunteerProfileSkill.cs" />
+    <Compile Include="interface\Recommendation.cs" />
     <Compile Include="log\AbstractApplicationLogger.cs" />
     <Compile Include="log\AbstractLogger.cs" />
     <Compile Include="log\ApplicationLogger.cs" />
@@ -57,16 +117,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\common\IUnitOfWork.cs" />
     <Compile Include="service\common\IUnitOfWorkRepository.cs" />
+    <Compile Include="service\IOrganizationService.cs" />
+    <Compile Include="service\IRecommendationService.cs" />
+    <Compile Include="service\IVolunteerOpportunityService.cs" />
     <Compile Include="service\IContactService.cs" />
     <Compile Include="service\IAuthenticationService.cs" />
     <Compile Include="service\common\IServiceFactory.cs" />
     <Compile Include="service\IUserService.cs" />
     <Compile Include="service\common\NullServiceFactory.cs" />
+    <Compile Include="service\IVolunteerProfileReviewService.cs" />
+    <Compile Include="service\IVolunteerProfileService.cs" />
+    <Compile Include="service\null\NullOrganizationService.cs" />
+    <Compile Include="service\null\NullRecommendationService.cs" />
+    <Compile Include="service\null\NullVolunteerOpportunityService.cs" />
     <Compile Include="service\null\NullContactService.cs" />
     <Compile Include="service\null\NullAuthenticationService.cs" />
     <Compile Include="service\null\NullUnitOfWork.cs" />
     <Compile Include="service\null\NullUnitOfWorkRepository.cs" />
     <Compile Include="service\null\NullUserService.cs" />
+    <Compile Include="service\null\NullVolunteerProfileService.cs" />
+    <Compile Include="service\null\NullVolunteerProfileReviewService.cs" />
+    <Compile Include="utility\AssemblyFileReader.cs" />
+    <Compile Include="utility\Cipher.cs" />
+    <Compile Include="utility\ExtensionMethods.cs" />
+    <Compile Include="utility\FileWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

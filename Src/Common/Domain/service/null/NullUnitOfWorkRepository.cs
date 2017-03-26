@@ -10,7 +10,7 @@ namespace Ttu.Domain
 
         public static NullUnitOfWorkRepository<T> Singleton = new NullUnitOfWorkRepository<T>();
 
-        # region Public Methods
+        #region Public Methods
 
         public void Add(T newEntity)
         {
@@ -82,7 +82,7 @@ namespace Ttu.Domain
             // do nothing
         }
 
-        # endregion
+        #endregion
 
     }
 }

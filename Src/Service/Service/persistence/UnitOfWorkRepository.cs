@@ -10,22 +10,22 @@ namespace Ttu.Service
     public class UnitOfWorkRepository<T> : IUnitOfWorkRepository<T> where T : class
     {
 
-        # region Constructors
+        #region Constructors
 
         public UnitOfWorkRepository(SessionDecorator session)
         {
             Session = session;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
         private SessionDecorator Session { get; set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
         public void Add(T newEntity)
         {
@@ -214,7 +214,7 @@ namespace Ttu.Service
             }
         }
 
-        # endregion
+        #endregion
 
     }
 }

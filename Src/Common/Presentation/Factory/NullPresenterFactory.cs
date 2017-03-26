@@ -5,33 +5,43 @@ namespace Ttu.Presentation
     public class NullPresenterFactory : IPresenterFactory
     {
 
-        private static IPresenterFactory Singleton = new NullPresenterFactory();
+        public static IPresenterFactory Singleton = new NullPresenterFactory();
 
-        # region Constructors
+        #region Constructors
 
-        private NullPresenterFactory()
+        protected NullPresenterFactory()
         {
             UnitOfWork = NullUnitOfWork.Singleton;
             User = null;
         }
 
-        # endregion
+        #endregion
 
-        # region Properties
+        #region Properties
 
-        public IUnitOfWork UnitOfWork { get; private set; }
-        public IUser User { get; private set; }
+        public virtual IUnitOfWork UnitOfWork { get; protected set; }
+        public virtual IUser User { get; protected set; }
 
-        # endregion
+        #endregion
 
-        # region Public Methods
+        #region Public Methods
 
-        public ManageUserPresenter CreateManageUserPresenter()
+        public virtual LogOnPresenter CreateLogOnPresenter()
         {
             return null;
         }
 
-        # endregion
+        public virtual ManageOrganizationPresenter CreateManageOrganizationPresenter()
+        {
+            return null;
+        }
+
+        public virtual ManageUserPresenter CreateManageUserPresenter()
+        {
+            return null;
+        }
+
+        #endregion
 
     }
 }
