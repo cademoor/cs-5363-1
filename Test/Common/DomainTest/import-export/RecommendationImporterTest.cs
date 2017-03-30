@@ -32,7 +32,7 @@ namespace Ttu.DomainTest.implementation
         {
             // set-up
             IRecommendation recommendation = CreateRecommendation(1, RecommendationType.OrganizationToUser, "Org1");
-            string importText = string.Format("{0},{1},{2},{3},{4}{5}", recommendation.RecordId, recommendation.User.RecordId, recommendation.ProbabilityRank, recommendation.Value, (int)recommendation.Type, Environment.NewLine);
+            string importText = string.Format("{0},{1},{2},{3},{4}{5}", recommendation.RecordId, recommendation.User.RecordId, recommendation.Rating, recommendation.Value, (int)recommendation.Type, Environment.NewLine);
             File.WriteAllText(FilePath, importText);
 
             // pre-conditions
@@ -58,7 +58,7 @@ namespace Ttu.DomainTest.implementation
         private IRecommendation CreateRecommendation(int recordId, RecommendationType recommendationType, string value)
         {
             Recommendation recommendation = new Recommendation();
-            recommendation.ProbabilityRank = 7;
+            recommendation.Rating = 7;
             recommendation.RecordId = recordId;
             recommendation.Type = recommendationType;
             recommendation.User = new User("USER1") { RecordId = 2 };

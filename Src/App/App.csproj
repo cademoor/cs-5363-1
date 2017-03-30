@@ -176,10 +176,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogOnController.cs" />
     <Compile Include="Controllers\ManageOrganizationController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
+    <Compile Include="Controllers\RecommendedOrganizationController.cs" />
     <Compile Include="Controllers\RegisterUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,6 +239,9 @@
     <Content Include="Views\ManageOrganization\Index.cshtml" />
     <Content Include="Views\ManageOrganization\Create.cshtml" />
     <Content Include="Views\RegisterUser\Create.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\RecommendedOrganization\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
