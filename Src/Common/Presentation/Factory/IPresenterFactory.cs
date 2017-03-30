@@ -12,7 +12,9 @@ namespace Ttu.Presentation
         // behavior
         LogOnPresenter CreateLogOnPresenter();
         ManageOrganizationPresenter CreateManageOrganizationPresenter();
+        ManageRecommendationPresenter CreateManageRecommendationPresenter();
         ManageUserPresenter CreateManageUserPresenter();
+
 
     }
 }

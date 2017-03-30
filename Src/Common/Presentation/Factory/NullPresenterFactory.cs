@@ -36,6 +36,11 @@ namespace Ttu.Presentation
             return null;
         }
 
+        public virtual ManageRecommendationPresenter CreateManageRecommendationPresenter()
+        {
+            return null;
+        }
+
         public virtual ManageUserPresenter CreateManageUserPresenter()
         {
             return null;

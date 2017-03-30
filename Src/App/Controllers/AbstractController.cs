@@ -21,12 +21,17 @@ namespace App.Controllers
 
         protected void PersistCookie(string sessionId)
         {
+            PersistCookie(sessionId, DateTime.Now.AddMinutes(5));
+        }
+
+        protected void PersistCookie(string sessionId, DateTime expirationDate)
+        {
             HttpCookie existingCookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
             if (existingCookie != null)
             {
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("Existing Cookie Session ID: {0}", existingCookie.Value));
                 existingCookie.Value = sessionId;
-                existingCookie.Expires = DateTime.Now.AddMinutes(5);
+                existingCookie.Expires = expirationDate;
                 Response.Cookies.Set(existingCookie);
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("Update Cookie Session ID: {0}", sessionId));
             }
@@ -34,7 +39,7 @@ namespace App.Controllers
             {
                 HttpCookie cookie = new HttpCookie(Ttu.Domain.Constants.COOKIE_NAME);
                 cookie.Value = sessionId;
-                cookie.Expires = DateTime.Now.AddMinutes(5);
+                cookie.Expires = expirationDate;
                 Response.Cookies.Add(cookie);
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("New Cookie Session ID: {0}", sessionId));
             }

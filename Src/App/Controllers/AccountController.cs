@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
 using Ttu.Presentation;
 using Ttu.Presentation.Model;
@@ -29,19 +28,7 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult LogOff()
         {
-            var cookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
-            if (cookie == null)
-            {
-                var newCookie = new HttpCookie(Ttu.Domain.Constants.COOKIE_NAME);
-                newCookie.Expires = DateTime.MinValue;
-                Response.Cookies.Add(newCookie);
-            }
-            else
-            {
-                cookie.Expires = DateTime.MinValue;
-                Response.Cookies.Set(cookie);
-            }
-
+            PersistCookie(null, DateTime.Now.AddMinutes(-5));
             return RedirectToAction("Index", "Home");
         }
 

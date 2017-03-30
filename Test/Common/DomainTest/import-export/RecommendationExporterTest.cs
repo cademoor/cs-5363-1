@@ -40,7 +40,7 @@ namespace Ttu.DomainTest.implementation
             Exporter.Export();
 
             // post-conditions
-            string expectedOutput = string.Format("{0},{1},{2}{3}", recommendation.RecordId, recommendation.User.RecordId, recommendation.ProbabilityRank, Environment.NewLine);
+            string expectedOutput = string.Format("{0},{1},{2}{3}", recommendation.RecordId, recommendation.User.RecordId, recommendation.Rating, Environment.NewLine);
             Assert.AreEqual(expectedOutput, File.ReadAllText(FilePath));
             Assert.AreEqual(1, MockUnitOfWork.Recommendations.FindAll().Length);
         }
@@ -57,7 +57,7 @@ namespace Ttu.DomainTest.implementation
         private IRecommendation CreateRecommendation(int recordId, RecommendationType recommendationType, string value)
         {
             Recommendation recommendation = new Recommendation();
-            recommendation.ProbabilityRank = 7;
+            recommendation.Rating = 7;
             recommendation.RecordId = recordId;
             recommendation.Type = recommendationType;
             recommendation.User = new User("USER1") { RecordId = 2 };
