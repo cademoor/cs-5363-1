@@ -40,7 +40,7 @@ namespace Ttu.Domain
 
         private void WriteRecommendation(FileWriter fw, IRecommendation recommendation)
         {
-            fw.PrintLine("{0},{1},{2}", recommendation.RecordId, recommendation.User.RecordId, recommendation.ProbabilityRank ?? -1);
+            fw.PrintLine("{0},{1},{2}", recommendation.RecordId, recommendation.User.RecordId, recommendation.Rating ?? -1);
         }
 
         private void WriteRecommendations(IRecommendation[] recommendations)

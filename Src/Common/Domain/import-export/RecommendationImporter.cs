@@ -65,7 +65,7 @@ namespace Ttu.Domain
             }
 
             IRecommendation recommendation = RecommendationService.GetRecommendation(recordId.Value) ?? new Recommendation();
-            recommendation.ProbabilityRank = probabilityRank;
+            recommendation.Rating = probabilityRank;
             recommendation.Type = recommendationType;
             recommendation.User = UserService.GetUser(userRecordId.Value);
             recommendation.Value = value;

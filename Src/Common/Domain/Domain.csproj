@@ -106,7 +106,7 @@
     <Compile Include="interface\IVolunteerProfile.cs" />
     <Compile Include="interface\IVolunteerProfileReview.cs" />
     <Compile Include="interface\IVolunteerProfileSkill.cs" />
-    <Compile Include="interface\Recommendation.cs" />
+    <Compile Include="implementation\Recommendation.cs" />
     <Compile Include="log\AbstractApplicationLogger.cs" />
     <Compile Include="log\AbstractLogger.cs" />
     <Compile Include="log\ApplicationLogger.cs" />

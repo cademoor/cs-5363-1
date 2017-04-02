@@ -66,6 +66,11 @@ namespace Ttu.Presentation
             return ServiceFactory.CreateOrganizationService(UnitOfWork);
         }
 
+        protected IRecommendationService CreateRecommendationService()
+        {
+            return ServiceFactory.CreateRecommendationService(UnitOfWork);
+        }
+
         protected IVolunteerProfileReviewService CreateVolunteerProfileReviewService()
         {
             return ServiceFactory.CreateVolunteerProfileReviewService(UnitOfWork);
