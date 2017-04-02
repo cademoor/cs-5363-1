@@ -31,6 +31,11 @@ namespace Ttu.Presentation
             return ConfigureAuthenticatedSession(uow);
         }
 
+        public IUser GetUser(string userId,string password)
+        {
+            IUnitOfWork uow = ValidateCredentials(userId, password);
+            return uow.User; 
+        }
         #endregion
 
         #region Helper Methods

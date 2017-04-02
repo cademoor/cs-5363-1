@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Ttu.Domain;
 using Ttu.Presentation;
 using Ttu.Presentation.Model;
 
@@ -21,6 +22,12 @@ namespace App.Controllers
             var presenter = new LogOnPresenter(null);
             var sessionId = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
             PersistCookie(sessionId);
+            //Cookie was created, store User to a session variable 
+            if (!string.IsNullOrEmpty(sessionId))
+            {
+                IUser user = presenter.GetUser(logOnModel.UserId, logOnModel.Password);
+                Session["_userFirstName"] = user.FirstName;
+            }
 
             return RedirectToAction("Index", "Home");
         }

@@ -1,13 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
 @{
-    //Changed to only check if the cookie exists 
-    //If the cookie has the min-value for time then it this value will return false. 
-    var cookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
-    var hasCookie = cookie != null;
-    var isInSession = hasCookie;
+    bool isInSession = (bool) ViewData["hasCookie"];
+    string firstName = Convert.ToString(Session["_userFirstName"]);
 }
-
-@isInSession
 
 @if (isInSession)
 {
@@ -17,7 +12,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "ManageUser", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + firstName + "!", "Index", "ManageUser", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
