@@ -101,6 +101,7 @@ namespace Ttu.Service
 
         public override IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public override IUnitOfWorkRepository<IOrganization> Organizations { get { return CreateUowRepository<IOrganization>(); } }
+        public override IUnitOfWorkRepository<IOrganizationUser> OrganizationUsers { get { return CreateUowRepository<IOrganizationUser>(); } }
         public override IUnitOfWorkRepository<IRecommendation> Recommendations { get { return CreateUowRepository<IRecommendation>(); } }
         public override IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
         public override IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }

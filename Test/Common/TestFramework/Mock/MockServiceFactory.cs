@@ -27,6 +27,8 @@ namespace Ttu.TestFramework
         private MockContactService ContactService { get; set; }
 
         private MockOrganizationService OrganizationService { get; set; }
+        private MockOrganizationUserService OrganizationUserService { get; set; }
+
 
         private MockRecommendationService RecommendationService { get; set; }
 
@@ -55,6 +57,13 @@ namespace Ttu.TestFramework
         {
             OrganizationService.MockUnitOfWork = unitOfWork;
             return OrganizationService;
+        }
+
+
+        public IOrganizationUserService CreateOrganizationUserService(IUnitOfWork unitOfWork)
+        {
+            OrganizationUserService.MockUnitOfWork = unitOfWork;
+            return OrganizationUserService;
         }
 
         public IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork)
