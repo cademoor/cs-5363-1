@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Ttu.Domain;
 using Ttu.Presentation;
 
 namespace App.Controllers
@@ -28,8 +25,12 @@ namespace App.Controllers
             try
             {
                 LogOnPresenter presenter = new LogOnPresenter(null);
-                string sessionId = presenter.RegisterUser(registerUserModel);
-                PersistCookie(sessionId);
+                IUnitOfWork uow = presenter.RegisterUser(registerUserModel);
+                if (uow != null)
+                {
+                    PersistCookie(uow.SessionId);
+                }
+
                 return RedirectToAction("Create", "ManageUser");
             }
             catch
