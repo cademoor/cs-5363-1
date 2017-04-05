@@ -10,6 +10,7 @@
         // attributes - repository
         IUnitOfWorkRepository<IContact> Contacts { get; }
         IUnitOfWorkRepository<IOrganization> Organizations { get; }
+        IUnitOfWorkRepository<IOrganizationUser> OrganizationUsers { get; }
         IUnitOfWorkRepository<IRecommendation> Recommendations { get; }
         IUnitOfWorkRepository<IUser> Users { get; }
         IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get; }

@@ -94,6 +94,7 @@
     <Compile Include="service\common\ServiceFactory.cs" />
     <Compile Include="service\ContactService.cs" />
     <Compile Include="service\OrganizationService.cs" />
+    <Compile Include="service\OrganizationUserService.cs" />
     <Compile Include="service\RecommendationService.cs" />
     <Compile Include="service\VolunteerOpportunityService.cs" />
     <Compile Include="service\UserService.cs" />
@@ -142,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="persistence\hbm\recommendation.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="persistence\hbm\organizationUser.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

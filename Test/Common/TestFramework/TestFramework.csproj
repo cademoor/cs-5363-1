@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Mock\MockAuthenticationService.cs" />
     <Compile Include="Mock\MockContactService.cs" />
+    <Compile Include="Mock\MockOrganizationUserService.cs" />
     <Compile Include="Mock\MockOrganizationService.cs" />
     <Compile Include="Mock\MockRecommendationService.cs" />
     <Compile Include="Mock\MockServiceFactory.cs" />
