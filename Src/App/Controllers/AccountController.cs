@@ -19,14 +19,15 @@ namespace App.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var presenter = new LogOnPresenter(null);
-            var sessionId = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
+            LogOnPresenter presenter = new LogOnPresenter(null);
+            IUnitOfWork uow = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
+            string sessionId = uow.SessionId;
             PersistCookie(sessionId);
             //Cookie was created, store User to a session variable 
-            if (!string.IsNullOrEmpty(sessionId))
+            if (uow != null && uow.User != null)
             {
-                IUser user = presenter.GetUser(logOnModel.UserId, logOnModel.Password);
-                Session["_userFirstName"] = user.FirstName;
+                Session["_userFirstName"] = uow.User.FirstName;
+                // this is a test new line of code
             }
 
             return RedirectToAction("Index", "Home");
@@ -50,9 +51,13 @@ namespace App.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var presenter = new LogOnPresenter(null);
-            var sessionId = presenter.RegisterUser(registerUserModel);
-            PersistCookie(sessionId);
+            LogOnPresenter presenter = new LogOnPresenter(null);
+            IUnitOfWork uow = presenter.RegisterUser(registerUserModel);
+            if (uow != null && uow.User != null)
+            {
+                string sessionId = uow.SessionId;
+                PersistCookie(sessionId);
+            }
             return RedirectToAction("Create", "ManageUser");
         }
     }

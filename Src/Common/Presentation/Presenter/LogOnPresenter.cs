@@ -16,13 +16,13 @@ namespace Ttu.Presentation
 
         #region Public Methods
 
-        public string LogOn(string userId, string password)
+        public IUnitOfWork LogOn(string userId, string password)
         {
             IUnitOfWork uow = ValidateCredentials(userId, password);
             return ConfigureAuthenticatedSession(uow);
         }
 
-        public string RegisterUser(RegisterUserModel registerUserModel)
+        public IUnitOfWork RegisterUser(RegisterUserModel registerUserModel)
         {
             ValidateInput(registerUserModel);
 
@@ -31,10 +31,14 @@ namespace Ttu.Presentation
             return ConfigureAuthenticatedSession(uow);
         }
 
-        public IUser GetUser(string userId,string password)
+        public IUser GetUser(string userId, string password)
         {
-            IUnitOfWork uow = ValidateCredentials(userId, password);
-            return uow.User; 
+            if (UnitOfWork == null)
+            {
+                return null;
+            }
+
+            return UnitOfWork.User;
         }
         #endregion
 
@@ -48,7 +52,7 @@ namespace Ttu.Presentation
             uow.Users.Add(newUser);
         }
 
-        private string ConfigureAuthenticatedSession(IUnitOfWork uow)
+        private IUnitOfWork ConfigureAuthenticatedSession(IUnitOfWork uow)
         {
             string sessionId = uow.SessionId;
             IUnitOfWork unitOfWork = uow;
@@ -56,7 +60,7 @@ namespace Ttu.Presentation
 
             IPresenterFactory presenterFactory = new PresenterFactory(user, unitOfWork, sessionId);
             PresentationEnvironment.MapPresenterFactory(sessionId, presenterFactory);
-            return sessionId;
+            return unitOfWork;
         }
 
         private IUnitOfWork CreateUnitOfWork()
