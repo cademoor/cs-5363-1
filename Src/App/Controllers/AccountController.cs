@@ -35,7 +35,7 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult LogOff()
         {
-            PersistCookie(null, DateTime.Now.AddMinutes(-5));
+            EndSession();
             return RedirectToAction("Index", "Home");
         }
 
