@@ -35,6 +35,18 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult LogOff()
         {
+            try
+            {
+                IPresenterFactory presenterFactory = ValidatePresenterFactory();
+                LogOnPresenter presenter = presenterFactory.CreateLogOnPresenter();
+                presenter.LogOff();
+            }
+            catch (Exception e)
+            {
+                // Shouldn't get here, but likely means the user isn't logged in
+                ApplicationLogger.GetLogger(GetType()).Info(string.Format("Unable to create/use logon presenter to log off: {0}", e.Message));
+            }
+
             EndSession();
             return RedirectToAction("Index", "Home");
         }

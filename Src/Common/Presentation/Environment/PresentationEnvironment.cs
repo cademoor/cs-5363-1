@@ -35,7 +35,7 @@ namespace Ttu.Presentation
         public void Release(IUnitOfWork unitOfWork)
         {
             // guard clause - invalid state
-            if (unitOfWork == null || !string.IsNullOrEmpty(unitOfWork.SessionId))
+            if (string.IsNullOrEmpty(unitOfWork?.SessionId))
             {
                 return;
             }
