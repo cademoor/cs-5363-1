@@ -22,6 +22,11 @@ namespace Ttu.Presentation
             return ConfigureAuthenticatedSession(uow);
         }
 
+        public void LogOff()
+        {
+            PresentationEnvironment.Release(UnitOfWork);
+        }
+
         public IUnitOfWork RegisterUser(RegisterUserModel registerUserModel)
         {
             ValidateInput(registerUserModel);
@@ -40,6 +45,7 @@ namespace Ttu.Presentation
 
             return UnitOfWork.User;
         }
+
         #endregion
 
         #region Helper Methods
