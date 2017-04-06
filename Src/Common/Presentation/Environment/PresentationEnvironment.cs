@@ -32,6 +32,22 @@ namespace Ttu.Presentation
             Map[sessionId] = presenterFactory;
         }
 
+        public void Release(IUnitOfWork unitOfWork)
+        {
+            // guard clause - invalid state
+            if (unitOfWork == null || !string.IsNullOrEmpty(unitOfWork.SessionId))
+            {
+                return;
+            }
+
+            Map.Remove(unitOfWork.SessionId);
+        }
+
+        public void SetServiceFactory(IServiceFactory serviceFactory)
+        {
+            ServiceFactory = serviceFactory ?? NullServiceFactory.Singleton;
+        }
+
         public IPresenterFactory ValidatePresenterFactory(string sessionId)
         {
             // guard clause - session does not exist
@@ -42,11 +58,6 @@ namespace Ttu.Presentation
             }
 
             return presenterFactory;
-        }
-
-        public void SetServiceFactory(IServiceFactory serviceFactory)
-        {
-            ServiceFactory = serviceFactory ?? NullServiceFactory.Singleton;
         }
 
         #endregion
