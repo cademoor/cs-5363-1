@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
+﻿using System.Text;
 
 namespace Ttu.Domain
 {
@@ -65,6 +64,11 @@ namespace Ttu.Domain
             }
 
             return sb.ToString();
+        }
+
+        public virtual bool IsAdmin()
+        {
+            return UserId == Constants.USER_ID_ADMIN;
         }
 
         public virtual bool IsValid()

@@ -37,7 +37,7 @@ namespace Ttu.Presentation
 
         public string Location { get { return _Location; } set { } }
 
-        public string Description {  get {  return _Description; } set { } }
+        public string Description { get { return _Description; } set { } }
 
         #endregion
 
@@ -55,6 +55,11 @@ namespace Ttu.Presentation
         #endregion
 
         #region Public Methods
+
+        public virtual bool IsAdmin()
+        {
+            return false;
+        }
 
         public virtual bool IsValid()
         {
