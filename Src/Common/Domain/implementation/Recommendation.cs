@@ -26,7 +26,7 @@
 
         #endregion
 
-        #region Properties
+        #region Public Methods
 
         public virtual string GetRecommendationType()
         {

@@ -22,6 +22,7 @@
 
         // behavior
         void SetPhoto(byte[] photoBytes);
+        void SetUser(IUser user);
 
     }
 }

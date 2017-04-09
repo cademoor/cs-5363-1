@@ -8,6 +8,7 @@ namespace App.Controllers
 {
     public class AbstractController : Controller
     {
+        protected static readonly int SessionTimeoutMinutes = 5;
 
         #region Constructors
 
@@ -21,7 +22,12 @@ namespace App.Controllers
 
         protected void PersistCookie(string sessionId)
         {
-            PersistCookie(sessionId, DateTime.Now.AddMinutes(5));
+            PersistCookie(sessionId, DateTime.Now.AddMinutes(SessionTimeoutMinutes));
+        }
+
+        protected void EndSession()
+        {
+            PersistCookie(null, DateTime.Now.AddMonths(-1));
         }
 
         protected void PersistCookie(string sessionId, DateTime expirationDate)

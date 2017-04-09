@@ -84,11 +84,13 @@
     <Compile Include="Factory\NullPresenterFactory.cs" />
     <Compile Include="Factory\PresenterFactory.cs" />
     <Compile Include="Model\LogOnModel.cs" />
+    <Compile Include="Model\OrganizationUserModel.cs" />
     <Compile Include="Model\RecommendationModel.cs" />
     <Compile Include="Model\OrganizationModel.cs" />
     <Compile Include="Model\RegisterUserModel.cs" />
     <Compile Include="Null\NullUser.cs" />
     <Compile Include="Presenter\AbstractPresenter.cs" />
+    <Compile Include="Presenter\ManageOrganizationUserPresenter.cs" />
     <Compile Include="Presenter\ManageOrganizationPresenter.cs" />
     <Compile Include="Presenter\LogOnPresenter.cs" />
     <Compile Include="Presenter\ManageRecommendationPresenter.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewState\AbstractViewState.cs" />
+    <Compile Include="ViewState\ManageOrganizationUserViewState.cs" />
     <Compile Include="ViewState\ManageOrganizationViewState.cs" />
     <Compile Include="ViewState\IViewState.cs" />
     <Compile Include="ViewState\LogOnViewState.cs" />

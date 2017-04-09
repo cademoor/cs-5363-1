@@ -52,6 +52,11 @@
             Photo = photoBytes; // TODO:ACM - scale the photo
         }
 
+        public virtual void SetUser(IUser user)
+        {
+            User = user;
+        }
+
         #endregion
 
     }

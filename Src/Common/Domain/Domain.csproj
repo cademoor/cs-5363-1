@@ -87,6 +87,8 @@
     <Compile Include="exception\PersistenceException.cs" />
     <Compile Include="implementation\Contact.cs" />
     <Compile Include="implementation\Location.cs" />
+    <Compile Include="implementation\OrganizationUser.cs" />
+    <Compile Include="interface\IOrganizationUser.cs" />
     <Compile Include="interface\IRecommendation.cs" />
     <Compile Include="implementation\Organization.cs" />
     <Compile Include="implementation\VolunteerOpportunityApplication.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="service\common\IUnitOfWork.cs" />
     <Compile Include="service\common\IUnitOfWorkRepository.cs" />
     <Compile Include="service\IOrganizationService.cs" />
+    <Compile Include="service\IOrganizationUserService.cs" />
     <Compile Include="service\IRecommendationService.cs" />
     <Compile Include="service\IVolunteerOpportunityService.cs" />
     <Compile Include="service\IContactService.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="service\common\NullServiceFactory.cs" />
     <Compile Include="service\IVolunteerProfileReviewService.cs" />
     <Compile Include="service\IVolunteerProfileService.cs" />
+    <Compile Include="service\null\NullOrganizationUserService.cs" />
     <Compile Include="service\null\NullOrganizationService.cs" />
     <Compile Include="service\null\NullRecommendationService.cs" />
     <Compile Include="service\null\NullVolunteerOpportunityService.cs" />

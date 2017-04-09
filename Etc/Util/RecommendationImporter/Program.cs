@@ -1,5 +1,6 @@
 ﻿using System;
 using Ttu.Domain;
+using Ttu.Service;
 
 namespace Ttu.RecommendationImporter
 {
@@ -43,8 +44,14 @@ namespace Ttu.RecommendationImporter
         {
             ApplicationEnvironment.Singleton.InitializeApplication(args);
 
-            IServiceFactory serviceFactory = ApplicationEnvironment.Singleton.InitializeService();
-            return serviceFactory.CreateAuthenticationService().CreateAdHocUnitOfWork();
+            ApplicationEnvironment.Singleton.InitializeService();
+            return CreateAdHocUnitOfWork();
+        }
+
+        private static IUnitOfWork CreateAdHocUnitOfWork()
+        {
+            SessionDecorator openSession = ServiceEnvironment.Singleton.OpenSession();
+            return new UnitOfWork(openSession, null);
         }
 
         #endregion

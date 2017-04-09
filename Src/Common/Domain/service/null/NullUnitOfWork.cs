@@ -20,6 +20,7 @@
 
         public virtual IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public virtual IUnitOfWorkRepository<IOrganization> Organizations { get { return CreateUowRepository<IOrganization>(); } }
+        public virtual IUnitOfWorkRepository<IOrganizationUser> OrganizationUsers { get { return CreateUowRepository<IOrganizationUser>(); } }
         public virtual IUnitOfWorkRepository<IRecommendation> Recommendations { get { return CreateUowRepository<IRecommendation>(); } }
         public virtual IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
         public virtual IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }

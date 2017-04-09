@@ -22,6 +22,7 @@ namespace Ttu.Presentation
 
         public LogOnViewState LogOnViewState { get; set; }
         public ManageOrganizationViewState ManageOrganizationViewState { get; set; }
+        public ManageOrganizationUserViewState ManageOrganizationUserViewState { get; set; }
         public ManageRecommendationViewState ManageRecommendationViewState { get; set; }
         public ManageUserViewState ManageUserViewState { get; set; }
 
@@ -45,6 +46,11 @@ namespace Ttu.Presentation
             return new ManageOrganizationPresenter(ManageOrganizationViewState);
         }
 
+        public override ManageOrganizationUserPresenter CreateManageOrganizationUserPresenter()
+        {
+            return new ManageOrganizationUserPresenter(ManageOrganizationUserViewState);
+        }
+
         public override ManageRecommendationPresenter CreateManageRecommendationPresenter()
         {
             return new ManageRecommendationPresenter(ManageRecommendationViewState);
@@ -63,6 +69,7 @@ namespace Ttu.Presentation
         {
             LogOnViewState = new LogOnViewState(this);
             ManageOrganizationViewState = new ManageOrganizationViewState(this);
+            ManageOrganizationUserViewState = new ManageOrganizationUserViewState(this);
             ManageRecommendationViewState = new ManageRecommendationViewState(this);
             ManageUserViewState = new ManageUserViewState(this);
         }
