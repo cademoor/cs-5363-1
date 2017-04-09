@@ -6,6 +6,7 @@
     bool isInSession = hasCookie; 
     //Don't want to do this twice
     ViewData["hasCookie"] = hasCookie;
+    var isAdmin = isInSession && Convert.ToString(Session["_userId"]) == "ADMIN";
 }
 
 <!DOCTYPE html>
@@ -35,6 +36,10 @@
                 @if (isInSession)
                 {
                     <li>@Html.ActionLink("Organizations", "Index", "ManageOrganization")</li>
+                }
+                @if (isAdmin)
+                {
+                    <li><a href="~/elmah">Error Log</a></li>
                 }
                 <li>@Html.ActionLink("About", "About", "Home")</li>
             </ul>
