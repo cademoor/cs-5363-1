@@ -55,6 +55,7 @@ namespace App.Controllers
             if (uow != null && uow.User != null)
             {
                 string sessionId = uow.SessionId;
+                Session["_userFirstName"] = uow.User.FirstName;
                 PersistCookie(sessionId);
             }
             return RedirectToAction("Create", "ManageUser");
