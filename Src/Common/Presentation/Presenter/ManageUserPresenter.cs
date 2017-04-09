@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Ttu.Domain;
 
@@ -72,7 +71,7 @@ namespace Ttu.Presentation
 
         public UserModel[] GetUsers()
         {
-            return UserService.GetUsers().Select(u => CreateUserModel(u)).ToArray();
+            return GetVisibleUsers().Select(u => CreateUserModel(u)).ToArray();
         }
 
         public IVolunteerProfile GetVolunteerProfile(UserModel userModel)
@@ -114,6 +113,19 @@ namespace Ttu.Presentation
             UserModel userModel = new UserModel();
             userModel.CopyFrom(user);
             return userModel;
+        }
+
+        private IUser[] GetVisibleUsers()
+        {
+            if (User.IsAdmin())
+            {
+                IUser[] allUsers = UserService.GetUsers();
+                return allUsers.Except(new IUser[1] { User }).ToArray();
+            }
+            else
+            {
+                return new IUser[1] { User };
+            }
         }
 
         #endregion

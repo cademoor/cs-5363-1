@@ -14,52 +14,65 @@ namespace Ttu.PresentationTest.Presenter
         public void SetUp()
         {
             Presenter = PresenterFactory.CreateManageUserPresenter();
+            PresenterFactory.User.UserId = Constants.USER_ID_ADMIN;
         }
 
         #region Blue Sky Tests
 
-        //[TestMethod]
-        //public void TestBlueSky_MaintainUser()
-        //{
-        //    // pre-conditions
-        //    Assert.AreEqual(0, Presenter.GetUsers().Length);
+        [TestMethod]
+        public void TestBlueSky_GetUsers_Admin()
+        {
+            // set-up
+            Presenter.AddUser(CreateUser("TESTUSER1", 1));
+            Presenter.AddUser(CreateUser("TESTUSER2", 2));
 
-        //    // exercise
-        //    IUser user1 = CreateUser("TESTUSER1", 1);
-        //    Presenter.AddUser(user1);
+            // exercise
+            UserModel[] visibleUsers = Presenter.GetUsers();
 
-        //    IUser user2 = CreateUser("TESTUSER2", 2);
-        //    Presenter.AddUser(user2);
+            // post-conditions
+            Assert.AreEqual(2, visibleUsers.Length);
+            Assert.AreEqual("TESTUSER1", visibleUsers[0].UserId);
+            Assert.AreEqual("TESTUSER2", visibleUsers[1].UserId);
+        }
 
-        //    Presenter.AddVolunteerProfile(CreateVolunteerProfile(user2, "Profile1"));
+        [TestMethod]
+        public void TestBlueSky_GetUsers_NonAdmin()
+        {
+            // set-up
+            PresenterFactory.User.UserId = "CADE";
+            Presenter.AddUser(CreateUser("TESTUSER1", 1));
+            Presenter.AddUser(CreateUser("TESTUSER2", 2));
 
-        //    Presenter.RemoveUser(user1);
+            // exercise
+            UserModel[] visibleUsers = Presenter.GetUsers();
 
-        //    // post-conditions
-        //    Assert.AreEqual(1, Presenter.GetUsers().Length);
-        //    Assert.IsNull(Presenter.GetUser(user1.RecordId));
-        //    Assert.IsNotNull(Presenter.GetUser(user2.RecordId));
-        //}
+            // post-conditions
+            Assert.AreEqual(1, visibleUsers.Length);
+            Assert.AreEqual("CADE", visibleUsers[0].UserId);
+        }
 
-        #endregion
+        [TestMethod]
+        public void TestBlueSky_MaintainUser()
+        {
+            // pre-conditions
+            Assert.AreEqual(0, Presenter.GetUsers().Length);
 
-        #region Non Blue Sky Tests
+            // exercise
+            UserModel user1 = CreateUser("TESTUSER1", 1);
+            Presenter.AddUser(user1);
 
-        //[TestMethod]
-        //public void TestNonBlueSky_UserId_TooLong()
-        //{
-        //    IUser invalidUser = CreateUser(new string('A', Constants.USER_ID_MAX_LENGTH + 1), 1);
+            UserModel user2 = CreateUser("TESTUSER2", 2);
+            Presenter.AddUser(user2);
 
-        //    try
-        //    {
-        //        Presenter.AddUser(invalidUser);
-        //        Assert.Fail("An exception should have been thrown.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Assert.AreEqual("The \"User ID\" must be between 1 and 50 characters.", ex.Message);
-        //    }
-        //}
+            Presenter.AddVolunteerProfile(CreateVolunteerProfile(user2, "Profile1"));
+
+            Presenter.RemoveUser(user1);
+
+            // post-conditions
+            Assert.AreEqual(1, Presenter.GetUsers().Length);
+            Assert.IsNull(Presenter.GetUser(user1.RecordId));
+            Assert.IsNotNull(Presenter.GetUser(user2.RecordId));
+        }
 
         #endregion
 
@@ -70,15 +83,21 @@ namespace Ttu.PresentationTest.Presenter
 
         #region Helper Methods
 
-        private IUser CreateUser(string userId, int recordId)
+        private UserModel CreateUser(string userId, int recordId)
         {
             User user = new User(userId);
             user.RecordId = recordId;
-            return user;
+
+            UserModel userModel = new UserModel();
+            userModel.CopyFrom(user);
+            return userModel;
         }
 
-        private IVolunteerProfile CreateVolunteerProfile(IUser user, string name)
+        private IVolunteerProfile CreateVolunteerProfile(UserModel userModel, string name)
         {
+            User user = new User(userModel.UserId);
+            user.RecordId = userModel.RecordId;
+
             VolunteerProfile volunteerProfile = new VolunteerProfile(user, name);
             volunteerProfile.Description = "I really want to volunteer to help hungry children!";
             return volunteerProfile;
