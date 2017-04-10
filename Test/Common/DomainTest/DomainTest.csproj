@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="implementation\ContactTest.cs" />
     <Compile Include="implementation\UserTest.cs" />
+    <Compile Include="implementation\VolunteerOpportunityTest.cs" />
     <Compile Include="implementation\VolunteerProfileTest.cs" />
     <Compile Include="implementation\VolunteerProfileReviewTest.cs" />
     <Compile Include="import-export\RecommendationImporterTest.cs" />

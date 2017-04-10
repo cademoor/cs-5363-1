@@ -11,12 +11,14 @@ namespace Ttu.ServiceTest.service
 
         private VolunteerOpportunityService Service;
         private UserService UserService;
+        private OrganizationService OrganizationService;
 
         [TestInitialize]
         public void SetUp()
         {
             Service = new VolunteerOpportunityService(UnitOfWork);
             UserService = new UserService(UnitOfWork);
+            OrganizationService = new OrganizationService(UnitOfWork);
 
             foreach (IVolunteerOpportunity volunteerOpportunity in UnitOfWork.VolunteerOpportunities.FindAll())
             {
@@ -65,6 +67,8 @@ namespace Ttu.ServiceTest.service
             UnitOfWork.Abort();
             user1 = UserService.GetUser(user1.RecordId);
 
+            IOrganization org1 = new Organization(user1, "MyOrg");
+
             // pre-conditions
             Assert.AreEqual(0, Service.GetAllAppliedOpportunities(user1, OpportunityApplicationStatus.Submitted).Length);
             Assert.AreEqual(0, Service.GetAllAppliedOpportunities(user1, OpportunityApplicationStatus.Approved).Length);
@@ -79,15 +83,15 @@ namespace Ttu.ServiceTest.service
             Assert.AreEqual(0, Service.GetPreviousAppliedOpportunities(user1, OpportunityApplicationStatus.Denied).Length);
 
             // exercise - create opportunities
-            IVolunteerOpportunity previousSubmittedOpportunity = new VolunteerOpportunity(user1);
+            IVolunteerOpportunity previousSubmittedOpportunity = new VolunteerOpportunity(user1, org1);
             previousSubmittedOpportunity.StartTime = DateTime.Today.AddDays(-1);
             UnitOfWork.VolunteerOpportunities.Add(previousSubmittedOpportunity);
 
-            IVolunteerOpportunity previousApprovedOpportunity = new VolunteerOpportunity(user1);
+            IVolunteerOpportunity previousApprovedOpportunity = new VolunteerOpportunity(user1, org1);
             previousApprovedOpportunity.StartTime = DateTime.Today.AddDays(-1);
             UnitOfWork.VolunteerOpportunities.Add(previousApprovedOpportunity);
 
-            IVolunteerOpportunity previousDeniedOpportunity = new VolunteerOpportunity(user1);
+            IVolunteerOpportunity previousDeniedOpportunity = new VolunteerOpportunity(user1, org1);
             previousDeniedOpportunity.StartTime = DateTime.Today.AddDays(-1);
             UnitOfWork.VolunteerOpportunities.Add(previousDeniedOpportunity);
 
@@ -158,7 +162,7 @@ namespace Ttu.ServiceTest.service
 
         private IVolunteerOpportunity CreateVolunteerOpportunity()
         {
-            return new VolunteerOpportunity(User);
+            return new VolunteerOpportunity(User, Org);
         }
 
         #endregion
