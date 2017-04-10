@@ -27,6 +27,7 @@ namespace App.Controllers
             if (uow != null && uow.User != null)
             {
                 Session["_userFirstName"] = uow.User.FirstName;
+                Session["_userId"] = uow.User.UserId;
             }
 
             return RedirectToAction("Index", "Home");
