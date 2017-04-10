@@ -12,7 +12,6 @@ namespace Ttu.Domain
         public RecommendationImporter(IServiceFactory serviceFactory, IUnitOfWork unitOfWork, string fullyQualifiedInputFilePath)
         {
             FullyQualifiedInputFilePath = fullyQualifiedInputFilePath;
-            ServiceFactory = serviceFactory;
             UnitOfWork = unitOfWork;
 
             RecommendationService = serviceFactory.CreateRecommendationService(unitOfWork);
@@ -25,7 +24,6 @@ namespace Ttu.Domain
 
         private string FullyQualifiedInputFilePath { get; set; }
         private IRecommendationService RecommendationService { get; set; }
-        private IServiceFactory ServiceFactory { get; set; }
         private IUnitOfWork UnitOfWork { get; set; }
         private IUserService UserService { get; set; }
 
@@ -45,30 +43,44 @@ namespace Ttu.Domain
 
         #region Helper Methods
 
-        private void ImportRecommendation(string fileLine)
+        private RecommendationType GetRecommendationType(string[] splitLine)
         {
-            string[] splitLine = fileLine.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-            if (splitLine.Length != 5)
+            if (splitLine.Length == 0)
+            {
+                return RecommendationType.Unknown;
+            }
+
+            int? value = ToInt(splitLine[splitLine.Length - 1], null);
+            if (!value.HasValue)
+            {
+                return RecommendationType.OrganizationToUser;
+            }
+
+            return RecommendationType.OrganizationToUser;
+        }
+
+        private void ImportOrganizationToUserRecommendation(string[] splitLine)
+        {
+            if (splitLine.Length != 3)
             {
                 return;
             }
 
-            int? recordId = ToInt(splitLine[0], null);
-            int? userRecordId = ToInt(splitLine[1], null);
-            int? probabilityRank = ToInt(splitLine[2], null);
-            string value = splitLine[3];
-            RecommendationType recommendationType = (RecommendationType)ToInt(splitLine[2], (int)RecommendationType.Unknown);
+            int? userRecordId = ToInt(splitLine[0], null);
+            int? referenceRecordId = ToInt(splitLine[1], null);
+            double? probabilityRank = ToDouble(splitLine[2], null);
+            RecommendationType recommendationType = RecommendationType.OrganizationToUser;
 
-            if (!recordId.HasValue || !userRecordId.HasValue || recommendationType == RecommendationType.Unknown)
+            if (!userRecordId.HasValue || !referenceRecordId.HasValue || !probabilityRank.HasValue || recommendationType == RecommendationType.Unknown)
             {
                 return;
             }
 
-            IRecommendation recommendation = RecommendationService.GetRecommendation(recordId.Value) ?? new Recommendation();
-            recommendation.Rating = probabilityRank;
+            IRecommendation recommendation = RecommendationService.GetRecommendation(userRecordId.Value, referenceRecordId.Value) ?? new Recommendation();
+            recommendation.Rank = probabilityRank;
+            recommendation.ReferenceId = referenceRecordId.Value;
             recommendation.Type = recommendationType;
             recommendation.User = UserService.GetUser(userRecordId.Value);
-            recommendation.Value = value;
 
             if (recommendation.RecordId == 0)
             {
@@ -76,17 +88,27 @@ namespace Ttu.Domain
             }
         }
 
-        private int? ToInt(string value, int? defaultValue)
+        private void ImportRecommendation(string fileLine)
         {
-            int result;
-            if (!Int32.TryParse(value, out result))
+            string[] splitLine = fileLine.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            RecommendationType recommendationType = GetRecommendationType(splitLine);
+            if (recommendationType == RecommendationType.OrganizationToUser)
+            {
+                ImportOrganizationToUserRecommendation(splitLine);
+            }
+        }
+
+        private double? ToDouble(string value, double? defaultValue)
+        {
+            double result;
+            if (!Double.TryParse(value, out result))
             {
                 return defaultValue;
             }
             return result;
         }
 
-        private int ToInt(string value, int defaultValue)
+        private int? ToInt(string value, int? defaultValue)
         {
             int result;
             if (!Int32.TryParse(value, out result))

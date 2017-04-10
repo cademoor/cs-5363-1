@@ -6,6 +6,7 @@
         void AddRecommendation(IRecommendation recommendation);
 
         IRecommendation GetRecommendation(int recordId);
+        IRecommendation GetRecommendation(int userRecordId, int referenceRecordId);
         IRecommendation[] GetRecommendations();
         IRecommendation[] GetRecommendations(IUser user);
 

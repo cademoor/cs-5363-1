@@ -25,6 +25,11 @@
             return null;
         }
 
+        public virtual IRecommendation GetRecommendation(int userRecordId, int organizationRecordId)
+        {
+            return null;
+        }
+
         public virtual IRecommendation[] GetRecommendations()
         {
             return new IRecommendation[0];

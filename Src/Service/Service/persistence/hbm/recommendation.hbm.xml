@@ -7,9 +7,9 @@
 
         <many-to-one name="User" column="UserRecordId" class="User" />
 
-        <property name="Rating" />
+        <property name="Rank" />
+        <property name="ReferenceId" />
         <property name="Type" />
-        <property name="Value" length="100" />
 
     </class>
 </hibernate-mapping>

@@ -7,22 +7,22 @@
 
         public Recommendation()
         {
-            Rating = null;
+            Rank = null;
             RecordId = 0;
+            ReferenceId = 0;
             Type = RecommendationType.Unknown;
             User = null;
-            Value = string.Empty;
         }
 
         #endregion
 
         #region Properties
 
-        public virtual int? Rating { get; set; }
+        public virtual double? Rank { get; set; }
         public virtual int RecordId { get; set; }
+        public virtual int ReferenceId { get; set; }
         public virtual RecommendationType Type { get; set; }
         public virtual IUser User { get; set; }
-        public virtual string Value { get; set; }
 
         #endregion
 
