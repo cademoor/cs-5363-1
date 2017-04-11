@@ -15,10 +15,8 @@ namespace Ttu.DomainTest.implementation
         private Organization TestOrganization;
 
         [TestInitialize]
-        public void SetUp()
+        public void Arrange()
         {
-            VolunteerOpportunity = new VolunteerOpportunity(TestUser, TestOrganization);
-
             TestUser = new User()
             {
                 Description = "description",
@@ -40,6 +38,8 @@ namespace Ttu.DomainTest.implementation
                 RecordId = 599,
                 Website = "www.nowhere.com"
             };
+
+            VolunteerOpportunity = new VolunteerOpportunity(TestUser, TestOrganization);
         }
 
         #region Blue Sky Tests
