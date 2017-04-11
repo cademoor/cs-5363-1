@@ -23,8 +23,8 @@ namespace Ttu.Domain
             ProjectName = string.Empty;
             ProjectDescription = string.Empty;
 
-            StartTime = DateTime.MinValue;
-            StopTime = DateTime.MinValue;
+            StartTime = DateTime.Today;
+            StopTime = DateTime.Today;
 
             MinimumVolunteers = 0;
             MaximumVolunteers = 0;
@@ -54,12 +54,12 @@ namespace Ttu.Domain
 
         public virtual bool IsCurrent()
         {
-            return StartTime == DateTime.MinValue || StartTime >= DateTime.Today;
+            return StartTime >= DateTime.Today;
         }
 
         public virtual bool IsPrevious()
         {
-            return StartTime < DateTime.Today && StartTime != DateTime.MinValue;
+            return StartTime < DateTime.Today;
         }
 
         #endregion
