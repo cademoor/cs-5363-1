@@ -9,7 +9,6 @@ namespace Ttu.Domain
 
         // attributes
 
-        // Who created this project
         IUser CreatedBy { get; set; }
         IOrganization Organization { get; set; }
 
@@ -21,8 +20,8 @@ namespace Ttu.Domain
         DateTime StartTime { get; set; }
         DateTime StopTime { get; set; }
 
-        int NumVolunteersNeeded { get; set; }
-        int MaxNumVolunteers { get; set; }
+        int MinimumVolunteers { get; set; }
+        int MaximumVolunteers { get; set; }
 
         // behavior
         bool IsCurrent();

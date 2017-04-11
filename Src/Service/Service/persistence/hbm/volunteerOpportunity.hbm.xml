@@ -14,8 +14,8 @@
         <property name="StartTime"/>
         <property name="StopTime"/>
       
-        <property name="NumVolunteersNeeded"/>
-        <property name="MaxNumVolunteers"/>
+        <property name="MinimumVolunteers"/>
+        <property name="MaximumVolunteers"/>
 
     </class>
 </hibernate-mapping>

@@ -26,8 +26,8 @@ namespace Ttu.Domain
             StartTime = DateTime.MinValue;
             StopTime = DateTime.MinValue;
 
-            NumVolunteersNeeded = 0;
-            MaxNumVolunteers = 0;
+            MinimumVolunteers = 0;
+            MaximumVolunteers = 0;
         }
 
         #endregion
@@ -45,8 +45,8 @@ namespace Ttu.Domain
         public virtual DateTime StartTime { get; set; }
         public virtual DateTime StopTime { get; set; }
 
-        public virtual int NumVolunteersNeeded { get; set; }
-        public virtual int MaxNumVolunteers { get; set; }
+        public virtual int MinimumVolunteers { get; set; }
+        public virtual int MaximumVolunteers { get; set; }
 
         #endregion
 
@@ -61,7 +61,6 @@ namespace Ttu.Domain
         {
             return StartTime < DateTime.Today && StartTime != DateTime.MinValue;
         }
-
 
         #endregion
 
