@@ -29,10 +29,10 @@ namespace Ttu.ServiceTest.service
             Assert.AreEqual(0, Service.GetRecommendations().Length);
 
             // exercise
-            IRecommendation recommendationHome = CreateRecommendation(RecommendationType.OrganizationToUser, "Organization1");
+            IRecommendation recommendationHome = CreateRecommendation(RecommendationType.OrganizationToUser, 1);
             Service.AddRecommendation(recommendationHome);
 
-            IRecommendation recommendationMobile = CreateRecommendation(RecommendationType.OrganizationToUser, "Organization2");
+            IRecommendation recommendationMobile = CreateRecommendation(RecommendationType.OrganizationToUser, 2);
             Service.AddRecommendation(recommendationMobile);
 
             UnitOfWork.Commit();
@@ -58,12 +58,12 @@ namespace Ttu.ServiceTest.service
 
         #region Helper Methods
 
-        private IRecommendation CreateRecommendation(RecommendationType recommendationType, string value)
+        private IRecommendation CreateRecommendation(RecommendationType recommendationType, int referenceId)
         {
             Recommendation recommendation = new Recommendation();
             recommendation.Type = recommendationType;
             recommendation.User = User;
-            recommendation.Value = value;
+            recommendation.ReferenceId = referenceId;
             return recommendation;
         }
 

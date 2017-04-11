@@ -31,8 +31,10 @@ namespace Ttu.DomainTest.implementation
         public void TestBlueSky_Import()
         {
             // set-up
-            IRecommendation recommendation = CreateRecommendation(1, RecommendationType.OrganizationToUser, "Org1");
-            string importText = string.Format("{0},{1},{2},{3},{4}{5}", recommendation.RecordId, recommendation.User.RecordId, recommendation.Rating, recommendation.Value, (int)recommendation.Type, Environment.NewLine);
+            MockUnitOfWork.Organizations.Add(CreateOrganization(1, "Org1"));
+
+            IRecommendation recommendation = CreateRecommendation(1, RecommendationType.OrganizationToUser, 1);
+            string importText = string.Format("{0},{1},{2},{3}", recommendation.User.RecordId, recommendation.ReferenceId, recommendation.Rank, Environment.NewLine);
             File.WriteAllText(FilePath, importText);
 
             // pre-conditions
@@ -55,14 +57,22 @@ namespace Ttu.DomainTest.implementation
 
         #region Helper Methods
 
-        private IRecommendation CreateRecommendation(int recordId, RecommendationType recommendationType, string value)
+        private IOrganization CreateOrganization(int recordId, string name)
+        {
+            Organization organization = new Organization();
+            organization.Name = name;
+            organization.RecordId = recordId;
+            return organization;
+        }
+
+        private IRecommendation CreateRecommendation(int recordId, RecommendationType recommendationType, int referenceId)
         {
             Recommendation recommendation = new Recommendation();
-            recommendation.Rating = 7;
+            recommendation.Rank = 0.7;
             recommendation.RecordId = recordId;
+            recommendation.ReferenceId = referenceId;
             recommendation.Type = recommendationType;
             recommendation.User = new User("USER1") { RecordId = 2 };
-            recommendation.Value = value;
             return recommendation;
         }
 

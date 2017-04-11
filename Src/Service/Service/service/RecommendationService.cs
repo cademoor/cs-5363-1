@@ -26,6 +26,11 @@ namespace Ttu.Service
             return UnitOfWork.Recommendations.FindByRecordId(recordId);
         }
 
+        public virtual IRecommendation GetRecommendation(int userRecordId, int referenceRecordId)
+        {
+            return UnitOfWork.Recommendations.FindByUnique(r => r.User.RecordId == userRecordId && r.ReferenceId == referenceRecordId);
+        }
+
         public virtual IRecommendation[] GetRecommendations()
         {
             return UnitOfWork.Recommendations.FindAll();

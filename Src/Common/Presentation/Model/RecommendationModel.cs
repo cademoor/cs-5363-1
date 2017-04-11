@@ -10,7 +10,7 @@ namespace Ttu.Presentation
         public RecommendationModel()
         {
             DisplayType = string.Empty;
-            Rating = null;
+            Rank = null;
             RecordId = 0;
             Type = RecommendationType.Unknown;
             UserId = string.Empty;
@@ -23,7 +23,7 @@ namespace Ttu.Presentation
 
         public string DisplayType { get; set; }
 
-        public int? Rating { get; set; }
+        public double? Rank { get; set; }
         public int RecordId { get; set; }
 
         public RecommendationType Type { get; set; }
@@ -39,15 +39,15 @@ namespace Ttu.Presentation
         public void ApplyTo(IRecommendation recommendation)
         {
             recommendation.Type = Type;
-            recommendation.Rating = Rating;
+            recommendation.Rank = Rank;
             //recommendation.User = Name;
-            recommendation.Value = Value;
+            //recommendation.Value = Value;
         }
 
         public void CopyFrom(IRecommendation recommendation)
         {
             DisplayType = recommendation.GetRecommendationType();
-            Rating = recommendation.Rating;
+            Rank = recommendation.Rank;
             RecordId = recommendation.RecordId;
             UserId = recommendation.User != null ? recommendation.User.UserId : "None Assigned";
         }

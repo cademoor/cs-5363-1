@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ttu.RecommendationExporter</RootNamespace>
     <AssemblyName>Ttu.RecommendationExporter</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -79,13 +79,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DomainUtil\DomainUtil.csproj">
-      <Project>{095aeac8-3791-4e51-a672-08c4a4d279b1}</Project>
-      <Name>DomainUtil</Name>
+    <ProjectReference Include="..\..\..\Src\Common\Domain\Domain.csproj">
+      <Project>{d9e9bb70-4fdb-46b9-8d8d-4d22a7d98aaf}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceUtil\ServiceUtil.csproj">
-      <Project>{4ce2a6f0-05f9-40c1-9302-fb3eeb220e69}</Project>
-      <Name>ServiceUtil</Name>
+    <ProjectReference Include="..\..\..\Src\Service\Service\Service.csproj">
+      <Project>{68eeba4d-a4c2-4080-92f5-b019711827fe}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
