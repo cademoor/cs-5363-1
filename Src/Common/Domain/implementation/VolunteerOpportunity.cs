@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Ttu.Domain
 {
@@ -8,17 +9,25 @@ namespace Ttu.Domain
         #region Constructors
 
         public VolunteerOpportunity()
-            : this(null)
+            : this(null, null)
         {
         }
 
-        public VolunteerOpportunity(IUser createdBy)
+        public VolunteerOpportunity(IUser createdBy, IOrganization organization)
         {
             CreatedBy = createdBy;
+            Organization = organization;
 
             RecordId = 0;
+
+            ProjectName = string.Empty;
+            ProjectDescription = string.Empty;
+
             StartTime = DateTime.Today;
             StopTime = DateTime.Today;
+
+            MinimumVolunteers = 0;
+            MaximumVolunteers = 0;
         }
 
         #endregion
@@ -26,9 +35,18 @@ namespace Ttu.Domain
         #region Properties
 
         public virtual IUser CreatedBy { get; set; }
+        public virtual IOrganization Organization { get; set; }
+
         public virtual int RecordId { get; set; }
+
+        public virtual string ProjectName { get; set; }
+        public virtual string ProjectDescription { get; set; }
+
         public virtual DateTime StartTime { get; set; }
         public virtual DateTime StopTime { get; set; }
+
+        public virtual int MinimumVolunteers { get; set; }
+        public virtual int MaximumVolunteers { get; set; }
 
         #endregion
 
