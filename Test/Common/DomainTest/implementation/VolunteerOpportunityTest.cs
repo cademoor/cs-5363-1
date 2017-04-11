@@ -47,23 +47,26 @@ namespace Ttu.DomainTest.implementation
         [TestMethod]
         public void TestBlueSky_Coverage()
         {
+            DateTime today = DateTime.Today;
             // pre-conditions
             Assert.AreEqual(TestUser, VolunteerOpportunity.CreatedBy);
             Assert.AreEqual(TestOrganization, VolunteerOpportunity.Organization);
             Assert.AreEqual(0, VolunteerOpportunity.RecordId);
             Assert.AreEqual(string.Empty, VolunteerOpportunity.ProjectName);
             Assert.AreEqual(string.Empty, VolunteerOpportunity.ProjectDescription);
-            Assert.AreEqual(DateTime.MinValue, VolunteerOpportunity.StartTime);
-            Assert.AreEqual(DateTime.MinValue, VolunteerOpportunity.StopTime);
+            Assert.AreEqual(today, VolunteerOpportunity.StartTime.Date);
+            Assert.AreEqual(today, VolunteerOpportunity.StopTime);
             Assert.AreEqual(0, VolunteerOpportunity.MinimumVolunteers);
             Assert.AreEqual(0, VolunteerOpportunity.MaximumVolunteers);
+            Assert.AreEqual(true, VolunteerOpportunity.IsCurrent());
+            Assert.AreEqual(false, VolunteerOpportunity.IsPrevious());
 
             VolunteerOpportunity blankOpportunity = new VolunteerOpportunity();
             Assert.AreEqual(null, blankOpportunity.CreatedBy);
             Assert.AreEqual(null, blankOpportunity.Organization);
 
-            DateTime startTime = DateTime.Now;
-            DateTime stopTime = DateTime.Now.AddHours(5);
+            DateTime startTime = DateTime.Now.AddDays(-3);
+            DateTime stopTime = DateTime.Now.AddDays(-1);
 
             VolunteerOpportunity.CreatedBy = TestUser;
             VolunteerOpportunity.Organization = TestOrganization;
@@ -84,6 +87,8 @@ namespace Ttu.DomainTest.implementation
             Assert.AreEqual(stopTime, VolunteerOpportunity.StopTime);
             Assert.AreEqual(5, VolunteerOpportunity.MinimumVolunteers);
             Assert.AreEqual(1000, VolunteerOpportunity.MaximumVolunteers);
+            Assert.AreEqual(false, VolunteerOpportunity.IsCurrent());
+            Assert.AreEqual(true, VolunteerOpportunity.IsPrevious());
         }
 
         #endregion
