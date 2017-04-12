@@ -96,7 +96,7 @@
     <Compile Include="service\OrganizationService.cs" />
     <Compile Include="service\OrganizationUserService.cs" />
     <Compile Include="service\RecommendationService.cs" />
-    <Compile Include="service\VolunteerOpportunityService.cs" />
+    <Compile Include="service\ProjectService.cs" />
     <Compile Include="service\UserService.cs" />
     <Compile Include="service\VolunteerProfileService.cs" />
     <Compile Include="service\VolunteerProfileReviewService.cs" />
@@ -133,10 +133,10 @@
     <EmbeddedResource Include="persistence\hbm\volunteerProfileReview.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="persistence\hbm\volunteerOpportunity.hbm.xml" />
+    <EmbeddedResource Include="persistence\hbm\project.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="persistence\hbm\volunteerOpportunityApplication.hbm.xml" />
+    <EmbeddedResource Include="persistence\hbm\projectApplication.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="persistence\hbm\organization.hbm.xml" />

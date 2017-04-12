@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Ttu.Domain" assembly="Ttu.Domain">
-    <class name="VolunteerOpportunityApplication" table="VolunteerOpportunityApplication" lazy="true">
+    <class name="ProjectApplication" table="ProjectApplication" lazy="true">
         <id name="RecordId">
             <generator class="identity" />
         </id>
 
         <many-to-one name="LastChangeStatusUser" column="LastChangeStatusUserRecordId" class="User" cascade="all-delete-orphan" />
         <many-to-one name="User" column="UserRecordId" class="User" cascade="all-delete-orphan" />
-        <many-to-one name="VolunteerOpportunity" column="VolunteerOpportunityRecordId" class="VolunteerOpportunity" cascade="all-delete-orphan" />
+        <many-to-one name="Project" column="ProjectRecordId" class="Project" cascade="all-delete-orphan" />
 
         <property name="Note" length="500" />
         <property name="Status" />

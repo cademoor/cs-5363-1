@@ -1,17 +1,17 @@
 ﻿namespace Ttu.Domain
 {
-    public interface IVolunteerOpportunityApplication
+    public interface IProjectApplication
     {
 
         // attributes
         IUser LastChangeStatusUser { get; }
         string Note { get; set; }
-        OpportunityApplicationStatus Status { get; }
+        ProjectApplicationStatus Status { get; }
         IUser User { get; }
-        IVolunteerOpportunity VolunteerOpportunity { get; }
+        IProject Project { get; }
 
         // behavior
-        void ChangeStatus(IUser user, OpportunityApplicationStatus status);
+        void ChangeStatus(IUser user, ProjectApplicationStatus status);
         bool IsCurrent();
         bool IsPrevious();
 
