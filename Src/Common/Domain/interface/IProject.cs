@@ -9,7 +9,7 @@ namespace Ttu.Domain
         IUser CreatedBy { get; set; }
         IOrganization Organization { get; set; }
 
-        int RecordId { get; }
+        int RecordId { get; set; }
 
         string ProjectName { get; set; }
         string ProjectDescription { get; set; }

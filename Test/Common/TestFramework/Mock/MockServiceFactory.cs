@@ -14,6 +14,7 @@ namespace Ttu.TestFramework
             OrganizationService = new MockOrganizationService();
             RecommendationService = new MockRecommendationService();
             UserService = new MockUserService();
+            ProjectService = new MockProjectService();
             VolunteerProfileReviewService = new MockVolunteerProfileReviewService();
             VolunteerProfileService = new MockVolunteerProfileService();
         }
@@ -33,6 +34,8 @@ namespace Ttu.TestFramework
         private MockRecommendationService RecommendationService { get; set; }
 
         private MockUserService UserService { get; set; }
+
+        private MockProjectService ProjectService { get; set; }
 
         private MockVolunteerProfileReviewService VolunteerProfileReviewService { get; set; }
         private MockVolunteerProfileService VolunteerProfileService { get; set; }
@@ -89,6 +92,12 @@ namespace Ttu.TestFramework
             VolunteerProfileService.MockUnitOfWork = unitOfWork;
             return VolunteerProfileService;
 
+        }
+
+        public IProjectService CreateProjectService(IUnitOfWork unitOfWork)
+        {
+            ProjectService.MockUnitOfWork = unitOfWork;
+            return ProjectService;
         }
 
         #endregion

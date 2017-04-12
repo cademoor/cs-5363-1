@@ -25,6 +25,7 @@ namespace Ttu.Presentation
         public ManageOrganizationUserViewState ManageOrganizationUserViewState { get; set; }
         public ManageRecommendationViewState ManageRecommendationViewState { get; set; }
         public ManageUserViewState ManageUserViewState { get; set; }
+        public ManageProjectViewState ManageProjectViewState { get; set; }
 
         #endregion
 
@@ -59,6 +60,11 @@ namespace Ttu.Presentation
         public override ManageUserPresenter CreateManageUserPresenter()
         {
             return new ManageUserPresenter(ManageUserViewState);
+        }
+
+        public override ManageProjectPresenter CreateManageProjectPresenter()
+        {
+            return new ManageProjectPresenter(ManageProjectViewState);
         }
 
         #endregion

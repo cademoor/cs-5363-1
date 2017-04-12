@@ -56,6 +56,11 @@
             return NullVolunteerProfileService.Singleton;
         }
 
+        public IProjectService CreateProjectService(IUnitOfWork unitOfWork)
+        {
+            return NullProjectService.Singleton;
+        }
+
         #endregion
 
     }

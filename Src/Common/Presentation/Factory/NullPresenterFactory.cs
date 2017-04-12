@@ -21,6 +21,7 @@ namespace Ttu.Presentation
 
         public virtual IUnitOfWork UnitOfWork { get; protected set; }
         public virtual IUser User { get; protected set; }
+        public virtual IOrganization Organization { get; protected set; }
 
         #endregion
 
@@ -48,6 +49,11 @@ namespace Ttu.Presentation
         }
 
         public virtual ManageUserPresenter CreateManageUserPresenter()
+        {
+            return null;
+        }
+
+        public virtual ManageProjectPresenter CreateManageProjectPresenter()
         {
             return null;
         }

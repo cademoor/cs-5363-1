@@ -20,6 +20,7 @@ namespace Ttu.Presentation
         protected PresentationEnvironment PresentationEnvironment { get { return PresentationEnvironment.Singleton; } }
         protected IUnitOfWork UnitOfWork { get { return ViewState.UnitOfWork; } }
         protected IUser User { get { return ViewState.User; } }
+        protected IOrganization Organization { get { return ViewState.Organization; } }
         protected IServiceFactory ServiceFactory { get { return PresentationEnvironment.ServiceFactory; } }
 
         private IViewState ViewState { get; set; }
@@ -90,6 +91,11 @@ namespace Ttu.Presentation
         protected IUserService CreateUserService()
         {
             return ServiceFactory.CreateUserService(UnitOfWork);
+        }
+
+        protected IProjectService CreateProjectService()
+        {
+            return ServiceFactory.CreateProjectService(UnitOfWork);
         }
 
         #endregion

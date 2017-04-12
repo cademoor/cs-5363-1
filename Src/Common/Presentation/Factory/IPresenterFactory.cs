@@ -8,6 +8,7 @@ namespace Ttu.Presentation
         // attributes
         IUnitOfWork UnitOfWork { get; }
         IUser User { get; }
+        IOrganization Organization { get; }
 
         // behavior
         LogOnPresenter CreateLogOnPresenter();
@@ -15,6 +16,7 @@ namespace Ttu.Presentation
         ManageOrganizationUserPresenter CreateManageOrganizationUserPresenter();
         ManageRecommendationPresenter CreateManageRecommendationPresenter();
         ManageUserPresenter CreateManageUserPresenter();
+        ManageProjectPresenter CreateManageProjectPresenter();
 
 
     }

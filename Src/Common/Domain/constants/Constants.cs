@@ -29,6 +29,11 @@
         public const int VOLUNTEER_PROFILE_NAME_MAX_LENGTH = 50;
         public const int VOLUNTEER_PROFILE_NAME_MIN_LENGTH = 1;
 
+        public const int PROJECT_MIN_LENGTH = 1;
+        public const int PROJECT_MAX_LENGTH = 100;
+        public const int PROJECT_DESCIPTION_MIN_LENGTH = 1;
+        public const int PROJECT_DESCRIPTION_MAX_LENGTH = 1000;
+
     }
 
     public enum ContactType : int

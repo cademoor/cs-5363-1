@@ -17,5 +17,7 @@
 
         IUserService CreateUserService(IUnitOfWork unitOfWork);
 
+        IProjectService CreateProjectService(IUnitOfWork unitOfWork);
+
     }
 }

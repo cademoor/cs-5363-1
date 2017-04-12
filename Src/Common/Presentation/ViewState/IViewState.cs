@@ -7,6 +7,7 @@ namespace Ttu.Presentation
 
         IUnitOfWork UnitOfWork { get; }
         IUser User { get; }
+        IOrganization Organization { get; }
 
     }
 }
