@@ -35,7 +35,7 @@ namespace Ttu.ServiceTest.service
         public void TestBlueSky_MaintainProjects()
         {
             // pre-conditions
-            Assert.AreEqual(0, Service.GetProjects().Length);
+            Assert.AreEqual(0, Service.GetProjects(Org).Length);
             Assert.AreEqual(0, Service.GetProjectsCreatedBy(User).Length);
 
             // exercise
@@ -51,7 +51,7 @@ namespace Ttu.ServiceTest.service
             UnitOfWork.Abort();
 
             // post-conditions
-            Assert.AreEqual(1, Service.GetProjects().Length);
+            Assert.AreEqual(1, Service.GetProjects(Org).Length);
             Assert.IsNull(Service.GetProject(project1.RecordId));
             Assert.IsNotNull(Service.GetProject(project2.RecordId));
             Assert.IsNotNull(Service.GetProjectsCreatedBy(User));

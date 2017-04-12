@@ -42,9 +42,9 @@ namespace Ttu.Service
             return GetApplications(project, ProjectApplicationStatus.Submitted);
         }
 
-        public IProject[] GetProjects()
+        public IProject[] GetProjects(int organizationId)
         {
-            return UnitOfWork.Projects.FindAll();
+            return UnitOfWork.Projects.FindBy(vp => vp.Organization.RecordId == organizationId);
         }
 
         public IProject[] GetProjectsCreatedBy(IUser user)

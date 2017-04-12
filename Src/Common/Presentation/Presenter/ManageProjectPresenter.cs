@@ -55,9 +55,9 @@ namespace Ttu.Presentation
             return CreateProjectModel(project);
         }
 
-        public ProjectModel[] GetProjects()
+        public ProjectModel[] GetProjects(int organizationId)
         {
-            return Service.GetProjects().Select(o => CreateProjectModel(o)).ToArray();
+            return Service.GetProjects(organizationId).Select(o => CreateProjectModel(o)).ToArray();
         }
 
         public void RemoveProject(ProjectModel projectModel)

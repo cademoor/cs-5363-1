@@ -29,7 +29,7 @@ namespace Ttu.TestFramework
 
         public override void AddProject(IProject project)
         {
-            IProject[] projects = GetProjects();
+            IProject[] projects = GetProjects(null);
             if (projects.Length == 0)
             {
                 project.RecordId = 1;
@@ -46,7 +46,7 @@ namespace Ttu.TestFramework
             return MockUnitOfWork.Projects.FindByRecordId(recordId);
         }
 
-        public override IProject[] GetProjects()
+        public override IProject[] GetProjects(IOrganization organization)
         {
             return MockUnitOfWork.Projects.FindAll();
         }

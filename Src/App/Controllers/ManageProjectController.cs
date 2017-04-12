@@ -10,11 +10,11 @@ namespace App.Controllers
     public class ManageProjectController : AbstractController
     {
         // GET: ManageProject
-        public ActionResult Index()
+        public ActionResult Index(int organizationId)
         {
             IPresenterFactory presenterFactory = ValidatePresenterFactory();
             ManageProjectPresenter presenter = presenterFactory.CreateManageProjectPresenter();
-            return View(presenter.GetProjects());
+            return View(presenter.GetProjects(organizationId));
         }
 
         // GET: ManageProject/Details/5

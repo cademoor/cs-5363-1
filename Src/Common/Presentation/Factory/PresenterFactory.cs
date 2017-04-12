@@ -78,6 +78,7 @@ namespace Ttu.Presentation
             ManageOrganizationUserViewState = new ManageOrganizationUserViewState(this);
             ManageRecommendationViewState = new ManageRecommendationViewState(this);
             ManageUserViewState = new ManageUserViewState(this);
+            ManageProjectViewState = new ManageProjectViewState(this);
         }
 
         #endregion
