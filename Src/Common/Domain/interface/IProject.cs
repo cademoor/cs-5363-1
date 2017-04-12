@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Ttu.Domain
 {
-    public interface IVolunteerOpportunity
+    public interface IProject
     {
 
         // attributes
-
         IUser CreatedBy { get; set; }
         IOrganization Organization { get; set; }
 

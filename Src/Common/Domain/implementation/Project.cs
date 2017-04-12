@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Ttu.Domain
 {
-    public class VolunteerOpportunity : IVolunteerOpportunity
+    public class Project : IProject
     {
 
         #region Constructors
 
-        public VolunteerOpportunity()
+        public Project()
             : this(null, null)
         {
         }
 
-        public VolunteerOpportunity(IUser createdBy, IOrganization organization)
+        public Project(IUser createdBy, IOrganization organization)
         {
             CreatedBy = createdBy;
             Organization = organization;

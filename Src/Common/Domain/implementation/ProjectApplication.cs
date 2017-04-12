@@ -1,24 +1,23 @@
-﻿
-namespace Ttu.Domain
+﻿namespace Ttu.Domain
 {
-    public class VolunteerOpportunityApplication : IVolunteerOpportunityApplication
+    public class ProjectApplication : IProjectApplication
     {
 
         #region Constructors
 
-        public VolunteerOpportunityApplication()
+        public ProjectApplication()
             : this(null, null)
         {
         }
 
-        public VolunteerOpportunityApplication(IUser user, IVolunteerOpportunity volunterrOpportunity)
+        public ProjectApplication(IUser user, IProject project)
         {
             User = user;
-            VolunteerOpportunity = volunterrOpportunity;
+            Project = project;
 
             LastChangeStatusUser = null;
             Note = string.Empty;
-            Status = OpportunityApplicationStatus.Submitted;
+            Status = ProjectApplicationStatus.Submitted;
             RecordId = 0;
         }
 
@@ -32,17 +31,17 @@ namespace Ttu.Domain
 
         public virtual int RecordId { get; set; }
 
-        public virtual OpportunityApplicationStatus Status { get; set; }
+        public virtual ProjectApplicationStatus Status { get; set; }
 
         public virtual IUser User { get; set; }
 
-        public virtual IVolunteerOpportunity VolunteerOpportunity { get; set; }
+        public virtual IProject Project { get; set; }
 
         #endregion
 
         #region Public Methods
 
-        public virtual void ChangeStatus(IUser user, OpportunityApplicationStatus status)
+        public virtual void ChangeStatus(IUser user, ProjectApplicationStatus status)
         {
             LastChangeStatusUser = user;
             Status = status;
@@ -51,23 +50,23 @@ namespace Ttu.Domain
         public virtual bool IsCurrent()
         {
             // guard clause - invalid state
-            if (VolunteerOpportunity == null)
+            if (Project == null)
             {
                 return false;
             }
 
-            return VolunteerOpportunity.IsCurrent();
+            return Project.IsCurrent();
         }
 
         public virtual bool IsPrevious()
         {
             // guard clause - invalid state
-            if (VolunteerOpportunity == null)
+            if (Project == null)
             {
                 return false;
             }
 
-            return VolunteerOpportunity.IsPrevious();
+            return Project.IsPrevious();
         }
 
         #endregion

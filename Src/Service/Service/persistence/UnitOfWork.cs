@@ -102,10 +102,10 @@ namespace Ttu.Service
         public override IUnitOfWorkRepository<IContact> Contacts { get { return CreateUowRepository<IContact>(); } }
         public override IUnitOfWorkRepository<IOrganization> Organizations { get { return CreateUowRepository<IOrganization>(); } }
         public override IUnitOfWorkRepository<IOrganizationUser> OrganizationUsers { get { return CreateUowRepository<IOrganizationUser>(); } }
+        public override IUnitOfWorkRepository<IProject> Projects { get { return CreateUowRepository<IProject>(); } }
         public override IUnitOfWorkRepository<IRecommendation> Recommendations { get { return CreateUowRepository<IRecommendation>(); } }
         public override IUnitOfWorkRepository<IUser> Users { get { return CreateUowRepository<IUser>(); } }
-        public override IUnitOfWorkRepository<IVolunteerOpportunity> VolunteerOpportunities { get { return CreateUowRepository<IVolunteerOpportunity>(); } }
-        public override IUnitOfWorkRepository<IVolunteerOpportunityApplication> VolunteerOpportunityApplications { get { return CreateUowRepository<IVolunteerOpportunityApplication>(); } }
+        public override IUnitOfWorkRepository<IProjectApplication> ProjectApplications { get { return CreateUowRepository<IProjectApplication>(); } }
         public override IUnitOfWorkRepository<IVolunteerProfile> VolunteerProfiles { get { return CreateUowRepository<IVolunteerProfile>(); } }
         public override IUnitOfWorkRepository<IVolunteerProfileReview> VolunteerProfileReviews { get { return CreateUowRepository<IVolunteerProfileReview>(); } }
 
