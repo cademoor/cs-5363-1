@@ -54,13 +54,16 @@ namespace Ttu.ServiceTest.service
             IProject project2 = CreateProject();
             Service.AddProject(project2);
 
+            UnitOfWork.Commit();
+            UnitOfWork.Abort();
+
             Service.RemoveProject(project1);
 
             UnitOfWork.Commit();
             UnitOfWork.Abort();
 
             // post-conditions
-            Assert.AreEqual(1, Service.GetProjects(0).Length);
+            Assert.AreEqual(1, Service.GetProjects(project2.Organization.RecordId).Length);
             Assert.IsNull(Service.GetProject(project1.RecordId));
             Assert.IsNotNull(Service.GetProject(project2.RecordId));
             Assert.IsNotNull(Service.GetProjectsCreatedBy(User));
@@ -176,7 +179,7 @@ namespace Ttu.ServiceTest.service
 
         private IProject CreateProject()
         {
-            return new Project(User1) { Organization =  Org1};
+            return new Project(User1) { Organization = Org1 };
         }
 
         #endregion

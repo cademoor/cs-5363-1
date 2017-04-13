@@ -15,6 +15,7 @@ namespace Ttu.Presentation
         public ManageProjectPresenter(ManageProjectViewState viewState)
             : base(viewState)
         {
+            OrganizationService = CreateOrganizationService();
             Service = CreateProjectService();
         }
 
@@ -22,6 +23,7 @@ namespace Ttu.Presentation
 
         #region Properties
 
+        private IOrganizationService OrganizationService { get; set; }
         private IProjectService Service { get; set; }
 
         #endregion
@@ -35,6 +37,14 @@ namespace Ttu.Presentation
             {
                 return;
             }
+
+            int organizationId = projectModel.OrganizationId;
+            OrganizationModel organizationModel = GetOrganization(organizationId);
+            if (organizationModel == null)
+            {
+                throw new Exception("Unable to find organization with ID " + organizationId);
+            }
+            projectModel.OrganizationModel = organizationModel;
 
             IProject project = new Project(User);
             projectModel.ApplyTo(project);
@@ -55,9 +65,9 @@ namespace Ttu.Presentation
             return CreateProjectModel(project);
         }
 
-        public ProjectModel[] GetProjects(int organizationId)
+        public ProjectModel[] GetProjects(int organizationRecordId)
         {
-            return Service.GetProjects(organizationId).Select(o => CreateProjectModel(o)).ToArray();
+            return Service.GetProjects(organizationRecordId).Select(o => CreateProjectModel(o)).ToArray();
         }
 
         public void RemoveProject(ProjectModel projectModel)
@@ -81,6 +91,18 @@ namespace Ttu.Presentation
             ProjectModel projectModel = new ProjectModel();
             projectModel.CopyFrom(project);
             return projectModel;
+        }
+
+        private OrganizationModel GetOrganization(int recordId)
+        {
+            // guard clause - not found
+            IOrganization organization = OrganizationService.GetOrganization(recordId);
+            if (organization == null)
+            {
+                return null;
+            }
+
+            return CreateOrganizationModel(organization);
         }
 
         #endregion

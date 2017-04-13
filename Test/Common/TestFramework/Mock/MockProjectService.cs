@@ -46,7 +46,7 @@ namespace Ttu.TestFramework
             return MockUnitOfWork.Projects.FindByRecordId(recordId);
         }
 
-        public override IProject[] GetProjects(int organizationId)
+        public override IProject[] GetProjects(int organizationRecordId)
         {
             return MockUnitOfWork.Projects.FindAll();
         }

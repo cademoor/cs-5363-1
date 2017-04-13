@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ttu.Presentation;
 
@@ -38,19 +35,10 @@ namespace App.Controllers
                 int organizationId = projectModel.OrganizationId;
                 IPresenterFactory presenterFactory = ValidatePresenterFactory();
 
-                // Look up the OrganizationModel
-                ManageOrganizationPresenter organizationPresenter = presenterFactory.CreateManageOrganizationPresenter();
-                OrganizationModel organizationModel = organizationPresenter.GetOrganization(organizationId);
-                if (organizationModel == null)
-                {
-                    throw new Exception("Unable to find organization with ID " + organizationId);
-                }
-                projectModel.OrganizationModel = organizationModel;
-
                 ManageProjectPresenter presenter = presenterFactory.CreateManageProjectPresenter();
                 presenter.AddProject(projectModel);
 
-                return RedirectToAction("Index", new { organizationId = organizationId});
+                return RedirectToAction("Index", organizationId);
             }
             catch (Exception ex)
             {

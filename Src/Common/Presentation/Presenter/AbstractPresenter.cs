@@ -28,6 +28,13 @@ namespace Ttu.Presentation
 
         #region Shared Methods
 
+        protected OrganizationModel CreateOrganizationModel(IOrganization organization)
+        {
+            OrganizationModel organizationModel = new OrganizationModel();
+            organizationModel.CopyFrom(organization);
+            return organizationModel;
+        }
+
         protected void ValidateInput(object o)
         {
             if (o != null)
