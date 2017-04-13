@@ -8,7 +8,6 @@ namespace Ttu.Presentation
         // attributes
         IUnitOfWork UnitOfWork { get; }
         IUser User { get; }
-        IOrganization Organization { get; }
 
         // behavior
         LogOnPresenter CreateLogOnPresenter();

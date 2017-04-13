@@ -18,7 +18,6 @@ namespace Ttu.Presentation
 
         public IUnitOfWork UnitOfWork { get { return PresenterFactory.UnitOfWork; } }
         public IUser User { get { return PresenterFactory.User; } }
-        public IOrganization Organization { get { return PresenterFactory.Organization; } }
 
         private IPresenterFactory PresenterFactory { get; set; }
 

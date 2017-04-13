@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,10 @@ namespace Ttu.Presentation
 
         public int RecordId { get; set; }
 
+        public int OrganizationId { get; set; }
+        
+        public OrganizationModel OrganizationModel { get; set; }
+
         [Required]
         [Display(Name = "Volunteers Needed")]
         public int MinimumVolunteers { get; set; }
@@ -69,6 +74,13 @@ namespace Ttu.Presentation
             project.StopTime = StopTime;
             project.MinimumVolunteers = MinimumVolunteers;
             project.MaximumVolunteers = MaximumVolunteers;
+
+            Organization organization = new Organization();
+            OrganizationModel.ApplyTo(organization);
+            // Extra step: if we have an organization ID, put that here
+            organization.RecordId = OrganizationId;
+
+            project.Organization = organization;
         }
 
         public void CopyFrom(IProject project)
@@ -80,6 +92,10 @@ namespace Ttu.Presentation
             RecordId = project.RecordId;
             MinimumVolunteers = project.MinimumVolunteers;
             MaximumVolunteers = project.MaximumVolunteers;
+
+            OrganizationModel organizationModel = new OrganizationModel();
+            organizationModel.CopyFrom(project.Organization);
+            OrganizationModel = organizationModel;
         }
 
         #endregion

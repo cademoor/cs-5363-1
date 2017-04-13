@@ -8,14 +8,13 @@ namespace Ttu.Domain
         #region Constructors
 
         public Project()
-            : this(null, null)
+            : this(null)
         {
         }
 
-        public Project(IUser createdBy, IOrganization organization)
+        public Project(IUser createdBy)
         {
             CreatedBy = createdBy;
-            Organization = organization;
 
             RecordId = 0;
 

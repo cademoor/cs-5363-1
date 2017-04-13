@@ -45,7 +45,6 @@ namespace Ttu.ServiceTest
         protected static SessionDecorator Session { get; private set; }
         protected IUnitOfWork UnitOfWork;
         protected IUser User;
-        protected IOrganization Org;
 
         #endregion
 

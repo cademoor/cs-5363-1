@@ -37,7 +37,8 @@ namespace Ttu.DomainTest.implementation
                 Website = "www.nowhere.com"
             };
 
-            Project = new Project(TestUser, TestOrganization);
+            Project = new Project(TestUser);
+            Project.Organization = TestOrganization;
         }
 
         #region Blue Sky Tests

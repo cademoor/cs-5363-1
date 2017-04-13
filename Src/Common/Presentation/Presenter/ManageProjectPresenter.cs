@@ -36,7 +36,7 @@ namespace Ttu.Presentation
                 return;
             }
 
-            IProject project = new Project(User, Organization);
+            IProject project = new Project(User);
             projectModel.ApplyTo(project);
 
             Service.AddProject(project);
