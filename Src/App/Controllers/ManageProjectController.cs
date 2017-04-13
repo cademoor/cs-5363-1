@@ -38,9 +38,9 @@ namespace App.Controllers
                 ManageProjectPresenter presenter = presenterFactory.CreateManageProjectPresenter();
                 presenter.AddProject(projectModel);
 
-                return RedirectToAction("Index", organizationId);
+                return RedirectToAction("Index", new { organizationId = organizationId });
             }
-            catch (Exception ex)
+            catch
             {
                 return View();
             }
