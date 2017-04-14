@@ -9,9 +9,16 @@ namespace App.Controllers
         // GET: ManageProject
         public ActionResult Index(int organizationId)
         {
-            IPresenterFactory presenterFactory = ValidatePresenterFactory();
-            ManageProjectPresenter presenter = presenterFactory.CreateManageProjectPresenter();
-            return View(presenter.GetProjects(organizationId));
+            try
+            {
+                IPresenterFactory presenterFactory = ValidatePresenterFactory();
+                ManageProjectPresenter presenter = presenterFactory.CreateManageProjectPresenter();
+                return View(presenter.GetProjects(organizationId));
+            }
+            catch (Exception ex)
+            {
+                return HandleException(ex);
+            }
         }
 
         // GET: ManageProject/Details/5
@@ -40,9 +47,9 @@ namespace App.Controllers
 
                 return RedirectToAction("Index", new { organizationId = organizationId });
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return HandleException(ex);
             }
         }
 

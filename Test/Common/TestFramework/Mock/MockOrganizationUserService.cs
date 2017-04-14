@@ -47,17 +47,6 @@ namespace Ttu.TestFramework
             return MockUnitOfWork.OrganizationUsers.FindAll();
         }
 
-        public override IOrganizationUser GetOrganizationUser(int organizationId, int userId)
-        {
-            return MockUnitOfWork.OrganizationUsers.FindByUnique(o => o.OrganizationId == organizationId && o.UserId == userId);
-        }
-
-        public override int GetOrganizationUserRole(int organizationId, int userId)
-        {
-            return MockUnitOfWork.OrganizationUsers.FindByUnique(o => o.OrganizationId == organizationId && o.UserId == userId).OrganizationRole;
-        }
-
-
         public override void RemoveOrganizationUser(int recordId)
         {
             // guard clause - not found
@@ -68,17 +57,6 @@ namespace Ttu.TestFramework
             }
 
             MockUnitOfWork.OrganizationUsers.Remove(organization);
-        }
-
-        public override void RemoveOrganizationUser(int organizationId, int userId)
-        {
-            IOrganizationUser organizationUser = GetOrganizationUser(organizationId, userId);
-            if (organizationUser == null)
-            {
-                return;
-            }
-
-            RemoveOrganizationUser(organizationUser.RecordId);
         }
 
         #endregion

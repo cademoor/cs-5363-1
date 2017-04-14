@@ -8,12 +8,18 @@ namespace Ttu.ServiceTest.service
     public class OrganizationUserServiceTest : AbstractServiceTest
     {
 
+        private IOrganization Organization;
+        private OrganizationService OrganizationService;
         private OrganizationUserService Service;
 
         [TestInitialize]
         public void SetUp()
         {
+            OrganizationService = new OrganizationService(UnitOfWork);
             Service = new OrganizationUserService(UnitOfWork);
+
+            Organization = CreateOrganization("Org1");
+            OrganizationService.AddOrganization(Organization);
 
             UnitOfWork.OrganizationUsers.RemoveAll(UnitOfWork.OrganizationUsers.FindAll());
             UnitOfWork.Commit();
@@ -29,27 +35,24 @@ namespace Ttu.ServiceTest.service
             Assert.AreEqual(0, Service.GetOrganizationUsers().Length);
 
             // exercise
-            IOrganizationUser contactHome = CreateOrganizationUser(1000, 1000);
-            Service.AddOrganizationUser(contactHome);
+            IOrganizationUser organizationUser1 = CreateOrganizationUser();
+            Service.AddOrganizationUser(organizationUser1);
 
-            IOrganizationUser contactMobile = CreateOrganizationUser(1001, 1001);
-            Service.AddOrganizationUser(contactMobile);
+            IOrganizationUser organizationUser2 = CreateOrganizationUser();
+            Service.AddOrganizationUser(organizationUser2);
 
             UnitOfWork.Commit();
             UnitOfWork.Abort();
 
-            
-
-            Service.RemoveOrganizationUser(contactHome.OrganizationId, contactHome.UserId);
+            Service.RemoveOrganizationUser(organizationUser1.RecordId);
 
             UnitOfWork.Commit();
             UnitOfWork.Abort();
 
             // post-conditions
             Assert.AreEqual(1, Service.GetOrganizationUsers().Length);
-            Assert.IsNotNull(Service.GetOrganizationUser(1001, 1001));
-            Assert.IsNull(Service.GetOrganizationUser(contactHome.RecordId));
-            Assert.IsNotNull(Service.GetOrganizationUser(contactMobile.RecordId));
+            Assert.IsNull(Service.GetOrganizationUser(organizationUser1.RecordId));
+            Assert.IsNotNull(Service.GetOrganizationUser(organizationUser2.RecordId));
         }
 
         #endregion
@@ -61,9 +64,14 @@ namespace Ttu.ServiceTest.service
 
         #region Helper Methods
 
-        private IOrganizationUser CreateOrganizationUser(int organizationId, int userId)
+        private IOrganization CreateOrganization(string name)
         {
-            return new OrganizationUser(organizationId, userId);
+            return new Organization(User, name);
+        }
+
+        private IOrganizationUser CreateOrganizationUser()
+        {
+            return new OrganizationUser(Organization, User);
         }
 
         #endregion

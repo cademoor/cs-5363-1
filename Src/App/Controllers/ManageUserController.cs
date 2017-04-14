@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Ttu.Presentation;
 
 namespace App.Controllers
@@ -8,9 +9,16 @@ namespace App.Controllers
         // GET: ManageUser
         public ActionResult Index()
         {
-            IPresenterFactory presenterFactory = ValidatePresenterFactory();
-            ManageUserPresenter presenter = presenterFactory.CreateManageUserPresenter();
-            return View(presenter.GetUsers());
+            try
+            {
+                IPresenterFactory presenterFactory = ValidatePresenterFactory();
+                ManageUserPresenter presenter = presenterFactory.CreateManageUserPresenter();
+                return View(presenter.GetUsers());
+            }
+            catch (Exception ex)
+            {
+                return HandleException(ex);
+            }
         }
 
         // GET: ManageUser/Details/5
@@ -37,9 +45,9 @@ namespace App.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return HandleException(ex);
             }
         }
 

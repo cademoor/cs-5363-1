@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ttu.Domain;
 
 namespace Ttu.Presentation
@@ -40,12 +37,6 @@ namespace Ttu.Presentation
 
             int organizationId = projectModel.OrganizationId;
             OrganizationModel organizationModel = GetOrganization(organizationId);
-
-            // Necessary so NHibernate will forget about the organization we just retrieved
-            // (At least, that's the best reason why I can see needing this to stop NHibernate
-            // from trying to re-save the organization)
-            UnitOfWork.Commit();
-            UnitOfWork.Abort();
 
             if (organizationModel == null)
             {
