@@ -17,6 +17,5 @@ namespace Ttu.Presentation
         ManageUserPresenter CreateManageUserPresenter();
         ManageProjectPresenter CreateManageProjectPresenter();
 
-
     }
 }

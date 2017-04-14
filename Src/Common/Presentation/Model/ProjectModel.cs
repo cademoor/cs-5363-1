@@ -36,7 +36,7 @@ namespace Ttu.Presentation
         public string ProjectName { get; set; }
 
         [Required]
-        [StringLength(Constants.PROJECT_DESCRIPTION_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.PROJECT_DESCIPTION_MIN_LENGTH)]
+        [StringLength(Constants.PROJECT_DESCRIPTION_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.PROJECT_DESCRIPTION_MIN_LENGTH)]
         [DataType(DataType.Text)]
         [Display(Name = "Description")]
         public string ProjectDescription { get; set; }
