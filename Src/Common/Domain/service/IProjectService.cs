@@ -10,7 +10,7 @@
         IProjectApplication[] GetDeniedApplications(IProject project);
         IProjectApplication[] GetSubmittedApplications(IProject project);
 
-        IProject[] GetProjects();
+        IProject[] GetProjects(int organizationRecordId);
         IProject[] GetProjectsCreatedBy(IUser user);
         IProject GetProject(int recordId);
         IProject[] GetAllAppliedProjects(IUser user, ProjectApplicationStatus status);

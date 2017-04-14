@@ -25,6 +25,7 @@ namespace Ttu.Presentation
         public ManageOrganizationUserViewState ManageOrganizationUserViewState { get; set; }
         public ManageRecommendationViewState ManageRecommendationViewState { get; set; }
         public ManageUserViewState ManageUserViewState { get; set; }
+        public ManageProjectViewState ManageProjectViewState { get; set; }
 
         #endregion
 
@@ -61,6 +62,11 @@ namespace Ttu.Presentation
             return new ManageUserPresenter(ManageUserViewState);
         }
 
+        public override ManageProjectPresenter CreateManageProjectPresenter()
+        {
+            return new ManageProjectPresenter(ManageProjectViewState);
+        }
+
         #endregion
 
         #region Helper Methods
@@ -72,6 +78,7 @@ namespace Ttu.Presentation
             ManageOrganizationUserViewState = new ManageOrganizationUserViewState(this);
             ManageRecommendationViewState = new ManageRecommendationViewState(this);
             ManageUserViewState = new ManageUserViewState(this);
+            ManageProjectViewState = new ManageProjectViewState(this);
         }
 
         #endregion

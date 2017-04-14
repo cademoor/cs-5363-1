@@ -40,7 +40,7 @@
             return new IProjectApplication[0];
         }
 
-        public virtual IProject[] GetProjects()
+        public virtual IProject[] GetProjects(int organizationRecordId)
         {
             return new IProject[0];
         }

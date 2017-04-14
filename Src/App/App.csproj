@@ -187,6 +187,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageOrganizationController.cs" />
+    <Compile Include="Controllers\ManageProjectController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\RecommendedOrganizationController.cs" />
     <Compile Include="Controllers\RegisterUserController.cs" />
@@ -251,6 +252,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\RecommendedOrganization\Index.cshtml" />
+    <Content Include="Views\ManageProject\Create.cshtml" />
+    <Content Include="Views\ManageProject\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

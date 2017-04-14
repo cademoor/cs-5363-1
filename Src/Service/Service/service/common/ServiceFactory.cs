@@ -48,6 +48,11 @@ namespace Ttu.Service
             return new VolunteerProfileService(unitOfWork);
         }
 
+        public IProjectService CreateProjectService(IUnitOfWork unitOfWork)
+        {
+            return new ProjectService(unitOfWork);
+        }
+
         #endregion
 
     }

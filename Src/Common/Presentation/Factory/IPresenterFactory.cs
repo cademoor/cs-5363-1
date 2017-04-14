@@ -15,7 +15,7 @@ namespace Ttu.Presentation
         ManageOrganizationUserPresenter CreateManageOrganizationUserPresenter();
         ManageRecommendationPresenter CreateManageRecommendationPresenter();
         ManageUserPresenter CreateManageUserPresenter();
-
+        ManageProjectPresenter CreateManageProjectPresenter();
 
     }
 }

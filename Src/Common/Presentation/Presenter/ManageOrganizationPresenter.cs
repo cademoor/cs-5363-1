@@ -70,16 +70,5 @@ namespace Ttu.Presentation
 
         #endregion
 
-        #region Helper Methods
-
-        private OrganizationModel CreateOrganizationModel(IOrganization organization)
-        {
-            OrganizationModel organizationModel = new OrganizationModel();
-            organizationModel.CopyFrom(organization);
-            return organizationModel;
-        }
-
-        #endregion
-
     }
 }
