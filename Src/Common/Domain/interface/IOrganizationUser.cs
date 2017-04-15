@@ -3,15 +3,15 @@
     public interface IOrganizationUser
     {
 
-        int RecordId { get; set; }
-
+        // attributes
         IOrganization Organization { get; set; }
+        int RecordId { get; set; }
         IUser User { get; set; }
 
-        int OrganizationId { get; set; }
-        int UserId { get; set; }
-        int OrganizationRole { get; set; }
-        bool OrganizationCreator { get; set; }
+        // behavior
+        int GetOrganizationRecordId();
+        int GetUserRecordId();
+        bool IsOrganizationCreator();
 
-     }
+    }
 }

@@ -10,10 +10,8 @@ namespace Ttu.Presentation
 
         public OrganizationUserModel()
         {
-
             OrganizationCreator = false;
             OrganizationId = 0;
-            OrganizationRole = 0;
             RecordId = 0;
             UserId = 0;
         }
@@ -22,16 +20,12 @@ namespace Ttu.Presentation
 
         #region Properties
 
-        
         [Display(Name = "OrganizationCreator")]
         public bool OrganizationCreator { get; set; }
 
         [Required]
         [Display(Name = "OrganizationId")]
         public int OrganizationId { get; set; }
-
-        [Display(Name = "OrganizationRole")]
-        public int OrganizationRole { get; set; }
 
         public int RecordId { get; set; }
 
@@ -45,19 +39,15 @@ namespace Ttu.Presentation
 
         public void ApplyTo(IOrganizationUser organizationUser)
         {
-            organizationUser.OrganizationCreator = OrganizationCreator;
-            organizationUser.OrganizationId = OrganizationId;
-            organizationUser.OrganizationRole = OrganizationRole;
-            organizationUser.UserId = UserId;
+            // do nothing
         }
 
         public void CopyFrom(IOrganizationUser organizationUser)
         {
-            OrganizationCreator = organizationUser.OrganizationCreator;
-            OrganizationId = organizationUser.OrganizationId;
-            OrganizationRole = organizationUser.OrganizationRole;
+            OrganizationCreator = organizationUser.IsOrganizationCreator();
+            OrganizationId = organizationUser.GetOrganizationRecordId();
             RecordId = organizationUser.RecordId;
-            UserId = organizationUser.UserId;
+            UserId = organizationUser.GetUserRecordId();
         }
 
         #endregion

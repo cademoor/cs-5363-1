@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ttu.Domain;
 
 namespace Ttu.Presentation
@@ -52,7 +47,7 @@ namespace Ttu.Presentation
         public int RecordId { get; set; }
 
         public int OrganizationId { get; set; }
-        
+
         public OrganizationModel OrganizationModel { get; set; }
 
         [Required]

@@ -22,29 +22,19 @@ namespace Ttu.Service
             UnitOfWork.OrganizationUsers.Add(organizationUser);
         }
 
-        public virtual IOrganizationUser[] GetOrganizationUsers(int organizationId)
+        public virtual IOrganizationUser[] GetOrganizationUsers(IOrganization organization)
         {
-            return UnitOfWork.OrganizationUsers.FindBy(o => o.OrganizationId == organizationId); 
+            return UnitOfWork.OrganizationUsers.FindBy(o => o.Organization == organization);
         }
 
         public virtual IOrganizationUser GetOrganizationUser(int recordId)
         {
-            return UnitOfWork.OrganizationUsers.FindByRecordId(recordId); 
-        }
-
-        public virtual IOrganizationUser GetOrganizationUser(int organizationId, int userId)
-        {
-            return UnitOfWork.OrganizationUsers.FindByUnique(o => o.OrganizationId == organizationId && o.UserId == userId);
-        }
-
-        public virtual int GetOrganizationUserRole(int organizationId, int userId)
-        {
-            return UnitOfWork.OrganizationUsers.FindByUnique(o => o.OrganizationId == organizationId && o.UserId == userId).OrganizationRole; 
+            return UnitOfWork.OrganizationUsers.FindByRecordId(recordId);
         }
 
         public virtual IOrganizationUser[] GetOrganizationUsers()
         {
-            return UnitOfWork.OrganizationUsers.FindAll(); 
+            return UnitOfWork.OrganizationUsers.FindAll();
         }
 
         public virtual void RemoveOrganizationUser(int recordId)
@@ -56,18 +46,6 @@ namespace Ttu.Service
             }
 
             UnitOfWork.OrganizationUsers.Remove(organizationUser);
-        }
-
-        public virtual void RemoveOrganizationUser(int organizationId, int userId)
-        {
-
-            IOrganizationUser organizationUser = GetOrganizationUser(organizationId, userId);
-            if (organizationUser == null)
-            {
-                return;
-            }
-
-            RemoveOrganizationUser(organizationUser.RecordId);
         }
 
         #endregion

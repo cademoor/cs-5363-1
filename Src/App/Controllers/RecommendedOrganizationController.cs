@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Ttu.Presentation;
 
 namespace App.Controllers
@@ -9,9 +10,16 @@ namespace App.Controllers
         // GET: RecommendedOrganization
         public ActionResult Index()
         {
-            IPresenterFactory presenterFactory = ValidatePresenterFactory();
-            ManageRecommendationPresenter presenter = presenterFactory.CreateManageRecommendationPresenter();
-            return View(presenter.GetRecommendations());
+            try
+            {
+                IPresenterFactory presenterFactory = ValidatePresenterFactory();
+                ManageRecommendationPresenter presenter = presenterFactory.CreateManageRecommendationPresenter();
+                return View(presenter.GetRecommendations());
+            }
+            catch (Exception ex)
+            {
+                return HandleException(ex);
+            }
         }
 
     }

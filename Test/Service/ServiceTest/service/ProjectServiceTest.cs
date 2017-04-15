@@ -13,21 +13,20 @@ namespace Ttu.ServiceTest.service
         private UserService UserService;
         private OrganizationService OrganizationService;
 
+        private IOrganization Organization1;
         private IUser User1;
-        private IOrganization Org1;
 
         [TestInitialize]
         public void SetUp()
         {
-
             Service = new ProjectService(UnitOfWork);
             UserService = new UserService(UnitOfWork);
             OrganizationService = new OrganizationService(UnitOfWork);
 
             User1 = new User("TESTUSER1");
             UserService.AddUser(User1);
-            Org1 = new Organization(User1, "MyOrg");
-            OrganizationService.AddOrganization(Org1);
+            Organization1 = new Organization(User1, "MyOrg");
+            OrganizationService.AddOrganization(Organization1);
 
             foreach (IProject project in UnitOfWork.Projects.FindAll())
             {
@@ -74,7 +73,7 @@ namespace Ttu.ServiceTest.service
         {
             // set-up
             User1 = UserService.GetUser(User1.RecordId);
-            Org1 = OrganizationService.GetOrganization(Org1.RecordId);
+            Organization1 = OrganizationService.GetOrganization(Organization1.RecordId);
 
             // pre-conditions
             Assert.AreEqual(0, Service.GetAllAppliedProjects(User1, ProjectApplicationStatus.Submitted).Length);
@@ -91,17 +90,17 @@ namespace Ttu.ServiceTest.service
 
             // exercise - create opportunities
             IProject previousSubmittedProject = new Project(User1);
-            previousSubmittedProject.Organization = Org1;
+            previousSubmittedProject.Organization = Organization1;
             previousSubmittedProject.StartTime = DateTime.Today.AddDays(-1);
             UnitOfWork.Projects.Add(previousSubmittedProject);
 
             IProject previousApprovedProject = new Project(User1);
-            previousApprovedProject.Organization = Org1;
+            previousApprovedProject.Organization = Organization1;
             previousApprovedProject.StartTime = DateTime.Today.AddDays(-1);
             UnitOfWork.Projects.Add(previousApprovedProject);
 
             IProject previousDeniedProject = new Project(User1);
-            previousDeniedProject.Organization = Org1;
+            previousDeniedProject.Organization = Organization1;
             previousDeniedProject.StartTime = DateTime.Today.AddDays(-1);
             UnitOfWork.Projects.Add(previousDeniedProject);
 
@@ -179,7 +178,7 @@ namespace Ttu.ServiceTest.service
 
         private IProject CreateProject()
         {
-            return new Project(User1) { Organization = Org1 };
+            return new Project(User1) { Organization = Organization1 };
         }
 
         #endregion

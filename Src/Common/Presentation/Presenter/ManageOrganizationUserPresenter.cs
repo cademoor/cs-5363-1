@@ -5,19 +5,24 @@ namespace Ttu.Presentation
 {
     public class ManageOrganizationUserPresenter : AbstractPresenter
     {
+
         #region Constructors
 
         public ManageOrganizationUserPresenter(ManageOrganizationUserViewState viewState)
             : base(viewState)
         {
+            OrganizationService = CreateOrganizationService();
             Service = CreateOrganizationUserService();
+            UserService = CreateUserService();
         }
 
         #endregion
 
         #region Properties
 
+        private IOrganizationService OrganizationService { get; set; }
         private IOrganizationUserService Service { get; set; }
+        private IUserService UserService { get; set; }
 
         #endregion
 
@@ -31,8 +36,10 @@ namespace Ttu.Presentation
                 return;
             }
 
-            IOrganizationUser organizationUser = new OrganizationUser(organizationUserModel.OrganizationId,
-                organizationUserModel.UserId);
+            IOrganization organization = OrganizationService.GetOrganization(organizationUserModel.OrganizationId);
+            IUser user = UserService.GetUser(organizationUserModel.UserId);
+
+            IOrganizationUser organizationUser = new OrganizationUser(organization, user);
             organizationUserModel.ApplyTo(organizationUser);
 
             Service.AddOrganizationUser(organizationUser);
@@ -51,33 +58,15 @@ namespace Ttu.Presentation
             return CreateOrganizationUserModel(organizationUser);
         }
 
-        public virtual OrganizationUserModel GetOrganizationUser(int organizationId, int userId)
-        {
-            // guard clause - not found
-            IOrganizationUser organizationUser = Service.GetOrganizationUser(organizationId, userId);
-            if (organizationUser == null)
-            {
-                return null;
-            }
-
-            return CreateOrganizationUserModel(organizationUser);
-        }
-
-        public virtual int GetOrganizationUserRole(int organizationId, int userId)
-        {
-            return
-                UnitOfWork.OrganizationUsers.FindByUnique(o => o.OrganizationId == organizationId && o.UserId == userId)
-                    .OrganizationRole;
-        }
-
         public OrganizationUserModel[] GetOrganizationUsers()
         {
             return Service.GetOrganizationUsers().Select(o => CreateOrganizationUserModel(o)).ToArray();
         }
 
-        public OrganizationUserModel[] GetOrganizationUsers(int organizationId)
+        public OrganizationUserModel[] GetOrganizationUsers(int organizationRecordId)
         {
-            return Service.GetOrganizationUsers(organizationId).Select(o => CreateOrganizationUserModel(o)).ToArray();
+            IOrganization organization = OrganizationService.GetOrganization(organizationRecordId);
+            return Service.GetOrganizationUsers(organization).Select(o => CreateOrganizationUserModel(o)).ToArray();
         }
 
         public void RemoveOrganizationUser(OrganizationUserModel organizationUserModel)
@@ -104,5 +93,6 @@ namespace Ttu.Presentation
         }
 
         #endregion
+
     }
 }

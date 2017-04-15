@@ -49,6 +49,10 @@ namespace Ttu.Service
             //RemoveVolunteerProfiles(user);
             //RemoveVolunteerProfileReviews(user);
 
+            UnitOfWork.OrganizationUsers.RemoveAll(UnitOfWork.OrganizationUsers.FindBy(ou => ou.User == user));
+            Organization[] organizations = UnitOfWork.Organizations.FindBy(ou => ou.CreatedBy == user).Select(o => o as Organization).ToArray();
+            organizations.ToList().ForEach(o => o.CreatedBy = null);
+
             UnitOfWork.Users.Remove(user);
         }
 

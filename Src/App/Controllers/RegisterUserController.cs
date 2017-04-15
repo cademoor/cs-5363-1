@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Ttu.Domain;
 using Ttu.Presentation;
 
@@ -6,6 +7,7 @@ namespace App.Controllers
 {
     public class RegisterUserController : AbstractController
     {
+
         // GET: RegisterUser
         public ActionResult Index()
         {
@@ -33,9 +35,9 @@ namespace App.Controllers
 
                 return RedirectToAction("Create", "ManageUser");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return HandleException(ex);
             }
         }
 

@@ -8,6 +8,7 @@ namespace App.Controllers
 {
     public class AbstractController : Controller
     {
+
         protected static readonly int SessionTimeoutMinutes = 5;
 
         #region Constructors
@@ -20,14 +21,26 @@ namespace App.Controllers
 
         #region Shared Methods
 
-        protected void PersistCookie(string sessionId)
-        {
-            PersistCookie(sessionId, DateTime.Now.AddMinutes(SessionTimeoutMinutes));
-        }
-
         protected void EndSession()
         {
             PersistCookie(null, DateTime.Now.AddMonths(-1));
+        }
+
+        protected ActionResult HandleException(Exception ex)
+        {
+            GetLogger().Error(ex);
+            return View();
+        }
+
+        protected ActionResult HandleExceptionWarn(string message)
+        {
+            GetLogger().Warn(message);
+            return View();
+        }
+
+        protected void PersistCookie(string sessionId)
+        {
+            PersistCookie(sessionId, DateTime.Now.AddMinutes(SessionTimeoutMinutes));
         }
 
         protected void PersistCookie(string sessionId, DateTime expirationDate)
@@ -76,6 +89,11 @@ namespace App.Controllers
         #endregion
 
         #region Helper Methods
+
+        private IApplicationLogger GetLogger()
+        {
+            return ApplicationLogger.GetLogger(GetType());
+        }
 
         private void PersistCookie(HttpCookie existingCookie)
         {

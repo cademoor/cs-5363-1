@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ttu.Domain
+﻿namespace Ttu.Domain
 {
     public class OrganizationUser : IOrganizationUser
     {
+
         #region Constructors
 
         public OrganizationUser()
@@ -15,48 +10,67 @@ namespace Ttu.Domain
         {
         }
 
-        public OrganizationUser(Organization organization, User user)
+        public OrganizationUser(IOrganization organization, IUser user)
         {
             Organization = organization;
             User = user;
 
-            OrganizationCreator = false;
-            OrganizationId = 0;
-            OrganizationRole = 0;
             RecordId = 0;
-            UserId = 0;
-        }
-
-        public OrganizationUser(int organizationId, int userId)
-        {
-            Organization = null;
-            User = null;
-
-            
-            OrganizationCreator = false;
-            OrganizationId = organizationId;
-            OrganizationRole = 0;
-            RecordId = 0;
-            UserId = userId;
         }
 
         #endregion
 
         #region Properties
 
-
-
         public virtual IOrganization Organization { get; set; }
-
-        public virtual bool OrganizationCreator { get; set; }
-        public virtual int OrganizationId { get; set; }
-        public virtual int OrganizationRole { get; set; }
         public virtual int RecordId { get; set; }
         public virtual IUser User { get; set; }
-        public virtual int UserId { get; set; }
 
         #endregion
 
+        #region Public Methods
+
+        public virtual int GetOrganizationRecordId()
+        {
+            // guard clause - invalid state
+            if (Organization == null)
+            {
+                return 0;
+            }
+
+            return Organization.RecordId;
+        }
+
+        public virtual int GetUserRecordId()
+        {
+            // guard clause - invalid state
+            if (User == null)
+            {
+                return 0;
+            }
+
+            return User.RecordId;
+        }
+
+        public virtual bool IsOrganizationCreator()
+        {
+            // guard clause - invalid state
+            if (Organization == null || User == null)
+            {
+                return false;
+            }
+
+            // guard clause - invalid state
+            IUser organizationCreator = Organization.CreatedBy;
+            if (organizationCreator == null)
+            {
+                return false;
+            }
+
+            return organizationCreator.RecordId == User.RecordId;
+        }
+
+        #endregion
 
     }
 }
