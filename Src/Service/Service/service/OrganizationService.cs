@@ -48,6 +48,9 @@ namespace Ttu.Service
             IOrganizationUser[] organizationUsers = UnitOfWork.OrganizationUsers.FindBy(ou => ou.Organization == organization);
             UnitOfWork.OrganizationUsers.RemoveAll(organizationUsers);
 
+            IProject[] projects = UnitOfWork.Projects.FindBy(ou => ou.Organization == organization);
+            UnitOfWork.Projects.RemoveAll(projects);
+
             UnitOfWork.Organizations.Remove(organization);
         }
 
