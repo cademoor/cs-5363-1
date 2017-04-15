@@ -1,4 +1,5 @@
 ﻿using Ttu.Domain;
+using Ttu.Presentation.Presenter;
 
 namespace Ttu.Presentation
 {
@@ -16,6 +17,7 @@ namespace Ttu.Presentation
         ManageRecommendationPresenter CreateManageRecommendationPresenter();
         ManageUserPresenter CreateManageUserPresenter();
         ManageProjectPresenter CreateManageProjectPresenter();
+        ProjectPresenter CreateProjectPresenter();
 
     }
 }
