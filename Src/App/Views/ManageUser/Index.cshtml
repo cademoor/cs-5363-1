@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -20,7 +21,6 @@
         <th>
             @Html.DisplayNameFor(model => model.UserId)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -33,11 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RecordId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RecordId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RecordId })
         </td>
     </tr>
 }
