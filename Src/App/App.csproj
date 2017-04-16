@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ManageOrganizationController.cs" />
     <Compile Include="Controllers\ManageProjectController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\RecommendedOrganizationController.cs" />
     <Compile Include="Controllers\RegisterUserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,6 +255,7 @@
     <Content Include="Views\RecommendedOrganization\Index.cshtml" />
     <Content Include="Views\ManageProject\Create.cshtml" />
     <Content Include="Views\ManageProject\Index.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

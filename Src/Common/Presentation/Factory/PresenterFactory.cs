@@ -1,4 +1,6 @@
 ﻿using Ttu.Domain;
+using Ttu.Presentation.Presenter;
+using Ttu.Presentation.ViewState;
 
 namespace Ttu.Presentation
 {
@@ -26,6 +28,7 @@ namespace Ttu.Presentation
         public ManageRecommendationViewState ManageRecommendationViewState { get; set; }
         public ManageUserViewState ManageUserViewState { get; set; }
         public ManageProjectViewState ManageProjectViewState { get; set; }
+        public ProjectViewState ProjectViewState { get; set; }
 
         #endregion
 
@@ -67,6 +70,11 @@ namespace Ttu.Presentation
             return new ManageProjectPresenter(ManageProjectViewState);
         }
 
+        public override ProjectPresenter CreateProjectPresenter()
+        {
+            return new ProjectPresenter(ProjectViewState);
+        }
+
         #endregion
 
         #region Helper Methods
@@ -79,6 +87,7 @@ namespace Ttu.Presentation
             ManageRecommendationViewState = new ManageRecommendationViewState(this);
             ManageUserViewState = new ManageUserViewState(this);
             ManageProjectViewState = new ManageProjectViewState(this);
+            ProjectViewState = new ProjectViewState(this);
         }
 
         #endregion

@@ -97,6 +97,7 @@
     <Compile Include="Presenter\ManageProjectPresenter.cs" />
     <Compile Include="Presenter\ManageRecommendationPresenter.cs" />
     <Compile Include="Presenter\ManageUserPresenter.cs" />
+    <Compile Include="Presenter\ProjectPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="ViewState\AbstractViewState.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="ViewState\ManageProjectViewState.cs" />
     <Compile Include="ViewState\ManageRecommendationViewState.cs" />
     <Compile Include="ViewState\ManageUserViewState.cs" />
+    <Compile Include="ViewState\ProjectViewState.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
