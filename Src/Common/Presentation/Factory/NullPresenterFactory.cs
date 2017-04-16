@@ -1,4 +1,5 @@
 ﻿using Ttu.Domain;
+using Ttu.Presentation.Presenter;
 
 namespace Ttu.Presentation
 {
@@ -54,6 +55,11 @@ namespace Ttu.Presentation
         }
 
         public virtual ManageProjectPresenter CreateManageProjectPresenter()
+        {
+            return null;
+        }
+
+        public virtual ProjectPresenter CreateProjectPresenter()
         {
             return null;
         }
