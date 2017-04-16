@@ -7,14 +7,6 @@ namespace App.Controllers
 {
     public class RegisterUserController : AbstractController
     {
-
-        // GET: RegisterUser
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: RegisterUser/Create
         public ActionResult Create()
         {
             return View();
