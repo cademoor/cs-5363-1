@@ -1,7 +1,7 @@
 ﻿namespace Ttu.Domain
 {
 
-    public enum OpportunityApplicationStatus : int
+    public enum ProjectApplicationStatus : int
     {
         Submitted = 0,
         Approved = 1,

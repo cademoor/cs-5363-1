@@ -10,6 +10,7 @@ namespace Ttu.ServiceTest
     {
 
         protected const string USER_ID = "ADMIN";
+        protected const string ORG_NAME = "SERVICE_TEST_ORGANIZATION";
 
         #region Constructors
 
@@ -32,6 +33,7 @@ namespace Ttu.ServiceTest
             }
 
             IUser user = InitializeUser();
+            IOrganization organization = InitializeOrganization();
             UnitOfWork = new UnitOfWork(Session, user);
             User = user;
         }
@@ -63,6 +65,25 @@ namespace Ttu.ServiceTest
             repository.Add(newUser);
             Session.Flush();
             return newUser;
+        }
+
+        private IOrganization InitializeOrganization()
+        {
+            IUser testUser = InitializeUser();
+
+            IUnitOfWorkRepository<IOrganization> repository = new UnitOfWorkRepository<IOrganization>(Session);
+
+            // guard clause - user already exists
+            IOrganization foundOrg = repository.FindByUnique(o => o.Name == ORG_NAME);
+            if (foundOrg != null)
+            {
+                return foundOrg;
+            }
+
+            IOrganization newOrg = new Organization(testUser, ORG_NAME);
+            repository.Add(newOrg);
+            Session.Flush();
+            return newOrg;
         }
 
         #endregion

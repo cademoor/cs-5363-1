@@ -33,7 +33,8 @@ namespace Ttu.RecommendationExporter
             if (args.Length == 0)
             {
                 AssemblyName name = Assembly.GetExecutingAssembly().GetName();
-                string exceptionMessage = string.Format("Invalid number of arguments.{0}Usage: {1} <output-file-path>", Environment.NewLine, name.Name);
+                string exceptionMessage = string.Format("Invalid number of arguments.{0}  Usage: {1} <output-file-path>{0}", Environment.NewLine, name.Name);
+                exceptionMessage = string.Format("{0}Example: {1} export.csv{2}", exceptionMessage, name.Name, Environment.NewLine);
                 throw new Exception(exceptionMessage);
             }
 
@@ -42,7 +43,7 @@ namespace Ttu.RecommendationExporter
 
         public IServiceFactory InitializeService()
         {
-            new ServiceInitializer().Initialize(false, true);
+            new ServiceInitializer().Initialize(false, false);
             ServiceFactory = new ServiceFactory();
             return ServiceFactory;
         }

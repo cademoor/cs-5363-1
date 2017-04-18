@@ -28,6 +28,13 @@ namespace Ttu.Presentation
 
         #region Shared Methods
 
+        protected OrganizationModel CreateOrganizationModel(IOrganization organization)
+        {
+            OrganizationModel organizationModel = new OrganizationModel();
+            organizationModel.CopyFrom(organization);
+            return organizationModel;
+        }
+
         protected void ValidateInput(object o)
         {
             if (o != null)
@@ -66,6 +73,17 @@ namespace Ttu.Presentation
             return ServiceFactory.CreateOrganizationService(UnitOfWork);
         }
 
+
+        protected IOrganizationUserService CreateOrganizationUserService()
+        {
+            return ServiceFactory.CreateOrganizationUserService(UnitOfWork);
+        }
+
+        protected IRecommendationService CreateRecommendationService()
+        {
+            return ServiceFactory.CreateRecommendationService(UnitOfWork);
+        }
+
         protected IVolunteerProfileReviewService CreateVolunteerProfileReviewService()
         {
             return ServiceFactory.CreateVolunteerProfileReviewService(UnitOfWork);
@@ -79,6 +97,11 @@ namespace Ttu.Presentation
         protected IUserService CreateUserService()
         {
             return ServiceFactory.CreateUserService(UnitOfWork);
+        }
+
+        protected IProjectService CreateProjectService()
+        {
+            return ServiceFactory.CreateProjectService(UnitOfWork);
         }
 
         #endregion

@@ -21,6 +21,7 @@
         string Description { get; set; }
 
         // behavior
+        bool IsAdmin();
         bool IsValid();
 
         bool MatchesPassword(string password);

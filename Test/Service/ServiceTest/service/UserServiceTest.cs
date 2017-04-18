@@ -18,7 +18,11 @@ namespace Ttu.ServiceTest.service
 
             try
             {
-                UnitOfWork.Users.RemoveAll(UnitOfWork.Users.FindBy(u => u.UserId != USER_ID));
+                foreach (IUser user in UnitOfWork.Users.FindBy(u => u.UserId != USER_ID))
+                {
+                    Service.RemoveUser(user);
+                }
+
                 UnitOfWork.Commit();
                 UnitOfWork.Abort();
             }

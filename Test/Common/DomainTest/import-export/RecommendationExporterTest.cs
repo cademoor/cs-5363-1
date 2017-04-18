@@ -30,17 +30,20 @@ namespace Ttu.DomainTest.implementation
         [TestMethod]
         public void TestBlueSky_Export()
         {
+            // set-up
+            MockUnitOfWork.Organizations.Add(CreateOrganization(1, "Org1"));
+
             // pre-conditions
             Assert.AreEqual(string.Empty, File.ReadAllText(FilePath));
             Assert.AreEqual(0, MockUnitOfWork.Recommendations.FindAll().Length);
 
             // exercise
-            IRecommendation recommendation = CreateRecommendation(1, RecommendationType.OrganizationToUser, "Org1");
+            IRecommendation recommendation = CreateRecommendation(1, RecommendationType.OrganizationToUser, 1);
             MockUnitOfWork.Recommendations.Add(recommendation);
             Exporter.Export();
 
             // post-conditions
-            string expectedOutput = string.Format("{0},{1},{2}{3}", recommendation.RecordId, recommendation.User.RecordId, recommendation.ProbabilityRank, Environment.NewLine);
+            string expectedOutput = string.Format("{0},{1}{2}", recommendation.User.RecordId, recommendation.ReferenceId, Environment.NewLine);
             Assert.AreEqual(expectedOutput, File.ReadAllText(FilePath));
             Assert.AreEqual(1, MockUnitOfWork.Recommendations.FindAll().Length);
         }
@@ -54,14 +57,22 @@ namespace Ttu.DomainTest.implementation
 
         #region Helper Methods
 
-        private IRecommendation CreateRecommendation(int recordId, RecommendationType recommendationType, string value)
+        private IOrganization CreateOrganization(int recordId, string name)
+        {
+            Organization organization = new Organization();
+            organization.Name = name;
+            organization.RecordId = recordId;
+            return organization;
+        }
+
+        private IRecommendation CreateRecommendation(int recordId, RecommendationType recommendationType, int referenceId)
         {
             Recommendation recommendation = new Recommendation();
-            recommendation.ProbabilityRank = 7;
+            recommendation.Rank = 0.7;
             recommendation.RecordId = recordId;
+            recommendation.ReferenceId = referenceId;
             recommendation.Type = recommendationType;
             recommendation.User = new User("USER1") { RecordId = 2 };
-            recommendation.Value = value;
             return recommendation;
         }
 

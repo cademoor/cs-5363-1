@@ -6,3 +6,5 @@ obj
 *.user
 /Src/App/log
 /Src/App/volunteerme.db
+/Src/App/library.db
+packages

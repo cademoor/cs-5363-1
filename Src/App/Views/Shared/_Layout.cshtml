@@ -1,4 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+    //Changed to only check if the cookie exists
+    //If the cookie has the min-value for time then it this value will return false.
+    var cookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
+    var hasCookie = cookie != null;
+    bool isInSession = hasCookie; 
+    //Don't want to do this twice
+    ViewData["hasCookie"] = hasCookie;
+    var isAdmin = isInSession && Convert.ToString(Session["_userId"]) == "ADMIN";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,12 +33,24 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                @if (isInSession)
+                {
+                    <li>@Html.ActionLink("Organizations", "Index", "ManageOrganization")</li>
+                    <li>@Html.ActionLink("Projects", "Index", "Project")</li>
+                }
+                @if (isAdmin)
+                {
+                    <li><a href="~/elmah">Error Log</a></li>
+                }
                 <li>@Html.ActionLink("About", "About", "Home")</li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
     </div>
 </div>
+@*<div class="sidebar left">
+    This is a test of the SideBar
+</div>*@
 <div class="container body-content">
     @RenderBody()
     <hr/>
@@ -39,5 +62,7 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", required: false)
+
 </body>
+
 </html>

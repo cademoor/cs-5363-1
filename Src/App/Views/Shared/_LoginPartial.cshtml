@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @{
-    var cookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
-    var isInSession = cookie != null;
+    bool isInSession = (bool) ViewData["hasCookie"];
+    string firstName = Convert.ToString(Session["_userFirstName"]);
 }
 
 @if (isInSession)
@@ -10,19 +10,19 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "ManageUser", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + firstName + "!", "Index", "ManageUser", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
         
-        <li>@Html.ActionLink("Register", "Create", "RegisterUser", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
-        <li>@Html.ActionLink("Log on", "Create", "LogOn", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new {id = "registerLink"})</li>
+        <li>@Html.ActionLink("Log on", "Login", "Account", routeValues: null, htmlAttributes: new {id = "loginLink"})</li>
     </ul>
 }

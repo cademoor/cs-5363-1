@@ -9,6 +9,8 @@ namespace App.Controllers
     public class AbstractController : Controller
     {
 
+        protected static readonly int SessionTimeoutMinutes = 5;
+
         #region Constructors
 
         protected AbstractController()
@@ -19,14 +21,36 @@ namespace App.Controllers
 
         #region Shared Methods
 
+        protected void EndSession()
+        {
+            PersistCookie(null, DateTime.Now.AddMonths(-1));
+        }
+
+        protected ActionResult HandleException(Exception ex)
+        {
+            GetLogger().Error(ex);
+            return View();
+        }
+
+        protected ActionResult HandleExceptionWarn(string message)
+        {
+            GetLogger().Warn(message);
+            return View();
+        }
+
         protected void PersistCookie(string sessionId)
+        {
+            PersistCookie(sessionId, DateTime.Now.AddMinutes(SessionTimeoutMinutes));
+        }
+
+        protected void PersistCookie(string sessionId, DateTime expirationDate)
         {
             HttpCookie existingCookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
             if (existingCookie != null)
             {
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("Existing Cookie Session ID: {0}", existingCookie.Value));
                 existingCookie.Value = sessionId;
-                existingCookie.Expires = DateTime.Now.AddMinutes(5);
+                existingCookie.Expires = expirationDate;
                 Response.Cookies.Set(existingCookie);
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("Update Cookie Session ID: {0}", sessionId));
             }
@@ -34,7 +58,7 @@ namespace App.Controllers
             {
                 HttpCookie cookie = new HttpCookie(Ttu.Domain.Constants.COOKIE_NAME);
                 cookie.Value = sessionId;
-                cookie.Expires = DateTime.Now.AddMinutes(5);
+                cookie.Expires = expirationDate;
                 Response.Cookies.Add(cookie);
                 ApplicationLogger.GetLogger(GetType()).Info(string.Format("New Cookie Session ID: {0}", sessionId));
             }
@@ -65,6 +89,11 @@ namespace App.Controllers
         #endregion
 
         #region Helper Methods
+
+        private IApplicationLogger GetLogger()
+        {
+            return ApplicationLogger.GetLogger(GetType());
+        }
 
         private void PersistCookie(HttpCookie existingCookie)
         {

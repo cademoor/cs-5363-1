@@ -8,6 +8,7 @@
         IContactService CreateContactService(IUnitOfWork unitOfWork);
 
         IOrganizationService CreateOrganizationService(IUnitOfWork unitOfWork);
+        IOrganizationUserService CreateOrganizationUserService(IUnitOfWork unitOfWork);
 
         IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork);
 
@@ -15,6 +16,8 @@
         IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork);
 
         IUserService CreateUserService(IUnitOfWork unitOfWork);
+
+        IProjectService CreateProjectService(IUnitOfWork unitOfWork);
 
     }
 }

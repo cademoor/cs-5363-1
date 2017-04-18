@@ -33,7 +33,8 @@ namespace Ttu.RecommendationImporter
             if (args.Length == 0)
             {
                 AssemblyName name = Assembly.GetExecutingAssembly().GetName();
-                string exceptionMessage = string.Format("Invalid number of arguments.{0}Usage: {1} <import-file-path>", Environment.NewLine, name.Name);
+                string exceptionMessage = string.Format("Invalid number of arguments.{0}  Usage: {1} <import-file-path>{0}", Environment.NewLine, name.Name);
+                exceptionMessage = string.Format("{0}Example: {1} import.csv{2}", exceptionMessage, name.Name, Environment.NewLine);
                 throw new Exception(exceptionMessage);
             }
 
@@ -42,6 +43,7 @@ namespace Ttu.RecommendationImporter
 
         public IServiceFactory InitializeService()
         {
+            new ServiceInitializer().Initialize(false, false);
             ServiceFactory = new ServiceFactory();
             return ServiceFactory;
         }

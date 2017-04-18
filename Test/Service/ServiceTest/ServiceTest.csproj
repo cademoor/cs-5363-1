@@ -87,8 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="service\ContactServiceTest.cs" />
     <Compile Include="service\OrganizationServiceTest.cs" />
+    <Compile Include="service\OrganizationUserServiceTest.cs" />
     <Compile Include="service\RecommendationServiceTest.cs" />
-    <Compile Include="service\VolunteerOpportunityServiceTest.cs" />
+    <Compile Include="service\ProjectServiceTest.cs" />
     <Compile Include="service\UserServiceTest.cs" />
     <Compile Include="service\VolunteerProfileServiceTest.cs" />
     <Compile Include="service\VolunteerProfileReviewServiceTest.cs" />

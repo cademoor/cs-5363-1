@@ -30,6 +30,12 @@
             return NullOrganizationService.Singleton;
         }
 
+
+        public virtual IOrganizationUserService CreateOrganizationUserService(IUnitOfWork unitOfWork)
+        {
+            return NullOrganizationUserService.Singleton;
+        }
+
         public virtual IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork)
         {
             return NullRecommendationService.Singleton;
@@ -48,6 +54,11 @@
         public virtual IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork)
         {
             return NullVolunteerProfileService.Singleton;
+        }
+
+        public IProjectService CreateProjectService(IUnitOfWork unitOfWork)
+        {
+            return NullProjectService.Singleton;
         }
 
         #endregion

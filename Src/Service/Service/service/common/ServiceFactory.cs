@@ -22,6 +22,12 @@ namespace Ttu.Service
             return new OrganizationService(unitOfWork);
         }
 
+        public IOrganizationUserService CreateOrganizationUserService(IUnitOfWork unitOfWork)
+        {
+            return new OrganizationUserService(unitOfWork);
+        }
+
+
         public IRecommendationService CreateRecommendationService(IUnitOfWork unitOfWork)
         {
             return new RecommendationService(unitOfWork);
@@ -40,6 +46,11 @@ namespace Ttu.Service
         public IVolunteerProfileService CreateVolunteerProfileService(IUnitOfWork unitOfWork)
         {
             return new VolunteerProfileService(unitOfWork);
+        }
+
+        public IProjectService CreateProjectService(IUnitOfWork unitOfWork)
+        {
+            return new ProjectService(unitOfWork);
         }
 
         #endregion

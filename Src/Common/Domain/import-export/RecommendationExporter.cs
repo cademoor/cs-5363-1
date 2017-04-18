@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace Ttu.Domain
 {
-    public class RecommendationExporter
+    public class RecommendationExporter : AbstractApplicationLogger
     {
 
         #region Constructors
@@ -11,8 +12,8 @@ namespace Ttu.Domain
         public RecommendationExporter(IServiceFactory serviceFactory, IUnitOfWork unitOfWork, string fullyQualifiedOutputFilePath)
         {
             FullyQualifiedOutputFilePath = fullyQualifiedOutputFilePath;
-            ServiceFactory = serviceFactory;
 
+            OrganizationService = serviceFactory.CreateOrganizationService(unitOfWork);
             RecommendationService = serviceFactory.CreateRecommendationService(unitOfWork);
         }
 
@@ -21,8 +22,8 @@ namespace Ttu.Domain
         #region Properties
 
         private string FullyQualifiedOutputFilePath { get; set; }
+        private IOrganizationService OrganizationService { get; set; }
         private IRecommendationService RecommendationService { get; set; }
-        private IServiceFactory ServiceFactory { get; set; }
 
         #endregion
 
@@ -38,14 +39,58 @@ namespace Ttu.Domain
 
         #region Helper Methods
 
+        private FileWriter CreateFileWriter()
+        {
+            if (!File.Exists(FullyQualifiedOutputFilePath))
+            {
+                return FileWriter.CreateFile(FullyQualifiedOutputFilePath);
+            }
+
+            try
+            {
+                File.Delete(FullyQualifiedOutputFilePath);
+                return FileWriter.CreateFile(FullyQualifiedOutputFilePath);
+            }
+            catch (Exception ex)
+            {
+                LogError(ex);
+                return null;
+            }
+        }
+
+        private void WriteOrganizationToUserRecommendation(FileWriter fw, IRecommendation recommendation)
+        {
+            // guard clause - invalid recommendation (user)
+            IUser user = recommendation.User;
+            if (user == null)
+            {
+                return;
+            }
+
+            // guard clause - invalid recommendation (organization)
+            IOrganization organization = OrganizationService.GetOrganization(recommendation.ReferenceId);
+            if (organization == null)
+            {
+                return;
+            }
+
+            int userRecordId = user.RecordId;
+            int organizationRecordId = organization.RecordId;
+
+            fw.PrintLine("{0},{1}", userRecordId, organizationRecordId);
+        }
+
         private void WriteRecommendation(FileWriter fw, IRecommendation recommendation)
         {
-            fw.PrintLine("{0},{1},{2}", recommendation.RecordId, recommendation.User.RecordId, recommendation.ProbabilityRank ?? -1);
+            if (recommendation.Type == RecommendationType.OrganizationToUser)
+            {
+                WriteOrganizationToUserRecommendation(fw, recommendation);
+            }
         }
 
         private void WriteRecommendations(IRecommendation[] recommendations)
         {
-            FileWriter fw = FileWriter.CreateFile(FullyQualifiedOutputFilePath);
+            FileWriter fw = CreateFileWriter();
             if (fw == null)
             {
                 return;

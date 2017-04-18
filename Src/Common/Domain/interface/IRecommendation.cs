@@ -3,11 +3,13 @@
     public interface IRecommendation
     {
 
-        int? ProbabilityRank { get; set; }
+        double? Rank { get; set; }
         int RecordId { get; }
+        int ReferenceId { get; set; }
         RecommendationType Type { get; set; }
         IUser User { get; set; }
-        string Value { get; set; }
+
+        string GetRecommendationType();
 
     }
 }

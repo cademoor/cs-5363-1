@@ -1,4 +1,6 @@
 ﻿using Ttu.Domain;
+using Ttu.Presentation.Presenter;
+using Ttu.Presentation.ViewState;
 
 namespace Ttu.Presentation
 {
@@ -22,7 +24,11 @@ namespace Ttu.Presentation
 
         public LogOnViewState LogOnViewState { get; set; }
         public ManageOrganizationViewState ManageOrganizationViewState { get; set; }
+        public ManageOrganizationUserViewState ManageOrganizationUserViewState { get; set; }
+        public ManageRecommendationViewState ManageRecommendationViewState { get; set; }
         public ManageUserViewState ManageUserViewState { get; set; }
+        public ManageProjectViewState ManageProjectViewState { get; set; }
+        public ProjectViewState ProjectViewState { get; set; }
 
         #endregion
 
@@ -44,9 +50,29 @@ namespace Ttu.Presentation
             return new ManageOrganizationPresenter(ManageOrganizationViewState);
         }
 
+        public override ManageOrganizationUserPresenter CreateManageOrganizationUserPresenter()
+        {
+            return new ManageOrganizationUserPresenter(ManageOrganizationUserViewState);
+        }
+
+        public override ManageRecommendationPresenter CreateManageRecommendationPresenter()
+        {
+            return new ManageRecommendationPresenter(ManageRecommendationViewState);
+        }
+
         public override ManageUserPresenter CreateManageUserPresenter()
         {
             return new ManageUserPresenter(ManageUserViewState);
+        }
+
+        public override ManageProjectPresenter CreateManageProjectPresenter()
+        {
+            return new ManageProjectPresenter(ManageProjectViewState);
+        }
+
+        public override ProjectPresenter CreateProjectPresenter()
+        {
+            return new ProjectPresenter(ProjectViewState);
         }
 
         #endregion
@@ -57,7 +83,11 @@ namespace Ttu.Presentation
         {
             LogOnViewState = new LogOnViewState(this);
             ManageOrganizationViewState = new ManageOrganizationViewState(this);
+            ManageOrganizationUserViewState = new ManageOrganizationUserViewState(this);
+            ManageRecommendationViewState = new ManageRecommendationViewState(this);
             ManageUserViewState = new ManageUserViewState(this);
+            ManageProjectViewState = new ManageProjectViewState(this);
+            ProjectViewState = new ProjectViewState(this);
         }
 
         #endregion
