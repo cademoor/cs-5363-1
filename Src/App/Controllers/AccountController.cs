@@ -32,6 +32,7 @@ namespace App.Controllers
             }
             catch (Exception ex)
             {
+                ModelState.AddModelError("", "The username or password is incorrect.");
                 return HandleException(ex);
             }
         }
