@@ -11,8 +11,6 @@ namespace Ttu.Presentation
 
         public RegisterUserModel()
         {
-            FirstName = string.Empty;
-            LastName = string.Empty;
             Password1 = string.Empty;
             Password2 = string.Empty;
             UserId = string.Empty;
@@ -21,18 +19,6 @@ namespace Ttu.Presentation
         #endregion
 
         #region Properties
-
-        [Required]
-        [StringLength(Constants.USER_FIRST_NAME_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.USER_FIRST_NAME_MIN_LENGTH)]
-        [DataType(DataType.Text)]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(Constants.USER_LAST_NAME_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.USER_LAST_NAME_MIN_LENGTH)]
-        [DataType(DataType.Text)]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
 
         [Required]
         [StringLength(Constants.USER_PASSWORD_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.USER_PASSWORD_MIN_LENGTH)]
@@ -60,16 +46,12 @@ namespace Ttu.Presentation
         {
             Validate();
 
-            user.FirstName = FirstName;
-            user.LastName = LastName;
             user.UserId = UserId;
             user.SetPassword(Password1);
         }
 
         public void CopyFrom(IUser user)
         {
-            FirstName = user.FirstName;
-            LastName = user.LastName;
             UserId = user.UserId;
         }
 

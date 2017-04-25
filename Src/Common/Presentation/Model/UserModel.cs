@@ -45,7 +45,12 @@ namespace Ttu.Presentation
         {
             user.FirstName = FirstName;
             user.LastName = LastName;
-            user.UserId = UserId;
+            // It's possible we weren't initialized with a UserId.
+            // In that case, don't force null/empty on the other guy
+            if (!string.IsNullOrEmpty(UserId))
+            {
+                user.UserId = UserId;
+            }
             user.Location = Location;
             user.Description = Description;
         }

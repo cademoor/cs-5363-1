@@ -30,7 +30,7 @@ namespace Ttu.Presentation
         {
             ValidateInput(userModel);
 
-            IUser user = new User(userModel.UserId);
+            IUser user = User;
             userModel.ApplyTo(user);
 
             UserService.AddUser(user);

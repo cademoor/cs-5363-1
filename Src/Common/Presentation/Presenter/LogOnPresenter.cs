@@ -33,6 +33,11 @@ namespace Ttu.Presentation
 
             IUnitOfWork uow = CreateUnitOfWork();
             AddUser(uow, registerUserModel);
+            uow.Commit();
+            uow.Abort();
+
+            // Go ahead and log in the user
+            uow = ValidateCredentials(registerUserModel.UserId, registerUserModel.Password1);
             return ConfigureAuthenticatedSession(uow);
         }
 
@@ -56,6 +61,7 @@ namespace Ttu.Presentation
             registerUserModel.ApplyTo(newUser);
 
             uow.Users.Add(newUser);
+            ConfigureAuthenticatedSession(uow);
         }
 
         private IUnitOfWork ConfigureAuthenticatedSession(IUnitOfWork uow)
