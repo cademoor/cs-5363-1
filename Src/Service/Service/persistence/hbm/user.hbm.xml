@@ -8,6 +8,8 @@
         <property name="EmailAddress" length="100" />
         <property name="FirstName" length="50" />
         <property name="LastName" length="50" />
+        <property name="Description" length="500" />
+        <property name="Location" length="200" />
         <property name="PasswordEncrypted" length="200" />
         <property name="UserId" length="100" />
 

@@ -20,9 +20,15 @@ namespace Ttu.Presentation
 
         #region Properties
 
+        [Required]
+        [StringLength(Constants.USER_FIRST_NAME_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.USER_FIRST_NAME_MIN_LENGTH)]
+        [DataType(DataType.Text)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(Constants.USER_LAST_NAME_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.USER_LAST_NAME_MIN_LENGTH)]
+        [DataType(DataType.Text)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
@@ -31,9 +37,13 @@ namespace Ttu.Presentation
         [Display(Name = "User ID")]
         public string UserId { get; set; }
 
+        [StringLength(Constants.VOLUNTEER_PROFILE_LOCATION_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.VOLUNTEER_PROFILE_LOCATION_MIN_LENGTH)]
+        [DataType(DataType.Text)]
         [Display(Name = "Location")]
         public string Location { get; set; }
 
+        [StringLength(Constants.VOLUNTEER_PROFILE_DESCRIPTION_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.VOLUNTEER_PROFILE_DESCRIPTION_MIN_LENGTH)]
+        [DataType(DataType.Text)]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
