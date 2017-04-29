@@ -28,9 +28,13 @@ namespace Ttu.Presentation
 
         public void AddUser(UserModel userModel)
         {
+            AddUser(userModel, User);
+        }
+
+        public void AddUser(UserModel userModel, IUser user)
+        {
             ValidateInput(userModel);
 
-            IUser user = new User(userModel.UserId);
             userModel.ApplyTo(user);
 
             UserService.AddUser(user);

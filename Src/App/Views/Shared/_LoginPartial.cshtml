@@ -2,6 +2,11 @@
 @{
     bool isInSession = (bool) ViewData["hasCookie"];
     string firstName = Convert.ToString(Session["_userFirstName"]);
+    if (string.IsNullOrEmpty(firstName))
+    {
+        // Just registered, so no first name available yet
+        firstName = Convert.ToString(Session["_userId"]);
+    }
 }
 
 @if (isInSession)

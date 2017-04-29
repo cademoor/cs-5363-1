@@ -23,8 +23,8 @@ namespace Ttu.PresentationTest.Presenter
         public void TestBlueSky_GetUsers_Admin()
         {
             // set-up
-            Presenter.AddUser(CreateUser("TESTUSER1", 1));
-            Presenter.AddUser(CreateUser("TESTUSER2", 2));
+            Presenter.AddUser(CreateUser("TESTUSER1", 1), new User());
+            Presenter.AddUser(CreateUser("TESTUSER2", 2), new User());
 
             // exercise
             UserModel[] visibleUsers = Presenter.GetUsers();
@@ -40,8 +40,8 @@ namespace Ttu.PresentationTest.Presenter
         {
             // set-up
             PresenterFactory.User.UserId = "CADE";
-            Presenter.AddUser(CreateUser("TESTUSER1", 1));
-            Presenter.AddUser(CreateUser("TESTUSER2", 2));
+            Presenter.AddUser(CreateUser("TESTUSER1", 1), new User());
+            Presenter.AddUser(CreateUser("TESTUSER2", 2), new User());
 
             // exercise
             UserModel[] visibleUsers = Presenter.GetUsers();

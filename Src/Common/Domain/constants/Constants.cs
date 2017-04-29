@@ -25,7 +25,9 @@
         public const int USER_PASSWORD_MIN_LENGTH = 1;
 
         public const int VOLUNTEER_PROFILE_DESCRIPTION_MAX_LENGTH = 500;
-        public const int VOLUNTEER_PROFILE_DESCRIPTION_MIN_LENGTH = 1;
+        public const int VOLUNTEER_PROFILE_DESCRIPTION_MIN_LENGTH = 0;
+        public const int VOLUNTEER_PROFILE_LOCATION_MAX_LENGTH = 200;
+        public const int VOLUNTEER_PROFILE_LOCATION_MIN_LENGTH = 0;
         public const int VOLUNTEER_PROFILE_NAME_MAX_LENGTH = 50;
         public const int VOLUNTEER_PROFILE_NAME_MIN_LENGTH = 1;
 
