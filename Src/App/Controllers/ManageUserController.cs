@@ -34,7 +34,7 @@ namespace App.Controllers
                 ManageUserPresenter presenter = presenterFactory.CreateManageUserPresenter();
                 presenter.AddUser(userModel);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Project");
             }
             catch (Exception ex)
             {

@@ -9,11 +9,12 @@ namespace App.Controllers
     {
         public ActionResult Index()
         {
+            // Get all the "active" projects (projects whose stop time hasn't passed yet)
             try
             {
                 IPresenterFactory presenterFactory = ValidatePresenterFactory();
                 ProjectPresenter presenter = presenterFactory.CreateProjectPresenter();
-                return View(presenter.GetProjects());
+                return View(presenter.GetActiveProjectsByEndDate());
             }
             catch (Exception ex)
             {

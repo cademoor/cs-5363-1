@@ -11,6 +11,7 @@
         IProjectApplication[] GetSubmittedApplications(IProject project);
 
         IProject[] GetProjects();
+        IProject[] GetActiveProjectsByEndDate();
         IProject[] GetProjects(int organizationRecordId);
         IProject[] GetProjectsCreatedBy(IUser user);
         IProject GetProject(int recordId);
