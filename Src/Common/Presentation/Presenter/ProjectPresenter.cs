@@ -28,6 +28,11 @@ namespace Ttu.Presentation.Presenter
             return Service.GetProjects().Select(CreateProjectModel).ToArray();
         }
 
+        public ProjectModel[] GetActiveProjectsByEndDate()
+        {
+            return Service.GetActiveProjectsByEndDate().Select(CreateProjectModel).ToArray();
+        }
+
         #endregion
 
         #region Helper Methods

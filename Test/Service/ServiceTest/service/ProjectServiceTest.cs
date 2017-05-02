@@ -40,6 +40,37 @@ namespace Ttu.ServiceTest.service
         #region Blue Sky Tests
 
         [TestMethod]
+        public void TestBlueSky_ActiveProjects()
+        {
+            // pre-conditions
+            Assert.AreEqual(0, Service.GetActiveProjectsByEndDate().Length);
+
+            // exercise
+            IProject doneProject = CreateProject();
+            doneProject.StartTime = DateTime.Today.AddDays(-2);
+            doneProject.StopTime = DateTime.Today.AddDays(-1);
+            Service.AddProject(doneProject);
+
+            IProject dueTodayProject = CreateProject();
+            dueTodayProject.StartTime = DateTime.Today.AddDays(-1);
+            dueTodayProject.StopTime = DateTime.Today;
+            Service.AddProject(dueTodayProject);
+
+            IProject futureProject = CreateProject();
+            futureProject.StartTime = DateTime.Today.AddDays(5);
+            futureProject.StopTime = DateTime.Today.AddDays(5);
+            Service.AddProject(futureProject);
+
+            UnitOfWork.Commit();
+            UnitOfWork.Abort();
+
+            // post-conditions
+            IProject[] activeProjects = Service.GetActiveProjectsByEndDate();
+            Assert.AreEqual(2, activeProjects.Length);
+            Assert.IsTrue(activeProjects[0].StopTime == DateTime.Today);
+        }
+
+        [TestMethod]
         public void TestBlueSky_MaintainProjects()
         {
             // pre-conditions

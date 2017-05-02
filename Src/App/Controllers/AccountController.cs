@@ -28,7 +28,7 @@ namespace App.Controllers
                 IUnitOfWork uow = presenter.LogOn(logOnModel.UserId, logOnModel.Password);
                 ConfigureSession(uow);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Project");
             }
             catch (Exception ex)
             {

@@ -1,10 +1,28 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using NHibernate.Type;
 using Ttu.Domain;
 
 namespace Ttu.Service
 {
+
     public class ProjectService : AbstractService, IProjectService
     {
+
+        private class EndDateComparer : IComparer<IProject>
+        {
+            public int Compare(IProject x, IProject y)
+            {
+                // Shouldn't ever happen, but just in case...
+                if (x == null || y == null)
+                {
+                    throw new NullReferenceException("Cannot compare a null Project(s)");
+                }
+                return x.StopTime.CompareTo(y.StopTime);
+            }
+        }
 
         #region Constructors
 
@@ -45,6 +63,13 @@ namespace Ttu.Service
         public IProject[] GetProjects()
         {
             return UnitOfWork.Projects.FindAll();
+        }
+
+        public IProject[] GetActiveProjectsByEndDate()
+        {
+            IProject[] activeProjects = UnitOfWork.Projects.FindBy(vp => vp.StopTime >= DateTime.Today);
+            Array.Sort(activeProjects, new EndDateComparer());
+            return activeProjects;
         }
 
         public IProject[] GetProjects(int organizationRecordId)

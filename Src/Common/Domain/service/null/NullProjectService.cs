@@ -60,6 +60,11 @@
             return null;
         }
 
+        public IProject[] GetActiveProjectsByEndDate()
+        {
+            return new IProject[0];
+        }
+
         public virtual IProject[] GetAllAppliedProjects(IUser user, ProjectApplicationStatus status)
         {
             return new IProject[0];
