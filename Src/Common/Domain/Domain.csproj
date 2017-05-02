@@ -121,6 +121,7 @@
     <Compile Include="service\common\IUnitOfWorkRepository.cs" />
     <Compile Include="service\IOrganizationService.cs" />
     <Compile Include="service\IOrganizationUserService.cs" />
+    <Compile Include="service\IProjectApplicationService.cs" />
     <Compile Include="service\IRecommendationService.cs" />
     <Compile Include="service\IProjectService.cs" />
     <Compile Include="service\IContactService.cs" />
