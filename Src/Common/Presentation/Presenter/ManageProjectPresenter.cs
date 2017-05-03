@@ -65,7 +65,9 @@ namespace Ttu.Presentation
 
         public ProjectModel[] GetProjects(int organizationRecordId)
         {
-            return Service.GetProjects(organizationRecordId).Select(o => CreateProjectModel(o)).ToArray();
+            IProject[] unfilteredProjects = Service.GetProjects(organizationRecordId);
+            IProject[] projectsAcceptingApplications = unfilteredProjects.Where(p => !HasProjectReachedFullCapacity(p)).ToArray();
+            return projectsAcceptingApplications.Select(o => CreateProjectModel(o)).ToArray();
         }
 
         public void RemoveProject(ProjectModel projectModel)
@@ -101,6 +103,13 @@ namespace Ttu.Presentation
             }
 
             return CreateOrganizationModel(organization);
+        }
+
+        private bool HasProjectReachedFullCapacity(IProject project)
+        {
+            IProjectApplication[] projectApplications = Service.GetApprovedApplications(project);
+            int numberOfApprovedProjectApplications = projectApplications.Length;
+            return numberOfApprovedProjectApplications >= project.MaximumVolunteers;
         }
 
         #endregion
