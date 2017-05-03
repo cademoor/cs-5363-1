@@ -64,6 +64,11 @@ namespace Ttu.Presentation
             return null;
         }
 
+        public virtual ProjectApplicationPresenter CreateProjectApplicationPresenter()
+        {
+            return null;
+        }
+
         #endregion
 
     }

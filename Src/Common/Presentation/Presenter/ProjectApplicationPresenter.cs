@@ -34,13 +34,12 @@ namespace Ttu.Presentation.Presenter
             IProject project = new Project();
             projectModel.ApplyTo(project);
             ProjectService.Volunteer(User, project, note);
+            Commit();
         }
 
-        public ProjectApplicationModel[] GetProjectApplications(ProjectModel projectModel)
+        public ProjectApplicationModel[] GetProjectApplications(int projectId)
         {
-            IProject project = new Project();
-            projectModel.ApplyTo(project);
-            IProjectApplication[] projectApplications = ProjectService.GetSubmittedApplications(project);
+            IProjectApplication[] projectApplications = ProjectService.GetSubmittedApplications(projectId);
 
             // guard clause - not/none found
             if (projectApplications == null || projectApplications.Length == 0)
@@ -58,58 +57,7 @@ namespace Ttu.Presentation.Presenter
             return projectApplicationModels;
         }
 
-        public ProjectModel GetProject(int recordId)
-        {
-            // guard clause - not found
-            IProject project = Service.GetProject(recordId);
-            if (project == null)
-            {
-                return null;
-            }
-
-            return CreateProjectModel(project);
-        }
-
-        public ProjectModel[] GetProjects(int organizationRecordId)
-        {
-            return Service.GetProjects(organizationRecordId).Select(o => CreateProjectModel(o)).ToArray();
-        }
-
-        public void RemoveProject(ProjectModel projectModel)
-        {
-            // guard clause - invalid input
-            if (projectModel == null)
-            {
-                return;
-            }
-
-            Service.RemoveProject(projectModel.RecordId);
-            Commit();
-        }
-
         #endregion
 
-        #region Helper Methods
-
-        private ProjectModel CreateProjectModel(IProject project)
-        {
-            ProjectModel projectModel = new ProjectModel();
-            projectModel.CopyFrom(project);
-            return projectModel;
-        }
-
-        private OrganizationModel GetOrganization(int recordId)
-        {
-            // guard clause - not found
-            IOrganization organization = OrganizationService.GetOrganization(recordId);
-            if (organization == null)
-            {
-                return null;
-            }
-
-            return CreateOrganizationModel(organization);
-        }
-
-        #endregion
     }
 }
