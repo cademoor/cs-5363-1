@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ttu.Domain;
 
-namespace Ttu.Presentation.Model
+namespace Ttu.Presentation
 {
     public class ProjectApplicationModel
     {

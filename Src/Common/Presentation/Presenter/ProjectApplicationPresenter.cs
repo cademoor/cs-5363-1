@@ -44,7 +44,7 @@ namespace Ttu.Presentation.Presenter
             // guard clause - not/none found
             if (projectApplications == null || projectApplications.Length == 0)
             {
-                return null;
+                return new ProjectApplicationModel[0];
             }
 
             ProjectApplicationModel[] projectApplicationModels = new ProjectApplicationModel[projectApplications.Length];

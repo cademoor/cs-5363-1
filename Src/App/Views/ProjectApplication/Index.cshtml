@@ -1,8 +1,44 @@
-﻿
+﻿@model IEnumerable<Ttu.Presentation.ProjectApplicationModel>
+
 @{
     ViewBag.Title = "Volunteers";
     ViewBag.ProjectName = Request["ProjectName"];
 }
 
 <h2>@ViewBag.Title for @ViewBag.ProjectName</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectApplicationStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserModel.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserModel.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectApplicationStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserModel.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserModel.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelName => item.Note)
+        </td>
+    </tr>        
+}
+</table>
 
