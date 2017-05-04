@@ -5,10 +5,10 @@
 
         void AddProject(IProject project);
 
-        IProjectApplication[] GetAllApplications(int projectId);
-        IProjectApplication[] GetApprovedApplications(int projectId);
-        IProjectApplication[] GetDeniedApplications(int projectId);
-        IProjectApplication[] GetSubmittedApplications(int projectId);
+        IProjectApplication[] GetAllApplications(int projectRecordId);
+        IProjectApplication[] GetApprovedApplications(int projectRecordId);
+        IProjectApplication[] GetDeniedApplications(int projectRecordId);
+        IProjectApplication[] GetSubmittedApplications(int projectRecordId);
 
         IProject[] GetProjects();
         IProject[] GetActiveProjectsByEndDate();

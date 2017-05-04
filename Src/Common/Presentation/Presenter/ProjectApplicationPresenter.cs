@@ -39,25 +39,20 @@ namespace Ttu.Presentation.Presenter
 
         public ProjectApplicationModel[] GetProjectApplications(int projectId)
         {
-            IProjectApplication[] projectApplications = ProjectService.GetSubmittedApplications(projectId);
-
-            // guard clause - not/none found
-            if (projectApplications == null || projectApplications.Length == 0)
-            {
-                return new ProjectApplicationModel[0];
-            }
-
-            ProjectApplicationModel[] projectApplicationModels = new ProjectApplicationModel[projectApplications.Length];
-            for ( int i=0; i<projectApplications.Length; i++)
-            {
-                projectApplicationModels[i] = new ProjectApplicationModel();
-                projectApplicationModels[i].CopyFrom(projectApplications[i]);
-            }
-
-            return projectApplicationModels;
+            return ProjectService.GetAllApplications(projectId).Select(o => CreateProjectApplicationModel(o)).ToArray();
         }
 
         #endregion
 
+        #region Helper Methods
+
+        private ProjectApplicationModel CreateProjectApplicationModel(IProjectApplication projectApplication)
+        {
+            ProjectApplicationModel projectApplicationModel = new ProjectApplicationModel();
+            projectApplicationModel.CopyFrom(projectApplication);
+            return projectApplicationModel;
+        }
+
+        #endregion
     }
 }

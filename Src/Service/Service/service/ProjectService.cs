@@ -40,24 +40,24 @@ namespace Ttu.Service
             UnitOfWork.Projects.Add(project);
         }
 
-        public IProjectApplication[] GetAllApplications(int projectId)
+        public IProjectApplication[] GetAllApplications(int projectRecordId)
         {
-            return GetApplications(projectId, null);
+            return GetApplications(projectRecordId, null);
         }
 
-        public IProjectApplication[] GetApprovedApplications(int projectId)
+        public IProjectApplication[] GetApprovedApplications(int projectRecordId)
         {
-            return GetApplications(projectId, ProjectApplicationStatus.Approved);
+            return GetApplications(projectRecordId, ProjectApplicationStatus.Approved);
         }
 
-        public IProjectApplication[] GetDeniedApplications(int projectId)
+        public IProjectApplication[] GetDeniedApplications(int projectRecordId)
         {
-            return GetApplications(projectId, ProjectApplicationStatus.Denied);
+            return GetApplications(projectRecordId, ProjectApplicationStatus.Denied);
         }
 
-        public IProjectApplication[] GetSubmittedApplications(int projectId)
+        public IProjectApplication[] GetSubmittedApplications(int projectRecordId)
         {
-            return GetApplications(projectId, ProjectApplicationStatus.Submitted);
+            return GetApplications(projectRecordId, ProjectApplicationStatus.Submitted);
         }
 
         public IProject[] GetProjects()

@@ -20,22 +20,22 @@
             // do nothing
         }
 
-        public virtual IProjectApplication[] GetAllApplications(int projectId)
+        public virtual IProjectApplication[] GetAllApplications(int projectRecordId)
         {
             return new IProjectApplication[0];
         }
 
-        public virtual IProjectApplication[] GetApprovedApplications(int projectId)
+        public virtual IProjectApplication[] GetApprovedApplications(int projectRecordId)
         {
             return new IProjectApplication[0];
         }
 
-        public virtual IProjectApplication[] GetDeniedApplications(int projectId)
+        public virtual IProjectApplication[] GetDeniedApplications(int projectRecordId)
         {
             return new IProjectApplication[0];
         }
 
-        public virtual IProjectApplication[] GetSubmittedApplications(int projectId)
+        public virtual IProjectApplication[] GetSubmittedApplications(int projectRecordId)
         {
             return new IProjectApplication[0];
         }
