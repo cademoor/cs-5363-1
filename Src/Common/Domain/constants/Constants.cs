@@ -36,6 +36,7 @@
         public const int PROJECT_DESCRIPTION_MIN_LENGTH = 1;
         public const int PROJECT_DESCRIPTION_MAX_LENGTH = 1000;
 
+        public const int PROJECT_APPLICATION_NOTE_MAX_LENGTH = 500;
     }
 
     public enum ContactType : int

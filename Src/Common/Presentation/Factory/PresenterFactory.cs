@@ -29,6 +29,7 @@ namespace Ttu.Presentation
         public ManageUserViewState ManageUserViewState { get; set; }
         public ManageProjectViewState ManageProjectViewState { get; set; }
         public ProjectViewState ProjectViewState { get; set; }
+        public ProjectApplicationViewState ProjectApplicationViewState { get; set; }
 
         #endregion
 
@@ -75,6 +76,11 @@ namespace Ttu.Presentation
             return new ProjectPresenter(ProjectViewState);
         }
 
+        public override ProjectApplicationPresenter CreateProjectApplicationPresenter()
+        {
+            return new ProjectApplicationPresenter(ProjectApplicationViewState);
+        }
+
         #endregion
 
         #region Helper Methods
@@ -88,6 +94,7 @@ namespace Ttu.Presentation
             ManageUserViewState = new ManageUserViewState(this);
             ManageProjectViewState = new ManageProjectViewState(this);
             ProjectViewState = new ProjectViewState(this);
+            ProjectApplicationViewState = new ProjectApplicationViewState(this);
         }
 
         #endregion

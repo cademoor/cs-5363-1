@@ -123,16 +123,19 @@ namespace Ttu.ServiceTest.service
             IProject previousSubmittedProject = new Project(User1);
             previousSubmittedProject.Organization = Organization1;
             previousSubmittedProject.StartTime = DateTime.Today.AddDays(-1);
+            previousSubmittedProject.RecordId = 1;
             UnitOfWork.Projects.Add(previousSubmittedProject);
 
             IProject previousApprovedProject = new Project(User1);
             previousApprovedProject.Organization = Organization1;
             previousApprovedProject.StartTime = DateTime.Today.AddDays(-1);
+            previousApprovedProject.RecordId = 2;
             UnitOfWork.Projects.Add(previousApprovedProject);
 
             IProject previousDeniedProject = new Project(User1);
             previousDeniedProject.Organization = Organization1;
             previousDeniedProject.StartTime = DateTime.Today.AddDays(-1);
+            previousDeniedProject.RecordId = 3;
             UnitOfWork.Projects.Add(previousDeniedProject);
 
             UnitOfWork.Commit();
@@ -159,9 +162,9 @@ namespace Ttu.ServiceTest.service
             previousApprovedProject = UnitOfWork.Projects.FindByRecordId(previousApprovedProject.RecordId);
             previousDeniedProject = UnitOfWork.Projects.FindByRecordId(previousDeniedProject.RecordId);
 
-            Assert.AreEqual(1, Service.GetAllApplications(previousSubmittedProject).Length);
-            Assert.AreEqual(1, Service.GetAllApplications(previousApprovedProject).Length);
-            Assert.AreEqual(1, Service.GetAllApplications(previousDeniedProject).Length);
+            Assert.AreEqual(1, Service.GetAllApplications(previousSubmittedProject.RecordId).Length);
+            Assert.AreEqual(1, Service.GetAllApplications(previousApprovedProject.RecordId).Length);
+            Assert.AreEqual(1, Service.GetAllApplications(previousDeniedProject.RecordId).Length);
 
             // post-conditions
             Assert.AreEqual(1, Service.GetAllAppliedProjects(User1, ProjectApplicationStatus.Submitted).Length);

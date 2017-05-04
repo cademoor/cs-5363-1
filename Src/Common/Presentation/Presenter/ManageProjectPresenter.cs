@@ -108,7 +108,7 @@ namespace Ttu.Presentation
 
         private bool HasProjectReachedFullCapacity(IProject project)
         {
-            IProjectApplication[] projectApplications = Service.GetApprovedApplications(project);
+            IProjectApplication[] projectApplications = Service.GetApprovedApplications(project.RecordId);
             int numberOfApprovedProjectApplications = projectApplications.Length;
             return numberOfApprovedProjectApplications >= project.MaximumVolunteers;
         }

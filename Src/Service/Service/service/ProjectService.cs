@@ -40,24 +40,24 @@ namespace Ttu.Service
             UnitOfWork.Projects.Add(project);
         }
 
-        public IProjectApplication[] GetAllApplications(IProject project)
+        public IProjectApplication[] GetAllApplications(int projectRecordId)
         {
-            return GetApplications(project, null);
+            return GetApplications(projectRecordId, null);
         }
 
-        public IProjectApplication[] GetApprovedApplications(IProject project)
+        public IProjectApplication[] GetApprovedApplications(int projectRecordId)
         {
-            return GetApplications(project, ProjectApplicationStatus.Approved);
+            return GetApplications(projectRecordId, ProjectApplicationStatus.Approved);
         }
 
-        public IProjectApplication[] GetDeniedApplications(IProject project)
+        public IProjectApplication[] GetDeniedApplications(int projectRecordId)
         {
-            return GetApplications(project, ProjectApplicationStatus.Denied);
+            return GetApplications(projectRecordId, ProjectApplicationStatus.Denied);
         }
 
-        public IProjectApplication[] GetSubmittedApplications(IProject project)
+        public IProjectApplication[] GetSubmittedApplications(int projectRecordId)
         {
-            return GetApplications(project, ProjectApplicationStatus.Submitted);
+            return GetApplications(projectRecordId, ProjectApplicationStatus.Submitted);
         }
 
         public IProject[] GetProjects()
@@ -154,10 +154,10 @@ namespace Ttu.Service
             return projectApplications.Where(a => a.User == user && a.Status == status).Select(a => a.Project).ToArray();
         }
 
-        private IProjectApplication[] GetApplications(IProject project, ProjectApplicationStatus? status)
+        private IProjectApplication[] GetApplications(int projectId, ProjectApplicationStatus? status)
         {
             IQueryable<IProjectApplication> projectApplications = UnitOfWork.ProjectApplications.GetQueryable();
-            projectApplications = projectApplications.Where(a => a.Project == project);
+            projectApplications = projectApplications.Where(a => a.Project.RecordId == projectId);
             if (!status.HasValue)
             {
                 return projectApplications.ToArray();
