@@ -85,6 +85,7 @@
     <Compile Include="Factory\PresenterFactory.cs" />
     <Compile Include="Model\LogOnModel.cs" />
     <Compile Include="Model\OrganizationUserModel.cs" />
+    <Compile Include="Model\ProjectApplicationModel.cs" />
     <Compile Include="Model\ProjectModel.cs" />
     <Compile Include="Model\RecommendationModel.cs" />
     <Compile Include="Model\OrganizationModel.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Presenter\ManageProjectPresenter.cs" />
     <Compile Include="Presenter\ManageRecommendationPresenter.cs" />
     <Compile Include="Presenter\ManageUserPresenter.cs" />
+    <Compile Include="Presenter\ProjectApplicationPresenter.cs" />
     <Compile Include="Presenter\ProjectPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\UserModel.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="ViewState\ManageProjectViewState.cs" />
     <Compile Include="ViewState\ManageRecommendationViewState.cs" />
     <Compile Include="ViewState\ManageUserViewState.cs" />
+    <Compile Include="ViewState\ProjectApplicationViewState.cs" />
     <Compile Include="ViewState\ProjectViewState.cs" />
   </ItemGroup>
   <ItemGroup />
