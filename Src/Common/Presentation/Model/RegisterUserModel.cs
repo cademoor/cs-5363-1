@@ -30,6 +30,7 @@ namespace Ttu.Presentation
         [StringLength(Constants.USER_PASSWORD_MAX_LENGTH, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Constants.USER_PASSWORD_MIN_LENGTH)]
         [DataType(DataType.Password)]
         [Display(Name = "Re-enter Password")]
+        [Compare("Password1", ErrorMessage = "The password and confirmation password do not match.")]
         public string Password2 { get; set; }
 
         [Required]
