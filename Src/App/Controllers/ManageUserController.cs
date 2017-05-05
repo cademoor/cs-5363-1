@@ -14,6 +14,10 @@ namespace App.Controllers
                 ManageUserPresenter presenter = presenterFactory.CreateManageUserPresenter();
                 return View(presenter.GetUsers());
             }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             catch (Exception ex)
             {
                 return HandleException(ex);
@@ -35,6 +39,10 @@ namespace App.Controllers
                 presenter.AddUser(userModel);
 
                 return RedirectToAction("Index", "Project");
+            }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
             }
             catch (Exception ex)
             {

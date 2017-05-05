@@ -14,6 +14,10 @@ namespace App.Controllers
                 ManageOrganizationPresenter presenter = presenterFactory.CreateManageOrganizationPresenter();
                 return View(presenter.GetOrganizations());
             }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             catch (Exception ex)
             {
                 return HandleException(ex);
@@ -35,6 +39,10 @@ namespace App.Controllers
                 presenter.AddOrganization(organizationModel);
 
                 return RedirectToAction("Index");
+            }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
             }
             catch (Exception ex)
             {

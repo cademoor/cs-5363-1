@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Environment\PresentationEnvironment.cs" />
+    <Compile Include="Exceptions\NoSessionException.cs" />
     <Compile Include="Factory\IPresenterFactory.cs" />
     <Compile Include="Factory\NullPresenterFactory.cs" />
     <Compile Include="Factory\PresenterFactory.cs" />

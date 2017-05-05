@@ -14,6 +14,10 @@ namespace App.Controllers
                 ManageProjectPresenter presenter = presenterFactory.CreateManageProjectPresenter();
                 return View(presenter.GetProjects(organizationId));
             }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             catch (Exception ex)
             {
                 return HandleException(ex);
@@ -37,6 +41,10 @@ namespace App.Controllers
                 presenter.AddProject(projectModel);
 
                 return RedirectToAction("Index", new { organizationId = organizationId });
+            }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
             }
             catch (Exception ex)
             {
