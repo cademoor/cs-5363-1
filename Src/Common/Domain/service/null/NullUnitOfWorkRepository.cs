@@ -42,6 +42,11 @@ namespace Ttu.Domain
             return new T[0];
         }
 
+        public T[] FindByCaseInSensitive(Expression<Func<T, object>> predicate, string compare)
+        {
+            return new T[0]; 
+        }
+
         public T[] FindByChildrenCollection<TChild>(Expression<Func<T, IEnumerable<TChild>>> collection, Expression<Func<TChild, bool>> predicate)
         {
             return new T[0];

@@ -85,6 +85,7 @@ namespace App.Controllers
             }
             catch (Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return HandleException(ex);
             }
         }

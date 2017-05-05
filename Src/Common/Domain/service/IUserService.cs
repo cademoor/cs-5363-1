@@ -12,5 +12,6 @@
         void RemoveUser(int recordId);
         void RemoveUser(IUser user);
 
+        bool UserNameExists(string userId);
     }
 }

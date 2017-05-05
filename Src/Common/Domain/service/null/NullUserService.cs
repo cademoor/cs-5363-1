@@ -45,6 +45,11 @@
             // do nothing
         }
 
+        public virtual bool UserNameExists(string userId)
+        {
+            return false; 
+        }
+
         #endregion
 
     }
