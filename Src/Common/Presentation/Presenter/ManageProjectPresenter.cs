@@ -65,7 +65,6 @@ namespace Ttu.Presentation
 
         public ProjectModel[] GetProjects(int organizationRecordId)
         {
-            return Service.GetProjects(organizationRecordId).Select(o => CreateProjectModel(o)).ToArray();
             IProject[] unfilteredProjects = Service.GetProjects(organizationRecordId);
             IProject[] projectsAcceptingApplications = unfilteredProjects.Where(p => !HasProjectReachedFullCapacity(p)).ToArray();
             return projectsAcceptingApplications.Select(o => CreateProjectModel(o)).ToArray();
