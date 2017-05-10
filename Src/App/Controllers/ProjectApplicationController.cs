@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using Ttu.Presentation;
 using Ttu.Presentation.Presenter;
@@ -44,10 +43,8 @@ namespace App.Controllers
             try
             {
                 var presenterFactory = ValidatePresenterFactory();
-                var projectPresenter = presenterFactory.CreateProjectPresenter();
-                var project = projectPresenter.GetProject(recordId);
-                var applicationPresenter = presenterFactory.CreateProjectApplicationPresenter();
-                applicationPresenter.Volunteer(project, note);
+                var projectApplicationPresenter = presenterFactory.CreateProjectApplicationPresenter();
+                projectApplicationPresenter.Volunteer(recordId, note);
                 return RedirectToAction("Index", "Project");
             }
             catch (Exception e)
