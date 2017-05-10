@@ -38,7 +38,7 @@ namespace Ttu.Service
 
         private IUser GetUser(SessionDecorator openSession, string userId)
         {
-            IUser user = openSession.QueryOver<IUser>().Where(u => u.UserId == userId).SingleOrDefault();
+            IUser user = openSession.QueryOver<IUser>().WhereRestrictionOn(u => u.UserId).IsInsensitiveLike(userId).SingleOrDefault();
             if (user == null)
             {
                 throw new BusinessException("User not found.");

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.4.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_excel" compatibility="7.4.000" expanded="true" height="68" name="Read Excel" width="90" x="112" y="34">
+        <parameter key="excel_file" value="C:\Users\mahdi\Desktop\TTU-Courses\Project-MGM\RapidMiner\Training.xlsx"/>
+        <parameter key="sheet_number" value="1"/>
+        <parameter key="imported_cell_range" value="A1:C41"/>
+        <parameter key="encoding" value="SYSTEM"/>
+        <parameter key="first_row_as_names" value="false"/>
+        <list key="annotations">
+          <parameter key="0" value="Name"/>
+        </list>
+        <parameter key="date_format" value=""/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="UserRecordId.true.integer.attribute"/>
+          <parameter key="1" value="OrganizationRecordId.true.integer.attribute"/>
+          <parameter key="2" value="Rank.true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+        <parameter key="data_management" value="auto"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="7.4.000" expanded="true" height="103" name="Filter Examples" width="90" x="179" y="187">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="Rank.is_missing."/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="7.4.000" expanded="true" height="82" name="Set Role (2)" width="90" x="380" y="289">
+        <parameter key="attribute_name" value="Rank"/>
+        <parameter key="target_role" value="label"/>
+        <list key="set_additional_roles">
+          <parameter key="UserRecordId" value="user identification"/>
+          <parameter key="OrganizationRecordId" value="item identification"/>
+          <parameter key="Rank" value="label"/>
+        </list>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="7.4.000" expanded="true" height="82" name="Set Role" width="90" x="313" y="85">
+        <parameter key="attribute_name" value="Rank"/>
+        <parameter key="target_role" value="label"/>
+        <list key="set_additional_roles">
+          <parameter key="UserRecordId" value="user identification"/>
+          <parameter key="OrganizationRecordId" value="item identification"/>
+          <parameter key="Rank" value="label"/>
+        </list>
+      </operator>
+      <operator activated="true" class="irbrecommender:user_k-NN_rp" compatibility="5.1.002" expanded="true" height="82" name="User k-NN" width="90" x="514" y="85">
+        <parameter key="k" value="80"/>
+        <parameter key="Min Rating" value="0"/>
+        <parameter key="Range" value="1"/>
+        <parameter key="Correlation mode" value="cosine"/>
+        <parameter key="reg_u" value="10.0"/>
+        <parameter key="reg_i" value="5.0"/>
+        <parameter key="schrinkage" value="10.0"/>
+      </operator>
+      <operator activated="true" class="irbrecommender:apply_model_rp" compatibility="5.1.002" expanded="true" height="82" name="Apply Model" width="90" x="715" y="289">
+        <parameter key="Online updates" value="false"/>
+      </operator>
+      <connect from_op="Read Excel" from_port="output" to_op="Filter Examples" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="example set output" to_op="Set Role (2)" to_port="example set input"/>
+      <connect from_op="Filter Examples" from_port="unmatched example set" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role (2)" from_port="example set output" to_op="Apply Model" to_port="query set"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="User k-NN" to_port="example set"/>
+      <connect from_op="User k-NN" from_port="Model" to_op="Apply Model" to_port="Model"/>
+      <connect from_op="Apply Model" from_port="result set" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>

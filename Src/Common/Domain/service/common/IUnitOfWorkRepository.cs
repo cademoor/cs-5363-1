@@ -15,6 +15,7 @@ namespace Ttu.Domain
 
         T[] FindAll();
         T[] FindBy(Expression<Func<T, bool>> predicate);
+        T[] FindByCaseInSensitive(Expression<Func<T, object>> predicate, string compare);
         T[] FindByChildrenCollection<TChild>(Expression<Func<T, IEnumerable<TChild>>> collection, Expression<Func<TChild, bool>> predicate);
         T FindByRecordId(int recordId);
         T FindByUnique(Expression<Func<T, bool>> predicate);

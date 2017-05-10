@@ -56,6 +56,11 @@ namespace Ttu.Service
             UnitOfWork.Users.Remove(user);
         }
 
+        public bool UserNameExists(string userId)
+        {
+            return UnitOfWork.Users.FindByCaseInSensitive(x => x.UserId, userId).Any();
+        }
+
         private void RemoveVolunteerProfile(IVolunteerProfileService volunteerProfileService, IVolunteerProfile volunteerProfile)
         {
             volunteerProfileService.RemoveVolunteerProfile(volunteerProfile);
