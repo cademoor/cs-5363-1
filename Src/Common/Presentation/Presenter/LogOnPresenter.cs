@@ -1,4 +1,5 @@
-﻿using Ttu.Domain;
+﻿using System;
+using Ttu.Domain;
 
 namespace Ttu.Presentation
 {
@@ -30,15 +31,15 @@ namespace Ttu.Presentation
         public IUnitOfWork RegisterUser(RegisterUserModel registerUserModel)
         {
             ValidateInput(registerUserModel);
-
+            
             IUnitOfWork uow = CreateUnitOfWork();
-            AddUser(uow, registerUserModel);
-            uow.Commit();
-            uow.Abort();
-
-            // Go ahead and log in the user
-            uow = ValidateCredentials(registerUserModel.UserId, registerUserModel.Password1);
-            return ConfigureAuthenticatedSession(uow);
+            DuplicateUserName(uow, registerUserModel.UserId);
+                AddUser(uow, registerUserModel);
+                uow.Commit();
+                uow.Abort();
+                // Go ahead and log in the user
+                uow = ValidateCredentials(registerUserModel.UserId, registerUserModel.Password1);
+                return ConfigureAuthenticatedSession(uow);
         }
 
         public IUser GetUser(string userId, string password)
@@ -85,6 +86,16 @@ namespace Ttu.Presentation
         {
             IAuthenticationService authenticationService = ServiceFactory.CreateAuthenticationService();
             return authenticationService.Authenticate(userId, password);
+        }
+
+        private void DuplicateUserName(IUnitOfWork uow, string userId)
+        {
+            IUserService userService = ServiceFactory.CreateUserService(uow);
+            if (userService.UserNameExists(userId))
+            {
+                uow.Abort();
+                throw new Exception("Username exists, enter a new one.");
+            }
         }
 
         #endregion

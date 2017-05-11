@@ -11,6 +11,7 @@ namespace Ttu.Presentation
         public ManageRecommendationPresenter(ManageRecommendationViewState viewState)
             : base(viewState)
         {
+            OrganizationService = CreateOrganizationService();
             Service = CreateRecommendationService();
         }
 
@@ -18,54 +19,18 @@ namespace Ttu.Presentation
 
         #region Properties
 
+        private IOrganizationService OrganizationService { get; set; }
         private IRecommendationService Service { get; set; }
 
         #endregion
 
         #region Public Methods
 
-        public void AddRecommendation(RecommendationModel recommendationModel)
-        {
-            // guard clause - invalid input
-            if (recommendationModel == null)
-            {
-                return;
-            }
-
-            IRecommendation recommendation = new Recommendation();
-            recommendationModel.ApplyTo(recommendation);
-
-            Service.AddRecommendation(recommendation);
-            Commit();
-        }
-
-        public RecommendationModel GetRecommendation(int recordId)
-        {
-            // guard clause - not found
-            IRecommendation recommendation = Service.GetRecommendation(recordId);
-            if (recommendation == null)
-            {
-                return null;
-            }
-
-            return CreateRecommendationModel(recommendation);
-        }
-
         public RecommendationModel[] GetRecommendations()
         {
-            return Service.GetRecommendations().Select(o => CreateRecommendationModel(o)).ToArray();
-        }
-
-        public void RemoveRecommendation(RecommendationModel recommendationModel)
-        {
-            // guard clause - invalid input
-            if (recommendationModel == null)
-            {
-                return;
-            }
-
-            Service.RemoveRecommendation(recommendationModel.RecordId);
-            Commit();
+            IRecommendation[] recommendations = Service.GetRecommendations().Where(r => r.ReferenceId > 0).OrderBy(r => r.Rank ?? 100000).ToArray();
+            RecommendationModel[] recommendationModels = recommendations.Select(o => CreateRecommendationModel(o)).ToArray();
+            return recommendationModels.Where(rm => rm != null).ToArray();
         }
 
         #endregion
@@ -74,9 +39,27 @@ namespace Ttu.Presentation
 
         private RecommendationModel CreateRecommendationModel(IRecommendation recommendation)
         {
+            // guard clause - no recommendation
+            string recommendedValue = GetRecommendedValue(recommendation);
+            if (recommendedValue == null)
+            {
+                return null;
+            }
+
             RecommendationModel recommendationModel = new RecommendationModel();
-            recommendationModel.CopyFrom(recommendation);
+            recommendationModel.CopyFrom(recommendation, recommendedValue);
             return recommendationModel;
+        }
+
+        private string GetRecommendedValue(IRecommendation recommendation)
+        {
+            if (recommendation.Type == RecommendationType.OrganizationToUser)
+            {
+                IOrganization organization = OrganizationService.GetOrganization(recommendation.ReferenceId);
+                return organization == null ? null : organization.Name;
+            }
+
+            return null;
         }
 
         #endregion

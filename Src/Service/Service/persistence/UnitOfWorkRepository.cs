@@ -110,6 +110,21 @@ namespace Ttu.Service
             }
         }
 
+        public T[] FindByCaseInSensitive(Expression<Func<T, object>> predicate, string compare)
+        {
+            try
+            {
+                IQueryOver<T, T> queryOver = Session.QueryOver<T>();
+                queryOver = queryOver.WhereRestrictionOn(predicate).IsInsensitiveLike(compare);
+                IList<T> result = queryOver.List<T>();
+                return result.ToArray();
+            }
+            catch (Exception ex)
+            {
+                throw UnitOfWork.LogAndWrapException("Problem querying objects", ex);
+            }
+        }
+
         public T[] FindByChildrenCollection<TChild>(Expression<Func<T, IEnumerable<TChild>>> collection, Expression<Func<TChild, bool>> predicate)
         {
             try
