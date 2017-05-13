@@ -54,7 +54,7 @@ namespace Ttu.Presentation
             IPresenterFactory presenterFactory = Map[sessionId];
             if (presenterFactory == null)
             {
-                throw new BusinessException("Invalid session id.");
+                throw new NoSessionException();
             }
 
             return presenterFactory;

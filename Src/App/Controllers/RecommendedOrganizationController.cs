@@ -16,6 +16,10 @@ namespace App.Controllers
                 ManageRecommendationPresenter presenter = presenterFactory.CreateManageRecommendationPresenter();
                 return View(presenter.GetRecommendations());
             }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             catch (Exception ex)
             {
                 return HandleException(ex);

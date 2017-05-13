@@ -7,7 +7,7 @@
 
         <many-to-one name="LastChangeStatusUser" column="LastChangeStatusUserRecordId" class="User" />
         <many-to-one name="User" column="UserRecordId" class="User" />
-        <many-to-one name="Project" column="ProjectRecordId" class="Project" cascade="all-delete-orphan" />
+        <many-to-one name="Project" column="ProjectRecordId" class="Project" />
 
         <property name="Note" length="500" />
         <property name="Status" />

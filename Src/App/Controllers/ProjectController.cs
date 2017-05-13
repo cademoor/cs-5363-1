@@ -16,6 +16,10 @@ namespace App.Controllers
                 ProjectPresenter presenter = presenterFactory.CreateProjectPresenter();
                 return View(presenter.GetActiveProjectsByEndDate());
             }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             catch (Exception ex)
             {
                 return HandleException(ex);

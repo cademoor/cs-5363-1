@@ -27,6 +27,10 @@ namespace App.Controllers
 
                 return RedirectToAction("Create", "ManageUser");
             }
+            catch (NoSessionException)
+            {
+                return RedirectToAction("Login", "Account");
+            }
             catch (Exception ex)
             {
                 return HandleException(ex);
