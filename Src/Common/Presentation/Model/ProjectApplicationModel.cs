@@ -60,7 +60,10 @@ namespace Ttu.Presentation
         public void CopyFrom(IProjectApplication projectApplication)
         {
             LastChangeUserModel = new UserModel();
-            LastChangeUserModel.CopyFrom(projectApplication.LastChangeStatusUser);
+            if (projectApplication.LastChangeStatusUser != null)
+            {
+                LastChangeUserModel.CopyFrom(projectApplication.LastChangeStatusUser);
+            }
 
             Note = projectApplication.Note;
             RecordId = projectApplication.RecordId;
