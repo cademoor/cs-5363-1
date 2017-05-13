@@ -69,7 +69,7 @@ namespace App.Controllers
             HttpCookie cookie = Request.Cookies.Get(Ttu.Domain.Constants.COOKIE_NAME);
             if (cookie == null)
             {
-                throw new System.Exception("A session has not been established");
+                throw new NoSessionException();
             }
 
             cookie.Expires = DateTime.Now.AddMinutes(5);
@@ -80,7 +80,7 @@ namespace App.Controllers
             IPresenterFactory presenterFactory = PresentationEnvironment.Singleton.ValidatePresenterFactory(sessionId);
             if (presenterFactory == null)
             {
-                throw new System.Exception("A session has not been established");
+                throw new Exception("Unable to create page");
             }
 
             return presenterFactory;
