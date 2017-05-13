@@ -260,6 +260,7 @@
     <Content Include="Views\ManageProject\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\ProjectApplication\Index.cshtml" />
+    <Content Include="Views\ProjectApplication\Apply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

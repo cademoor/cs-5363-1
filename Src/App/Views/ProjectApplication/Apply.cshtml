@@ -1,0 +1,62 @@
+﻿@model Ttu.Presentation.ProjectModel
+
+@{
+    ViewBag.Title = "Submit Application";
+}
+
+<h2>Do you want to volunteer for this project?</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.RecordId)
+
+    <div>
+        <h4>Project Details</h4>
+        <hr/>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProjectName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProjectDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StopTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StopTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Note to Organizers")
+            </dt>
+
+            <dd>
+                @Html.TextBox("Note")
+            </dd>
+        </dl>
+    </div>
+    <p>
+        <input type="submit" value="Submit" class="btn btn-default" />
+        @Html.ActionLink("Back to List", "Index", "Project")
+    </p>
+}

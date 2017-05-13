@@ -56,6 +56,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.MaximumVolunteers)
             </td>
+            <td>
+                @Html.ActionLink("Volunteer", "Apply", "ProjectApplication", new {projectId = item.RecordId}, new {@class = "btn btn-primary btn-xs"})
+            </td>
         </tr>
     }
 

@@ -33,6 +33,11 @@ namespace Ttu.Presentation.Presenter
             return Service.GetActiveProjectsByEndDate().Select(CreateProjectModel).ToArray();
         }
 
+        public ProjectModel GetProject(int projectId)
+        {
+            return CreateProjectModel(Service.GetProject(projectId));
+        }
+
         #endregion
 
         #region Helper Methods

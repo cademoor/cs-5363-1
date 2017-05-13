@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Ttu.Domain;
-using Ttu.Presentation.Model;
 using Ttu.Presentation.ViewState;
 
 namespace Ttu.Presentation.Presenter
@@ -29,10 +28,9 @@ namespace Ttu.Presentation.Presenter
 
         #region Public Methods
 
-        public void Volunteer(ProjectModel projectModel, String note)
+        public void Volunteer(int projectRecordId, String note)
         {
-            IProject project = new Project();
-            projectModel.ApplyTo(project);
+            IProject project = ProjectService.GetProject(projectRecordId);
             ProjectService.Volunteer(User, project, note);
             Commit();
         }
@@ -54,5 +52,6 @@ namespace Ttu.Presentation.Presenter
         }
 
         #endregion
+
     }
 }
